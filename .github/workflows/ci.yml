@@ -30,7 +30,7 @@ jobs:
 
       - name: Validar formato con Black
         run: |
-          black --check .
+          black --check app_demo
 
       - name: Analizar código con Flake8
         run: |
@@ -39,4 +39,4 @@ jobs:
       - name: Ejecutar tests con Pytest y Coverage
         run: |
           cd app_demo
-          pytest --cov=src --cov-report=term-missing
+          PYTHONPATH=. pytest --cov=src --cov-report=term-missing

@@ -5,36 +5,45 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  test-and-sonar:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
           cd app_demo
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install pytest pytest-cov flake8
 
-      - name: Run tests with coverage
+      - name: Run lint
         run: |
           cd app_demo
-          PYTHONPATH=. pytest --cov=src --cov-report=term-missing --cov-report=xml --cov-report=html tests/
+          flake8 src tests
 
-      - name: Upload coverage artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: |
-            app_demo/htmlcov
-            app_demo/coverage.xml
+      - name: Run tests with coverage
+        env:
+          PYTHONPATH: app_demo
+        run: |
+          cd app_demo
+          pytest --cov=src --cov-report=xml --cov-report=term-missing tests
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

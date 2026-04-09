@@ -38,7 +38,7 @@ jobs:
 
       - name: Run tests with coverage
         env:
-          PYTHONPATH: app_demo
+          PYTHONPATH: .
         run: |
           cd app_demo
           pytest --cov=src --cov-report=xml --cov-report=term-missing tests

@@ -2,7 +2,7 @@
 
 ![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
 
-Este repositorio demuestra la implementación de un **pipeline de Integración Continua (CI)** utilizando **GitHub Actions**, enfocado en asegurar la calidad del código mediante automatización de validaciones y pruebas.
+Repositorio que demuestra la implementación de un **pipeline de Integración Continua (CI)** utilizando **GitHub Actions**, enfocado en asegurar la calidad del código mediante automatización de validaciones, pruebas y métricas.
 
 ---
 
@@ -10,10 +10,10 @@ Este repositorio demuestra la implementación de un **pipeline de Integración C
 
 Implementar un pipeline CI que permita:
 
-- Validar la calidad del código automáticamente
-- Detectar errores de forma temprana
-- Asegurar consistencia en el desarrollo
-- Preparar el camino hacia prácticas DevOps y CI/CD
+- Validar la calidad del código automáticamente  
+- Detectar errores de forma temprana  
+- Asegurar consistencia en el desarrollo  
+- Establecer bases para prácticas DevOps y CI/CD  
 
 ---
 
@@ -21,18 +21,18 @@ Implementar un pipeline CI que permita:
 
 El pipeline está implementado con **GitHub Actions** y se ejecuta automáticamente en:
 
-- Cada `push` a la rama `main`
-- Cada `pull request` hacia `main`
-- Ejecución manual (`workflow_dispatch`)
+- Cada `push` a la rama `main`  
+- Cada `pull request` hacia `main`  
+- Ejecución manual (`workflow_dispatch`)  
 
 ### 🔍 Validaciones incluidas
 
-- ✔ Instalación de dependencias
-- ✔ Validación del entorno Python (3.11)
-- ✔ Formato de código con **Black**
-- ✔ Análisis estático con **Flake8**
-- ✔ Ejecución de pruebas unitarias con **Pytest**
-- ✔ Medición de cobertura de código (**pytest-cov**)
+- ✔ Instalación de dependencias  
+- ✔ Validación del entorno Python (3.11)  
+- ✔ Formato de código con **Black**  
+- ✔ Análisis estático con **Flake8**  
+- ✔ Ejecución de pruebas unitarias con **Pytest**  
+- ✔ Medición de cobertura de código con **pytest-cov**  
 
 ---
 
@@ -40,22 +40,36 @@ El pipeline está implementado con **GitHub Actions** y se ejecuta automáticame
 
 El proyecto incluye pruebas unitarias que validan la lógica de negocio:
 
-- Operaciones matemáticas básicas (suma, resta, multiplicación, división)
-- Manejo de errores (división por cero)
+- Operaciones matemáticas básicas:
+  - suma  
+  - resta  
+  - multiplicación  
+  - división  
+- Manejo de errores (división por cero)  
+- Validación de casos borde:
+  - valores negativos  
+  - uso de cero  
+  - resultados esperados  
 
-Las pruebas se ejecutan automáticamente en el pipeline, asegurando la estabilidad del código.
+Las pruebas se ejecutan automáticamente en el pipeline, asegurando la estabilidad del código en cada cambio.
 
 ---
 
-## 📊 Cobertura de código
+## 📊 Cobertura de Código
 
 Se implementa medición de cobertura para evaluar qué porcentaje del código es validado por pruebas.
 
 Esto permite:
 
-- Identificar código no testeado
-- Reducir riesgos en cambios futuros
-- Mejorar la calidad general del software
+- Identificar código no testeado  
+- Reducir riesgos en cambios futuros  
+- Mejorar la calidad general del software  
+
+📌 Cobertura actual del proyecto:
+
+**100%**
+
+![Coverage](./docs/coverage.png)
 
 ---
 
@@ -72,9 +86,6 @@ cloud-delivery-pipeline-portafolio/
 ├── aws/
 ├── azure_devops/
 ├── docs/
+│   └── coverage.png
 ├── sonarqube/
 └── README.md
-
-## 📊 Cobertura de Código
-
-![Coverage](./docs/coverage.png)

@@ -9,3 +9,19 @@ Este repositorio incluye un pipeline de Integración Continua con GitHub Actions
 - Ejecución de pruebas automatizadas con pytest
 
 El pipeline se activa en cada push y pull request hacia la rama principal.
+
+## Estructura del proyecto
+
+```text
+cloud-delivery-pipeline-portafolio/
+├── .github/workflows/ci.yml
+├── app_demo/
+│   ├── src/
+│   ├── tests/
+│   ├── requirements.txt
+│   └── README.md
+├── aws/
+├── azure_devops/
+├── docs/
+├── sonarqube/
+└── README.md

@@ -74,3 +74,9 @@ cloud-delivery-pipeline-portafolio/
 ├── docs/
 ├── sonarqube/
 └── README.md
+
+---
+
+## 📊 Cobertura de Código
+
+![Coverage](docs/coverage.png)

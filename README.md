@@ -17,13 +17,21 @@ Implementar un pipeline CI que permita:
 
 ---
 
-## ⚙️ CI Pipeline
+## ⚙️ Estrategia de Integración Continua
 
-El pipeline está implementado con **GitHub Actions** y se ejecuta automáticamente en:
+Se implementa un pipeline CI orientado a:
 
-- Cada `push` a la rama `main`  
-- Cada `pull request` hacia `main`  
-- Ejecución manual (`workflow_dispatch`)  
+- Asegurar calidad de código desde etapas tempranas  
+- Reducir defectos en producción  
+- Estandarizar el proceso de desarrollo  
+- Mejorar la confiabilidad del delivery  
+
+El pipeline automatiza validaciones técnicas como:
+
+- Pruebas automatizadas (pytest)  
+- Análisis estático de código (flake8)  
+- Formateo de código (black)  
+- Medición de cobertura (pytest-cov)  
 
 ### 🔍 Validaciones incluidas
 

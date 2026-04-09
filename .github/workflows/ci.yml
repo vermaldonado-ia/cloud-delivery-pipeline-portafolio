@@ -40,12 +40,10 @@ jobs:
           flake8 src tests
 
       - name: Run tests with coverage
-        env:
-          PYTHONPATH: .
         run: |
           cd app_demo
-          pytest --cov=src --cov-report=xml --cov-report=term-missing tests
-
+          PYTHONPATH=. pytest --cov=src --cov-report=xml --cov-report=term-missing tests
+      
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:

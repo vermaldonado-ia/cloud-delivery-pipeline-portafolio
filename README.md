@@ -7,7 +7,11 @@
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
-Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación de código, control de calidad y simulación de despliegue continuo.
+# 🚀 Cloud Delivery Pipeline Portafolio
+
+![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
+
+Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación automática de calidad de código y control de despliegue mediante un **Quality Gate simulado**.
 
 ---
 
@@ -15,206 +19,160 @@ Repositorio que demuestra la implementación de un **pipeline CI/CD completo** u
 
 Construir un pipeline que permita:
 
-* Validar la calidad del código automáticamente
+* Validar automáticamente la calidad del código
 * Detectar errores de forma temprana
-* Asegurar consistencia en el desarrollo
-* Incorporar validaciones de calidad (Code Quality)
-* Simular un flujo de despliegue continuo (CD)
-* Generar evidencia trazable del proceso
+* Bloquear despliegues si no se cumplen estándares
+* Simular un flujo CI/CD utilizado en entornos empresariales
 
 ---
 
-## ⚙️ Continuous Integration (CI)
+## ⚙️ Arquitectura del Pipeline
 
-El pipeline de CI se ejecuta automáticamente en cada `push` y `pull request` hacia la rama `main`.
+El pipeline está compuesto por tres etapas principales:
 
-### 🔧 ¿Qué valida el CI?
+```text
+Push
+ ↓
+CI (Tests)
+ ↓
+Quality Gate (flake8)
+ ↓
+CD (Deploy simulado)
+```
+
+### 🔹 1. Integración Continua (CI)
 
 * Instalación de dependencias
-* Validación del entorno Python
+* Validación de entorno Python
 * Ejecución de pruebas automatizadas con `pytest`
-* Validación de ejecución del código
 
-### 🔄 Flujo CI
+### 🔹 2. Code Quality - Quality Gate Simulado
 
-```text
-Push / Pull Request
-        ↓
-Instalación de dependencias
-        ↓
-Ejecución de pruebas
-        ↓
-Validación de resultados
-```
+Se implementa una etapa de validación de calidad usando `flake8`, que actúa como un **Quality Gate**.
 
----
+Esta etapa valida:
 
-## 🔍 Code Quality & Análisis de Código
+* Errores críticos de código
+* Variables no definidas
+* Complejidad excesiva
+* Estándares de formato
 
-El pipeline incorpora validaciones orientadas a asegurar la calidad del código antes del despliegue.
+👉 Si esta etapa falla, el pipeline se detiene automáticamente.
 
-### 🔧 Validaciones implementadas
+### 🔹 3. Continuous Deployment (CD) Simulado
 
-* Análisis estático de código (linting)
-* Buenas prácticas de desarrollo
-* Evaluación de calidad mediante herramientas como SonarQube *(simulado/integrado según configuración)*
-
-### 🎯 Objetivo
-
-* Detectar problemas antes del despliegue
-* Reducir deuda técnica
-* Asegurar mantenibilidad del código
-* Mejorar la calidad general del software
-
-### 🔄 Flujo de calidad
-
-```text
-Ejecución de pruebas
-        ↓
-Análisis de código
-        ↓
-Validación de calidad
-        ↓
-Aprobación para despliegue
-```
-
-### 🧠 Rol en el pipeline
-
-Esta etapa funciona como un **Quality Gate**, asegurando que solo código validado avance hacia el despliegue.
+* Simulación de despliegue controlado
+* Solo se ejecuta si CI y Quality pasan correctamente
 
 ---
 
-## 🚀 Continuous Deployment (CD) Simulado
+## 🚫 Quality Gate en acción
 
-Este repositorio incluye una etapa de **Continuous Deployment (CD) simulado**, que representa el flujo de entrega posterior a la validación de código.
-
-### 🎯 Objetivo
-
-Demostrar cómo un cambio validado puede ser promovido automáticamente hacia una etapa de liberación.
+Se realizaron pruebas controladas para validar el comportamiento del pipeline.
 
 ---
 
-### ⚙️ Flujo CD
+### ❌ Caso 1: Falla de calidad
 
-```text
-Push a main
-   ↓
-Pipeline CI
-   ↓
-Code Quality
-   ↓
-CD Simulado
-   ↓
-Generación de artifact
-```
+Se introdujo intencionalmente un error en el código (`variable no definida`), provocando:
+
+* Fallo en la etapa de calidad (`flake8`)
+* Bloqueo del pipeline completo
+* Cancelación automática del despliegue
+
+#### 📸 Evidencia
+
+![Quality Gate Fail](docs/quality-gate-fail.png)
 
 ---
 
-### 🔧 ¿Qué realiza el CD?
+### ✅ Caso 2: Código corregido
 
-* Ejecuta pruebas antes del despliegue
-* Genera una carpeta de release simulada
-* Crea un archivo de evidencia (`deployment_log.txt`)
-* Publica un artifact descargable
+Tras corregir el error:
 
----
+* Tests ejecutados correctamente
+* Validación de calidad aprobada
+* Despliegue simulado ejecutado
 
-### 📦 Evidencia de despliegue
+#### 📸 Evidencia
 
-El pipeline genera un artifact que contiene:
-
-* `app_demo/`
-* `deployment_log.txt`
-
-El archivo `deployment_log.txt` incluye:
-
-* Fecha de ejecución
-* Commit asociado
-* Rama de despliegue
-* Estado del despliegue
-
-Ejemplo:
-
-```text
-Release preparado correctamente
-Fecha: Fri Apr 10 ...
-Commit: 76e6557...
-Branch: main
-Estado: Deploy simulado exitoso
-```
+![Quality Gate Success](docs/quality-gate-success.png)
 
 ---
 
-## 📸 Evidencia visual
+## 🎯 Resultado
 
-### ✅ Ejecución del pipeline CD
+El pipeline implementa correctamente un **Quality Gate**:
 
-![CD Workflow](docs/img/cd_simulado_workflow.png)
-
----
-
-### 📦 Artifact generado
-
-![CD Artifact](docs/img/cd_simulado_artifact.png)
+* Si la calidad falla → el despliegue NO ocurre
+* Si la calidad pasa → el pipeline continúa
 
 ---
 
-### 📁 Contenido del despliegue simulado
+## 🧠 Enfoque técnico
 
-![CD Content](docs/img/cd_simulado_contenido.png)
+Esta implementación replica el comportamiento de pipelines empresariales donde:
+
+* La calidad del código es obligatoria antes del despliegue
+* Se aplican controles automatizados de validación
+* Se previenen errores en producción
+
+El Quality Gate simulado representa el rol que cumplen herramientas como **SonarQube** en entornos reales.
 
 ---
 
-## 🧩 Estructura del proyecto
+## 🚀 Valor del Portafolio
+
+Este proyecto demuestra:
+
+* Implementación de CI/CD con GitHub Actions
+* Integración de validación de calidad automatizada
+* Control de flujo mediante dependencias entre jobs (`needs`)
+* Simulación de despliegue condicionado por calidad
+* Enfoque DevOps orientado a calidad y confiabilidad
+
+---
+
+## 📁 Estructura del Proyecto
 
 ```text
 cloud-delivery-pipeline-portafolio/
 ├── .github/workflows/
 │   ├── ci.yml
-│   └── cd.yml
+│   └── ci_cd.yml
 ├── app_demo/
 │   ├── src/
 │   ├── tests/
-│   ├── requirements.txt
-│   └── README.md
+│   └── requirements.txt
 ├── docs/
-│   └── img/
-├── README.md
+│   ├── quality-gate-fail.png
+│   └── quality-gate-success.png
+└── README.md
 ```
 
 ---
 
-## 🚀 Tecnologías utilizadas
+## 🧩 Próximos pasos
 
-* GitHub Actions
-* Python
-* Pytest
-* Git
-* SonarQube *(conceptual / integrable)*
-
----
-
-## 📈 Próximos pasos
-
-* Implementar despliegue real en la nube (AWS / Azure)
-* Incorporar ambientes (`dev`, `qa`, `prod`)
-* Agregar aprobaciones manuales
-* Integrar SonarQube de forma completa
+* Integración con SonarQube real
+* Implementación de despliegue real (AWS / Azure)
+* Gestión de artefactos
+* Pipeline multi-entorno (dev / qa / prod)
 
 ---
 
-## 💬 Enfoque profesional
+## 💬 Contexto profesional
 
-Este repositorio representa un flujo base de CI/CD alineado a prácticas DevOps, donde se prioriza:
+Este pipeline fue diseñado como parte de un portafolio orientado a roles como:
 
-* Automatización
-* Calidad
-* Trazabilidad
-* Entrega continua
+* Cloud & DevOps Delivery Manager
+* Cloud Project Manager
+* Platform Delivery Manager
 
 ---
 
-## 👩‍💻 Autor
+## 🏁 Conclusión
 
-**Verónica Maldonado Céspedes**
-Cloud & DevOps Delivery | Agile | CI/CD
+Se logra implementar un pipeline CI/CD completo con control de calidad automatizado, demostrando cómo prevenir despliegues de código defectuoso y asegurar estándares mínimos antes de liberar cambios.
+
+---

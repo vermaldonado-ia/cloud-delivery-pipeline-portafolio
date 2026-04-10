@@ -1,6 +1,6 @@
 # 🔍 Code Quality - SonarQube (Simulado)
 
-Este módulo representa la integración de **análisis de calidad de código** dentro del pipeline CI/CD, utilizando herramientas como **SonarQube** para evaluar mantenibilidad, confiabilidad y buenas prácticas de desarrollo.
+Este módulo representa la integración de **análisis de calidad de código** dentro del pipeline CI/CD, utilizando herramientas como SonarQube para evaluar mantenibilidad, confiabilidad y buenas prácticas de desarrollo.
 
 ---
 
@@ -55,6 +55,36 @@ Ejemplo de validaciones:
 * Nivel aceptable de deuda técnica
 
 Si el código no cumple estas condiciones, el despliegue debería bloquearse.
+
+---
+
+## 🔗 Integración con GitHub y SonarQube Cloud
+
+Se realizó la integración entre **GitHub** y **SonarQube Cloud**, permitiendo automatizar el análisis de calidad de código dentro del flujo de desarrollo.
+
+### ⚙️ Proceso de integración
+
+* Conexión de la cuenta de GitHub con SonarQube Cloud
+* Selección del repositorio a analizar
+* Configuración del proyecto en SonarQube
+* Generación de token de autenticación
+* Preparación para ejecución automática en el pipeline
+
+---
+
+### 🔄 Flujo integrado
+
+```text
+Commit de código
+        ↓
+GitHub Actions (CI)
+        ↓
+Análisis SonarQube Cloud
+        ↓
+Evaluación de Quality Gate
+        ↓
+Resultado disponible en dashboard
+```
 
 ---
 

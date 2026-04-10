@@ -7,10 +7,6 @@
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
-# 🚀 Cloud Delivery Pipeline Portafolio
-
-![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
-
 Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación automática de calidad de código y control de despliegue mediante un **Quality Gate simulado**.
 
 ---

@@ -1,0 +1,47 @@
+name: CD Simulado
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  simulated-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: |
+          cd app_demo
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Ejecutar pruebas antes del despliegue
+        run: |
+          cd app_demo
+          PYTHONPATH=. pytest
+
+      - name: Crear carpeta de despliegue simulado
+        run: |
+          mkdir -p simulated_release
+          cp -R app_demo simulated_release/
+          echo "Release preparado correctamente" > simulated_release/deployment_log.txt
+          echo "Fecha: $(date)" >> simulated_release/deployment_log.txt
+          echo "Commit: $GITHUB_SHA" >> simulated_release/deployment_log.txt
+          echo "Branch: $GITHUB_REF_NAME" >> simulated_release/deployment_log.txt
+          echo "Estado: Deploy simulado exitoso" >> simulated_release/deployment_log.txt
+
+      - name: Subir artefacto del despliegue simulado
+        uses: actions/upload-artifact@v4
+        with:
+          name: simulated-deployment-package
+          path: simulated_release/

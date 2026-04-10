@@ -1,180 +1,94 @@
 # 🚀 Cloud Delivery Pipeline Portafolio
 
-![CI/CD Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci_cd.yml/badge.svg)
 ![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
-![Code Quality](https://img.shields.io/badge/Quality-Gate%20Simulated-blue)
-![Test Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![CI](https://img.shields.io/badge/CI-GitHub%20Actions-green)
+![Coverage](https://img.shields.io/badge/Coverage-Enforced-red)
 
-Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación automática de calidad, cobertura de pruebas y despliegue real mediante **GitHub Pages**.
+Repositorio que demuestra la implementación de un **pipeline de Integración Continua (CI)** utilizando **GitHub Actions**, enfocado en asegurar la calidad del código mediante automatización de validaciones.
 
 ---
 
 ## 🎯 Objetivo
 
-Construir un pipeline que permita:
+Implementar un pipeline CI que permita:
 
-* Validar automáticamente la calidad del código
-* Detectar errores de forma temprana
-* Medir cobertura de pruebas de forma automatizada
-* Bloquear despliegues si no se cumplen estándares
-* Ejecutar un flujo CI/CD real utilizado en entornos profesionales
-
----
-
-## ⚙️ Arquitectura del Pipeline
-
-```text
-Push
- ↓
-CI (Tests + Coverage)
- ↓
-Quality Gate (flake8)
- ↓
-CD (Deploy en GitHub Pages)
-```
+- Validar la calidad del código automáticamente  
+- Detectar errores de forma temprana  
+- Asegurar cobertura mínima de pruebas  
+- Establecer un Quality Gate antes de integrar cambios  
 
 ---
 
-## 🔹 1. Integración Continua (CI)
+## ⚙️ Pipeline CI implementado
 
-* Instalación de dependencias
-* Ejecución de pruebas automatizadas con `pytest`
-* Medición de cobertura con `pytest-cov`
+El pipeline se ejecuta automáticamente en cada:
 
----
+- `push` a `main`
+- `pull request`
 
-## 📊 Test Coverage
+### Etapas:
 
-El pipeline incorpora medición real de cobertura de pruebas.
-
-### 🎯 Resultado
-
-* Coverage total: **100%**
-
-#### 📸 Evidencia
-
-![Test Coverage](docs/test-coverage.png)
+1. Instalación de dependencias  
+2. Configuración de entorno Python  
+3. Ejecución de pruebas (`pytest`)  
+4. Medición de cobertura (`pytest-cov`)  
+5. Validación de umbral mínimo (`--cov-fail-under`)  
 
 ---
 
-## 🔹 2. Code Quality - Quality Gate Simulado
+## 🧪 Validación del pipeline
 
-Se implementa un **Quality Gate** utilizando `flake8`.
-
-### 🔍 Validaciones
-
-* Errores críticos de código
-* Variables no definidas
-* Complejidad y mantenibilidad
-* Estándares de formato
-
-👉 Si falla calidad, el pipeline se detiene.
+El pipeline fue validado en distintos escenarios reales:
 
 ---
 
-## 🚫 Quality Gate en acción
+### ✅ Ejecución exitosa
 
-### ❌ Caso: error de calidad
+- Tests exitosos  
+- Cobertura sobre el umbral  
+- Pipeline completo OK  
 
-Se introduce un error intencional:
-
-* El pipeline falla
-* El deploy se bloquea
-
-#### 📸 Evidencia
-
-![Quality Gate Fail](docs/quality-gate-fail.png)
+![CI Success](docs/ci-success.png)
 
 ---
 
-### ✅ Caso: código correcto
+### ❌ Falla por error funcional
 
-* Tests pasan
-* Quality Gate aprueba
-* Deploy se ejecuta
+- Error introducido en el código  
+- Tests detectan inconsistencia  
+- Pipeline falla automáticamente  
 
-#### 📸 Evidencia
-
-![Pipeline Success](docs/pipeline-success.png)
+![Test Fail](docs/test-fail.png)
 
 ---
 
-## 🔹 3. Continuous Deployment (CD)
+### ❌ Falla por cobertura insuficiente
 
-El pipeline ejecuta un **deploy real** mediante GitHub Pages.
+- Eliminación de pruebas  
+- Coverage bajo el mínimo  
+- Activación del Quality Gate  
 
-### ✔ Qué hace el deploy
-
-* Genera un sitio HTML automáticamente
-* Publica el resultado del pipeline
-* Entrega una URL accesible públicamente
-
-👉 Esto convierte el CD en un despliegue real, no solo simulado.
+![Coverage Fail](docs/coverage-fail.png)
 
 ---
 
-## 🎯 Resultado
+## 🧠 Enfoque DevOps
 
-El pipeline implementa control completo de flujo:
+Este pipeline implementa control de calidad en múltiples niveles:
 
-* Si falla calidad → ❌ no hay deploy
-* Si pasa todo → ✅ deploy automático
-
----
-
-## 🧠 Enfoque técnico
-
-Este proyecto replica prácticas reales:
-
-* Integración continua automatizada
-* Control de calidad antes del despliegue
-* Uso de métricas (coverage)
-* Despliegue automatizado
-
-El Quality Gate está implementado con `flake8`, simulando el rol de herramientas como **SonarQube**.
-
----
-
-## 🚀 Valor del Portafolio
-
-Demuestra:
-
-* CI/CD con GitHub Actions
-* Coverage real con pytest-cov
-* Quality Gate automatizado
-* Deploy real con GitHub Pages
-* Control de flujo entre etapas (`needs`)
+- ✔ Validación funcional (tests)  
+- ✔ Control de cobertura mínima  
+- ✔ Automatización CI  
 
 ---
 
 ## 📁 Estructura
 
-```text
+```bash
 cloud-delivery-pipeline-portafolio/
-├── .github/workflows/
+├── .github/workflows/ci.yml
 ├── app_demo/
 ├── docs/
-│   ├── test-coverage.png
-│   ├── quality-gate-fail.png
-│   └── pipeline-success.png
 ├── sonarqube/
-│   └── README.md
 └── README.md
-```
-
----
-
-## 🧩 Próximos pasos
-
-* Integración con SonarQube real
-* Umbral mínimo de coverage
-* Deploy a AWS / Azure
-* Pipeline multi-entorno
-
----
-
-## 🏁 Conclusión
-
-Se implementa un pipeline CI/CD funcional con testing, coverage, control de calidad y despliegue real, demostrando prácticas modernas de DevOps aplicadas a un entorno de portafolio.
-
----

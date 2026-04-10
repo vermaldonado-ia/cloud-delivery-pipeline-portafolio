@@ -28,7 +28,23 @@ def test_resta_resultado_negativo():
 
 def test_resta_con_negativos():
     assert resta(-5, -3) == -2
-    
+
+
+def test_multiplicacion_positivos():
+    assert multiplicacion(2, 4) == 8
+
+
+def test_multiplicacion_con_cero():
+    assert multiplicacion(8, 0) == 0
+
+
+def test_multiplicacion_con_negativos():
+    assert multiplicacion(-2, 4) == -8
+
+
+def test_multiplicacion_dos_negativos():
+    assert multiplicacion(-2, -4) == 8
+
 
 def test_division_normal():
     assert division(10, 2) == 5

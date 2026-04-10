@@ -1,120 +1,144 @@
-# 🔍 Code Quality - SonarQube (Simulado)
+# 🔍 Code Quality - Quality Gate Simulado
 
-Este módulo representa la integración de **análisis de calidad de código** dentro del pipeline CI/CD, utilizando herramientas como SonarQube para evaluar mantenibilidad, confiabilidad y buenas prácticas de desarrollo.
+![Code Quality](https://img.shields.io/badge/Quality-Gate%20Simulated-blue)
+![Linting](https://img.shields.io/badge/Linting-Flake8-blueviolet)
+
+Este módulo representa la implementación de un **Quality Gate dentro de un pipeline CI/CD**, simulando el comportamiento de herramientas como **SonarQube** mediante el uso de `flake8`.
 
 ---
 
 ## 🎯 Objetivo
 
-Incorporar una etapa de **Code Quality** dentro del pipeline, permitiendo:
+Incorporar una etapa de validación de calidad que permita:
 
-* Detectar problemas de código de forma temprana
+* Detectar errores de código de forma temprana
 * Reducir deuda técnica
-* Asegurar estándares de desarrollo
-* Actuar como un **Quality Gate** antes del despliegue
+* Asegurar estándares mínimos de desarrollo
+* Bloquear el despliegue si no se cumplen criterios de calidad
 
 ---
 
 ## ⚙️ Rol dentro del pipeline
 
-El análisis de calidad se ubica entre CI y CD:
+El flujo implementado es:
 
 ```text
-Push
-  ↓
-CI (tests)
-  ↓
-Code Quality (SonarQube / Linting)
-  ↓
-CD (simulado)
+CI (Tests)
+ ↓
+Code Quality (flake8)
+ ↓
+CD (Deploy)
 ```
 
-Esta etapa asegura que solo código validado avance hacia la liberación.
+El Quality Gate se ubica entre CI y CD, actuando como punto de control obligatorio.
 
 ---
 
-## 🔧 Validaciones consideradas
+## 🔍 Validaciones implementadas
 
-* Análisis estático de código
-* Detección de errores potenciales
-* Identificación de código duplicado
-* Evaluación de mantenibilidad
-* Cumplimiento de buenas prácticas
+Se utilizan reglas de `flake8` para validar la calidad del código en dos niveles:
 
 ---
 
-## 🧠 Concepto de Quality Gate
+### 🔹 1. Errores críticos
 
-El **Quality Gate** define criterios mínimos de calidad que deben cumplirse para continuar el pipeline.
+```bash
+flake8 src --count --select=E9,F63,F7,F82 --show-source --statistics
+```
 
-Ejemplo de validaciones:
+Detecta:
 
-* Sin errores críticos
-* Cobertura mínima de pruebas
-* Sin vulnerabilidades
-* Nivel aceptable de deuda técnica
+* Errores de sintaxis
+* Variables no definidas
+* Fallos críticos de ejecución
 
-Si el código no cumple estas condiciones, el despliegue debería bloquearse.
-
----
-
-## 🔗 Integración con GitHub y SonarQube Cloud
-
-Se realizó la integración entre **GitHub** y **SonarQube Cloud**, permitiendo automatizar el análisis de calidad de código dentro del flujo de desarrollo.
-
-### ⚙️ Proceso de integración
-
-* Conexión de la cuenta de GitHub con SonarQube Cloud
-* Selección del repositorio a analizar
-* Configuración del proyecto en SonarQube
-* Generación de token de autenticación
-* Preparación para ejecución automática en el pipeline
+👉 Si se detecta alguno → el pipeline falla inmediatamente.
 
 ---
 
-### 🔄 Flujo integrado
+### 🔹 2. Calidad y mantenibilidad
 
-```text
-Commit de código
-        ↓
-GitHub Actions (CI)
-        ↓
-Análisis SonarQube Cloud
-        ↓
-Evaluación de Quality Gate
-        ↓
-Resultado disponible en dashboard
+```bash
+flake8 src --count --max-complexity=10 --max-line-length=88 --statistics
+```
+
+Evalúa:
+
+* Complejidad ciclomática
+* Estándares de formato
+* Legibilidad del código
+
+---
+
+## 🚫 Comportamiento del Quality Gate
+
+El comportamiento implementado es:
+
+* Si `flake8` detecta errores → el job falla
+* El pipeline se detiene automáticamente
+* El despliegue NO se ejecuta
+
+Esto se logra mediante la configuración de dependencias entre jobs en GitHub Actions:
+
+```yaml
+quality:
+  needs: test
+
+deploy:
+  needs: quality
 ```
 
 ---
 
-## 🔄 Integración con el pipeline
+## 🧪 Prueba de validación
 
-Actualmente, esta etapa se representa de forma **conceptual / simulada**, complementada con:
+Se realizó una prueba controlada introduciendo un error en el código:
 
-* Linting
-* Validaciones del pipeline CI
-* Buenas prácticas de desarrollo
+```python
+def prueba():
+    print(variable_no_definida)
+```
 
-En una implementación completa, se integraría con SonarQube mediante:
+### Resultado
 
-* Análisis automático en cada commit
-* Evaluación de métricas de calidad
-* Bloqueo del pipeline si falla el Quality Gate
-
----
-
-## 🚀 Evolución futura
-
-Para llevar esta integración a un entorno real, se podría:
-
-* Configurar un servidor SonarQube
-* Integrar SonarScanner en el pipeline CI
-* Definir reglas de Quality Gate
-* Visualizar métricas en dashboard
+* ❌ Falla en etapa de calidad
+* ⛔ Bloqueo del pipeline
+* 🚫 Deploy no ejecutado
 
 ---
 
-## 💬 Enfoque
+## 🧠 Enfoque aplicado
 
-Este módulo demuestra cómo la calidad de código forma parte fundamental del proceso CI/CD, asegurando que el software no solo funcione, sino que también sea mantenible, seguro y escalable.
+Este enfoque simula el comportamiento de herramientas empresariales como:
+
+* SonarQube
+* Quality Gates corporativos
+* Políticas de control de despliegue
+
+---
+
+## 🚀 Valor del módulo
+
+Este componente permite demostrar:
+
+* Control de calidad automatizado
+* Integración de validaciones dentro del pipeline CI/CD
+* Prevención de errores antes del despliegue
+* Gobernanza técnica del código
+
+---
+
+## 🔮 Evolución futura
+
+* Integración con SonarQube real
+* Métricas avanzadas de calidad (coverage, duplicación, deuda técnica)
+* Dashboards de calidad
+* Gates configurables por entorno
+
+---
+
+## 🏁 Conclusión
+
+Se implementa un **Quality Gate simulado funcional**, que bloquea automáticamente el pipeline en caso de incumplimiento de estándares de calidad, replicando prácticas utilizadas en entornos DevOps empresariales.
+
+---

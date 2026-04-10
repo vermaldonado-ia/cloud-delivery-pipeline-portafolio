@@ -1,23 +1,24 @@
 # 🚀 Cloud Delivery Pipeline Portafolio
 
-# 🚀 Cloud Delivery Pipeline Portafolio
-
 ![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
 ![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=vermaldonado-ia_cloud-delivery-pipeline-portafolio&metric=alert_status)
 ![Coverage](https://sonarcloud.io/api/project_badges/measure?project=vermaldonado-ia_cloud-delivery-pipeline-portafolio&metric=coverage)
 
-Repositorio que demuestra la implementación de un **pipeline de Integración Continua (CI)** utilizando **GitHub Actions**, enfocado en asegurar la calidad del código mediante automatización de validaciones, pruebas y métricas.
+Repositorio orientado a demostrar la implementación de un pipeline de Integración Continua (CI) con GitHub Actions, incorporando pruebas automatizadas, cobertura de código y análisis de calidad con SonarQube Cloud.
+
+Este proyecto busca evidenciar buenas prácticas de automatización y control de calidad en un flujo de desarrollo moderno, utilizando un ejemplo simple en Python.
 
 ---
 
 ## 🎯 Objetivo
 
-Implementar un pipeline CI que permita:
+Implementar un pipeline de CI que permita:
 
-* Validar la calidad del código automáticamente
-* Detectar errores de forma temprana
-* Asegurar consistencia en el desarrollo
-* Establecer bases para prácticas DevOps y CI/CD
+- Ejecutar pruebas automatizadas en cada cambio
+- Medir cobertura de código
+- Integrar análisis estático de calidad
+- Validar estándares mediante Quality Gate
+- Demostrar prácticas DevOps aplicadas a un proyecto Python
 
 ---
 
@@ -40,6 +41,27 @@ El pipeline automatiza validaciones técnicas como:
 * Medición de cobertura (pytest-cov)
 
 ---
+
+## 🧩 Flujo del pipeline
+
+El flujo implementado en este repositorio sigue esta secuencia:
+
+```text
+Developer Push / Pull Request
+        ↓
+GitHub Actions
+        ↓
+Instalación de dependencias
+        ↓
+Ejecución de lint
+        ↓
+Pruebas con pytest
+        ↓
+Generación de coverage.xml
+        ↓
+Análisis con SonarQube Cloud
+        ↓
+Validación de Quality Gate
 
 ## 🧪 Testing
 
@@ -80,23 +102,31 @@ Esto permite:
 
 ---
 
-## 🏗️ Estructura del proyecto
+## ✅ Resultados logrados
+
+Este pipeline permite:
+
+- Ejecutar pruebas automáticamente en cada cambio relevante
+- Validar la calidad del código antes de integrar cambios
+- Medir cobertura de código de forma automatizada
+- Exponer resultados visibles mediante badges
+- Demostrar una base sólida de CI orientada a prácticas DevOps
+
+---
+
+## 📁 Estructura del proyecto
 
 ```text
 cloud-delivery-pipeline-portafolio/
 ├── .github/workflows/ci.yml
 ├── app_demo/
 │   ├── src/
+│   │   └── main.py
 │   ├── tests/
-│   ├── requirements.txt
-│   └── README.md
-├── aws/
-├── azure_devops/
-├── docs/
-│   └── coverage.png
-├── sonarqube/
+│   │   └── test_main.py
+│   └── requirements.txt
+├── sonar-project.properties
 └── README.md
-```
 
 ---
 
@@ -125,9 +155,19 @@ Este repositorio demuestra capacidades en:
 
 ---
 
+## ▶️ Ejecución local
+
+Para ejecutar el proyecto y las pruebas en entorno local:
+
+```bash
+cd app_demo
+pip install -r requirements.txt
+PYTHONPATH=. pytest --cov=src --cov-report=xml --cov-report=term-missing tests
+
+---
+
 ## 🔮 Próximos pasos
 
-* Integración con SonarQube
 * Incorporación de Continuous Deployment (CD)
 * Despliegue en entornos cloud (AWS / Azure)
 * Integración con contenedores (Docker)

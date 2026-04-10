@@ -5,7 +5,7 @@
 ![Code Quality](https://img.shields.io/badge/Quality-Gate%20Simulated-blue)
 ![Test Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)
 
-Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación automática de calidad de código, medición de cobertura de pruebas y control de despliegue mediante un **Quality Gate simulado**.
+Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación automática de calidad de código, cobertura de pruebas y control de despliegue mediante un **Quality Gate simulado**.
 
 ---
 
@@ -17,7 +17,7 @@ Construir un pipeline que permita:
 * Detectar errores de forma temprana
 * Medir cobertura de pruebas de forma automatizada
 * Bloquear despliegues si no se cumplen estándares
-* Simular un flujo CI/CD utilizado en entornos empresariales
+* Simular y evolucionar hacia un flujo CI/CD utilizado en entornos empresariales
 
 ---
 
@@ -32,7 +32,7 @@ CI (Tests + Coverage)
  ↓
 Quality Gate (flake8)
  ↓
-CD (Deploy simulado)
+CD (Deploy)
 ```
 
 ---
@@ -55,7 +55,7 @@ El pipeline incorpora medición real de cobertura de pruebas mediante `pytest-co
 * Cobertura total: **100%**
 * Código completamente validado por tests automatizados
 
-### 📸 Evidencia
+#### 📸 Evidencia
 
 ![Test Coverage](docs/test-coverage.png)
 
@@ -108,16 +108,16 @@ Tras corregir el error:
 
 ---
 
-## 🔹 3. Continuous Deployment (CD) Simulado
+## 🔹 3. Continuous Deployment (CD)
 
-* Simulación de despliegue controlado
+* Despliegue controlado posterior a validaciones
 * Ejecutado solo si CI y Quality pasan correctamente
 
 ---
 
 ## 🎯 Resultado
 
-El pipeline implementa correctamente un **Quality Gate**:
+El pipeline implementa correctamente un control de flujo tipo **Quality Gate**:
 
 * Si la calidad falla → el despliegue NO ocurre
 * Si la calidad pasa → el pipeline continúa
@@ -132,7 +132,7 @@ Esta implementación replica el comportamiento de pipelines empresariales donde:
 * Se aplican controles automatizados de validación
 * Se previenen errores en producción
 
-El Quality Gate simulado representa el rol que cumplen herramientas como **SonarQube** en entornos reales.
+Actualmente, el control de calidad se implementa con `flake8` como simulación del rol que normalmente cumplen herramientas como **SonarQube** en entornos reales.
 
 ---
 
@@ -144,7 +144,7 @@ Este proyecto demuestra:
 * Integración de validación de calidad automatizada
 * Medición real de cobertura de pruebas
 * Control de flujo mediante dependencias entre jobs (`needs`)
-* Simulación de despliegue condicionado por calidad
+* Despliegue condicionado por calidad
 * Enfoque DevOps orientado a calidad y confiabilidad
 
 ---
@@ -164,6 +164,8 @@ cloud-delivery-pipeline-portafolio/
 │   ├── test-coverage.png
 │   ├── quality-gate-fail.png
 │   └── pipeline-success.png
+├── sonarqube/
+│   └── README.md
 └── README.md
 ```
 
@@ -171,8 +173,8 @@ cloud-delivery-pipeline-portafolio/
 
 ## 🧩 Próximos pasos
 
-* Integración con SonarQube real
-* Implementación de despliegue real (AWS / Azure)
+* Integración con SonarQube o SonarCloud
+* Umbral mínimo de cobertura
 * Gestión de artefactos
 * Pipeline multi-entorno (dev / qa / prod)
 
@@ -190,6 +192,6 @@ Este pipeline fue diseñado como parte de un portafolio orientado a roles como:
 
 ## 🏁 Conclusión
 
-Se implementa un pipeline CI/CD completo con control de calidad automatizado y medición de cobertura, demostrando cómo prevenir despliegues de código defectuoso y asegurar estándares antes de liberar cambios.
+Se implementa un pipeline CI/CD funcional con testing, coverage y validación de calidad automatizada, demostrando cómo prevenir despliegues de código defectuoso y asegurar estándares antes de liberar cambios.
 
 ---

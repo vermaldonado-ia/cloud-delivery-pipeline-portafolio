@@ -5,7 +5,7 @@
 ![Code Quality](https://img.shields.io/badge/Quality-Gate%20Simulated-blue)
 ![Test Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)
 
-Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación automática de calidad de código, cobertura de pruebas y control de despliegue mediante un **Quality Gate simulado**.
+Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación automática de calidad, cobertura de pruebas y despliegue real mediante **GitHub Pages**.
 
 ---
 
@@ -17,13 +17,11 @@ Construir un pipeline que permita:
 * Detectar errores de forma temprana
 * Medir cobertura de pruebas de forma automatizada
 * Bloquear despliegues si no se cumplen estándares
-* Simular y evolucionar hacia un flujo CI/CD utilizado en entornos empresariales
+* Ejecutar un flujo CI/CD real utilizado en entornos profesionales
 
 ---
 
 ## ⚙️ Arquitectura del Pipeline
-
-El pipeline está compuesto por tres etapas principales:
 
 ```text
 Push
@@ -32,7 +30,7 @@ CI (Tests + Coverage)
  ↓
 Quality Gate (flake8)
  ↓
-CD (Deploy)
+CD (Deploy en GitHub Pages)
 ```
 
 ---
@@ -40,7 +38,6 @@ CD (Deploy)
 ## 🔹 1. Integración Continua (CI)
 
 * Instalación de dependencias
-* Validación de entorno Python
 * Ejecución de pruebas automatizadas con `pytest`
 * Medición de cobertura con `pytest-cov`
 
@@ -48,12 +45,11 @@ CD (Deploy)
 
 ## 📊 Test Coverage
 
-El pipeline incorpora medición real de cobertura de pruebas mediante `pytest-cov`.
+El pipeline incorpora medición real de cobertura de pruebas.
 
-### 🎯 Resultado obtenido
+### 🎯 Resultado
 
-* Cobertura total: **100%**
-* Código completamente validado por tests automatizados
+* Coverage total: **100%**
 
 #### 📸 Evidencia
 
@@ -63,30 +59,27 @@ El pipeline incorpora medición real de cobertura de pruebas mediante `pytest-co
 
 ## 🔹 2. Code Quality - Quality Gate Simulado
 
-Se implementa una etapa de validación de calidad usando `flake8`, que actúa como un **Quality Gate**.
+Se implementa un **Quality Gate** utilizando `flake8`.
 
 ### 🔍 Validaciones
 
 * Errores críticos de código
 * Variables no definidas
-* Complejidad excesiva
+* Complejidad y mantenibilidad
 * Estándares de formato
 
-👉 Si esta etapa falla, el pipeline se detiene automáticamente.
+👉 Si falla calidad, el pipeline se detiene.
 
 ---
 
 ## 🚫 Quality Gate en acción
 
-Se realizaron pruebas controladas para validar el comportamiento del pipeline.
+### ❌ Caso: error de calidad
 
-### ❌ Caso 1: Falla de calidad
+Se introduce un error intencional:
 
-Se introdujo intencionalmente un error (`variable no definida`), provocando:
-
-* Fallo en la etapa de calidad
-* Bloqueo del pipeline
-* Cancelación del despliegue
+* El pipeline falla
+* El deploy se bloquea
 
 #### 📸 Evidencia
 
@@ -94,13 +87,11 @@ Se introdujo intencionalmente un error (`variable no definida`), provocando:
 
 ---
 
-### ✅ Caso 2: Código corregido
+### ✅ Caso: código correcto
 
-Tras corregir el error:
-
-* Tests exitosos
-* Validación de calidad aprobada
-* Despliegue ejecutado
+* Tests pasan
+* Quality Gate aprueba
+* Deploy se ejecuta
 
 #### 📸 Evidencia
 
@@ -110,56 +101,58 @@ Tras corregir el error:
 
 ## 🔹 3. Continuous Deployment (CD)
 
-* Despliegue controlado posterior a validaciones
-* Ejecutado solo si CI y Quality pasan correctamente
+El pipeline ejecuta un **deploy real** mediante GitHub Pages.
+
+### ✔ Qué hace el deploy
+
+* Genera un sitio HTML automáticamente
+* Publica el resultado del pipeline
+* Entrega una URL accesible públicamente
+
+👉 Esto convierte el CD en un despliegue real, no solo simulado.
 
 ---
 
 ## 🎯 Resultado
 
-El pipeline implementa correctamente un control de flujo tipo **Quality Gate**:
+El pipeline implementa control completo de flujo:
 
-* Si la calidad falla → el despliegue NO ocurre
-* Si la calidad pasa → el pipeline continúa
+* Si falla calidad → ❌ no hay deploy
+* Si pasa todo → ✅ deploy automático
 
 ---
 
 ## 🧠 Enfoque técnico
 
-Esta implementación replica el comportamiento de pipelines empresariales donde:
+Este proyecto replica prácticas reales:
 
-* La calidad del código es obligatoria antes del despliegue
-* Se aplican controles automatizados de validación
-* Se previenen errores en producción
+* Integración continua automatizada
+* Control de calidad antes del despliegue
+* Uso de métricas (coverage)
+* Despliegue automatizado
 
-Actualmente, el control de calidad se implementa con `flake8` como simulación del rol que normalmente cumplen herramientas como **SonarQube** en entornos reales.
+El Quality Gate está implementado con `flake8`, simulando el rol de herramientas como **SonarQube**.
 
 ---
 
 ## 🚀 Valor del Portafolio
 
-Este proyecto demuestra:
+Demuestra:
 
-* Implementación de CI/CD con GitHub Actions
-* Integración de validación de calidad automatizada
-* Medición real de cobertura de pruebas
-* Control de flujo mediante dependencias entre jobs (`needs`)
-* Despliegue condicionado por calidad
-* Enfoque DevOps orientado a calidad y confiabilidad
+* CI/CD con GitHub Actions
+* Coverage real con pytest-cov
+* Quality Gate automatizado
+* Deploy real con GitHub Pages
+* Control de flujo entre etapas (`needs`)
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 Estructura
 
 ```text
 cloud-delivery-pipeline-portafolio/
 ├── .github/workflows/
-│   ├── ci.yml
-│   └── ci_cd.yml
 ├── app_demo/
-│   ├── src/
-│   ├── tests/
-│   └── requirements.txt
 ├── docs/
 │   ├── test-coverage.png
 │   ├── quality-gate-fail.png
@@ -173,25 +166,15 @@ cloud-delivery-pipeline-portafolio/
 
 ## 🧩 Próximos pasos
 
-* Integración con SonarQube o SonarCloud
-* Umbral mínimo de cobertura
-* Gestión de artefactos
-* Pipeline multi-entorno (dev / qa / prod)
-
----
-
-## 💬 Contexto profesional
-
-Este pipeline fue diseñado como parte de un portafolio orientado a roles como:
-
-* Cloud & DevOps Delivery Manager
-* Cloud Project Manager
-* Platform Delivery Manager
+* Integración con SonarQube real
+* Umbral mínimo de coverage
+* Deploy a AWS / Azure
+* Pipeline multi-entorno
 
 ---
 
 ## 🏁 Conclusión
 
-Se implementa un pipeline CI/CD funcional con testing, coverage y validación de calidad automatizada, demostrando cómo prevenir despliegues de código defectuoso y asegurar estándares antes de liberar cambios.
+Se implementa un pipeline CI/CD funcional con testing, coverage, control de calidad y despliegue real, demostrando prácticas modernas de DevOps aplicadas a un entorno de portafolio.
 
 ---

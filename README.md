@@ -1,12 +1,12 @@
 # 🚀 Cloud Delivery Pipeline Portafolio
 
 ![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
-![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=vermaldonado-ia_cloud-delivery-pipeline-portafolio&metric=alert_status)
-![Coverage](https://sonarcloud.io/api/project_badges/measure?project=vermaldonado-ia_cloud-delivery-pipeline-portafolio&metric=coverage)
+![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=vermaldonado-ia_cloud-delivery-pipeline-portafolio\&metric=alert_status)
+![Coverage](https://sonarcloud.io/api/project_badges/measure?project=vermaldonado-ia_cloud-delivery-pipeline-portafolio\&metric=coverage)
 
-Repositorio orientado a demostrar la implementación de un pipeline de Integración Continua (CI) con GitHub Actions, incorporando pruebas automatizadas, cobertura de código y análisis de calidad con SonarQube Cloud.
+Repositorio orientado a demostrar la implementación de un pipeline de Integración Continua (CI) utilizando GitHub Actions, incorporando pruebas automatizadas, cobertura de código y análisis de calidad con SonarQube Cloud.
 
-Este proyecto busca evidenciar buenas prácticas de automatización y control de calidad en un flujo de desarrollo moderno, utilizando un ejemplo simple en Python.
+Este proyecto evidencia buenas prácticas de automatización y control de calidad en un flujo de desarrollo moderno, utilizando un ejemplo simple en Python.
 
 ---
 
@@ -14,11 +14,11 @@ Este proyecto busca evidenciar buenas prácticas de automatización y control de
 
 Implementar un pipeline de CI que permita:
 
-- Ejecutar pruebas automatizadas en cada cambio
-- Medir cobertura de código
-- Integrar análisis estático de calidad
-- Validar estándares mediante Quality Gate
-- Demostrar prácticas DevOps aplicadas a un proyecto Python
+* Ejecutar pruebas automatizadas en cada cambio
+* Medir cobertura de código
+* Integrar análisis estático de calidad
+* Validar estándares mediante Quality Gate
+* Demostrar prácticas DevOps aplicadas a un proyecto Python
 
 ---
 
@@ -44,7 +44,7 @@ El pipeline automatiza validaciones técnicas como:
 
 ## 🧩 Flujo del pipeline
 
-El flujo implementado en este repositorio sigue esta secuencia:
+El pipeline implementado sigue una secuencia automatizada desde el cambio en el código hasta la validación de calidad:
 
 ```text
 Developer Push / Pull Request
@@ -53,15 +53,22 @@ GitHub Actions
         ↓
 Instalación de dependencias
         ↓
-Ejecución de lint
+Ejecución de lint (flake8)
         ↓
-Pruebas con pytest
+Formateo de código (black)
+        ↓
+Pruebas automatizadas (pytest)
         ↓
 Generación de coverage.xml
         ↓
 Análisis con SonarQube Cloud
         ↓
 Validación de Quality Gate
+```
+
+Este flujo permite asegurar la calidad del código de forma automática antes de integrar cambios.
+
+---
 
 ## 🧪 Testing
 
@@ -106,11 +113,14 @@ Esto permite:
 
 Este pipeline permite:
 
-- Ejecutar pruebas automáticamente en cada cambio relevante
-- Validar la calidad del código antes de integrar cambios
-- Medir cobertura de código de forma automatizada
-- Exponer resultados visibles mediante badges
-- Demostrar una base sólida de CI orientada a prácticas DevOps
+* Ejecutar pruebas automáticamente en cada cambio del repositorio
+* Detectar errores de forma temprana en el ciclo de desarrollo
+* Medir cobertura de código de manera automatizada
+* Validar estándares de calidad mediante SonarQube Quality Gate
+* Asegurar la estabilidad del código antes de su integración
+* Estandarizar el proceso de desarrollo mediante CI
+
+Este enfoque mejora la confiabilidad del delivery y reduce riesgos en entornos productivos.
 
 ---
 
@@ -126,7 +136,10 @@ cloud-delivery-pipeline-portafolio/
 │   │   └── test_main.py
 │   └── requirements.txt
 ├── sonar-project.properties
+├── docs/
+│   └── coverage.png
 └── README.md
+```
 
 ---
 
@@ -138,6 +151,7 @@ cloud-delivery-pipeline-portafolio/
 * Flake8
 * Black
 * GitHub Actions
+* SonarQube Cloud
 
 ---
 
@@ -163,14 +177,19 @@ Para ejecutar el proyecto y las pruebas en entorno local:
 cd app_demo
 pip install -r requirements.txt
 PYTHONPATH=. pytest --cov=src --cov-report=xml --cov-report=term-missing tests
+```
 
 ---
 
 ## 🔮 Próximos pasos
 
-* Incorporación de Continuous Deployment (CD)
+Como evolución del pipeline actual, se consideran las siguientes mejoras:
+
+* Implementación de Continuous Deployment (CD) simulado
 * Despliegue en entornos cloud (AWS / Azure)
 * Integración con contenedores (Docker)
+* Configuración de branch protection y control de calidad obligatorio
+* Optimización del pipeline para entornos multi-stage
 
 ---
 

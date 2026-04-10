@@ -2,7 +2,7 @@
 
 ![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
 
-Repositorio que demuestra la implementación de un **pipeline CI/CD** utilizando **GitHub Actions**, enfocado en la automatización de validaciones, pruebas y simulación de despliegues.
+Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación de código, control de calidad y simulación de despliegue continuo.
 
 ---
 
@@ -13,6 +13,7 @@ Construir un pipeline que permita:
 * Validar la calidad del código automáticamente
 * Detectar errores de forma temprana
 * Asegurar consistencia en el desarrollo
+* Incorporar validaciones de calidad (Code Quality)
 * Simular un flujo de despliegue continuo (CD)
 * Generar evidencia trazable del proceso
 
@@ -27,7 +28,7 @@ El pipeline de CI se ejecuta automáticamente en cada `push` y `pull request` ha
 * Instalación de dependencias
 * Validación del entorno Python
 * Ejecución de pruebas automatizadas con `pytest`
-* Verificación de calidad de código
+* Validación de ejecución del código
 
 ### 🔄 Flujo CI
 
@@ -43,13 +44,48 @@ Validación de resultados
 
 ---
 
-## 🚀 Continuous Deployment (CD) Simulado
+## 🔍 Code Quality & Análisis de Código
 
-Este repositorio incluye una etapa de **Continuous Deployment (CD) simulado**, que representa el flujo de entrega posterior a la validación del CI.
+El pipeline incorpora validaciones orientadas a asegurar la calidad del código antes del despliegue.
+
+### 🔧 Validaciones implementadas
+
+* Análisis estático de código (linting)
+* Buenas prácticas de desarrollo
+* Evaluación de calidad mediante herramientas como SonarQube *(simulado/integrado según configuración)*
 
 ### 🎯 Objetivo
 
-Demostrar cómo un cambio validado puede ser promovido automáticamente hacia una etapa de liberación, manteniendo trazabilidad y automatización del proceso.
+* Detectar problemas antes del despliegue
+* Reducir deuda técnica
+* Asegurar mantenibilidad del código
+* Mejorar la calidad general del software
+
+### 🔄 Flujo de calidad
+
+```text
+Ejecución de pruebas
+        ↓
+Análisis de código
+        ↓
+Validación de calidad
+        ↓
+Aprobación para despliegue
+```
+
+### 🧠 Rol en el pipeline
+
+Esta etapa funciona como un **Quality Gate**, asegurando que solo código validado avance hacia el despliegue.
+
+---
+
+## 🚀 Continuous Deployment (CD) Simulado
+
+Este repositorio incluye una etapa de **Continuous Deployment (CD) simulado**, que representa el flujo de entrega posterior a la validación de código.
+
+### 🎯 Objetivo
+
+Demostrar cómo un cambio validado puede ser promovido automáticamente hacia una etapa de liberación.
 
 ---
 
@@ -58,13 +94,13 @@ Demostrar cómo un cambio validado puede ser promovido automáticamente hacia un
 ```text
 Push a main
    ↓
-Pipeline CI (validación de código)
+Pipeline CI
    ↓
-Pruebas exitosas
+Code Quality
    ↓
 CD Simulado
    ↓
-Generación de artifact de despliegue
+Generación de artifact
 ```
 
 ---
@@ -101,18 +137,6 @@ Commit: 76e6557...
 Branch: main
 Estado: Deploy simulado exitoso
 ```
-
----
-
-### 🧠 Valor técnico
-
-Este enfoque permite:
-
-* Automatizar la promoción de cambios
-* Asegurar calidad antes del despliegue
-* Generar evidencia auditable
-* Simular un flujo real de entrega continua
-* Mantener trazabilidad completa del proceso
 
 ---
 
@@ -161,6 +185,7 @@ cloud-delivery-pipeline-portafolio/
 * Python
 * Pytest
 * Git
+* SonarQube *(conceptual / integrable)*
 
 ---
 
@@ -169,13 +194,13 @@ cloud-delivery-pipeline-portafolio/
 * Implementar despliegue real en la nube (AWS / Azure)
 * Incorporar ambientes (`dev`, `qa`, `prod`)
 * Agregar aprobaciones manuales
-* Integrar análisis de calidad con SonarQube
+* Integrar SonarQube de forma completa
 
 ---
 
 ## 💬 Enfoque profesional
 
-Este repositorio representa un flujo base de CI/CD orientado a buenas prácticas DevOps, donde se prioriza:
+Este repositorio representa un flujo base de CI/CD alineado a prácticas DevOps, donde se prioriza:
 
 * Automatización
 * Calidad
@@ -188,5 +213,3 @@ Este repositorio representa un flujo base de CI/CD orientado a buenas prácticas
 
 **Verónica Maldonado Céspedes**
 Cloud & DevOps Delivery | Agile | CI/CD
-
----

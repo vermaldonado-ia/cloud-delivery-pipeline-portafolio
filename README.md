@@ -124,6 +124,45 @@ Este enfoque mejora la confiabilidad del delivery y reduce riesgos en entornos p
 
 ---
 
+## 🧪 Validación de funcionamiento del pipeline
+
+Para comprobar que el pipeline detecta errores de forma efectiva, se realizó una prueba controlada sobre la función `division` del proyecto.
+
+### Escenario probado
+
+Se introdujo intencionalmente una alteración en la lógica de la función para provocar un comportamiento incorrecto.
+
+### Resultado observado
+
+Al ejecutar el pipeline:
+
+* Se corrieron 17 pruebas automatizadas
+* 12 pruebas pasaron correctamente
+* 5 pruebas fallaron en los casos asociados a la función `division`
+* El job finalizó con `exit code 1`
+* El pipeline detuvo la integración del cambio defectuoso
+
+### Evidencia del fallo en el pipeline
+
+![Pipeline Error](./docs/pipeline_error.png)
+
+### Aprendizaje obtenido
+
+Esta validación permitió comprobar que:
+
+* El pipeline detecta errores funcionales de forma temprana
+* Los tests automatizados protegen la lógica del código
+* Un cambio incorrecto no avanza en el flujo de integración
+* La cobertura de código no reemplaza la validación funcional
+
+> Durante la prueba, la cobertura se mantuvo en 100%, pero los tests fallaron. Esto demuestra que una cobertura alta indica ejecución de código, pero no garantiza que la lógica sea correcta.
+
+### Conclusión
+
+El pipeline implementado no solo automatiza validaciones, sino que también actúa como mecanismo de control de calidad, evitando la integración de cambios defectuosos en el repositorio.
+
+---
+
 ## 📁 Estructura del proyecto
 
 ```text
@@ -137,7 +176,8 @@ cloud-delivery-pipeline-portafolio/
 │   └── requirements.txt
 ├── sonar-project.properties
 ├── docs/
-│   └── coverage.png
+│   ├── coverage.png
+│   └── pipeline_error.png
 └── README.md
 ```
 

@@ -221,6 +221,30 @@ PYTHONPATH=. pytest --cov=src --cov-report=xml --cov-report=term-missing tests
 
 ---
 
+## 🚀 Continuous Deployment (CD) Simulado
+
+Además del pipeline de Integración Continua (CI), este repositorio incluye una implementación de **Continuous Deployment (CD) simulado** con GitHub Actions.
+
+Esta etapa representa el flujo posterior a la validación de calidad, permitiendo modelar cómo un cambio aprobado puede avanzar hacia una liberación automatizada.
+
+### ¿Qué realiza este CD simulado?
+
+- Reutiliza el código validado en la rama principal
+- Ejecuta nuevamente validaciones mínimas antes del despliegue
+- Genera una carpeta de release simulada
+- Registra evidencia de despliegue en un archivo de log
+- Publica un artifact descargable con el paquete preparado
+
+### Objetivo
+
+Demostrar la lógica de promoción de cambios dentro de un flujo CI/CD, sin depender aún de una infraestructura real en la nube.
+
+### Resultado esperado
+
+El workflow genera un paquete de despliegue simulado que deja trazabilidad del commit, rama y fecha de ejecución, representando una liberación automatizada hacia un entorno objetivo.
+
+---
+
 ## 🔮 Próximos pasos
 
 Como evolución del pipeline actual, se consideran las siguientes mejoras:

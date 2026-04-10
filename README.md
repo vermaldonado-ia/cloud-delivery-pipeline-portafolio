@@ -1,6 +1,11 @@
 # 🚀 Cloud Delivery Pipeline Portafolio
 
 ![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
+![CD Pipeline](https://img.shields.io/badge/CD-Simulated-blue)
+![Code Quality](https://img.shields.io/badge/Code%20Quality-Linting%20%7C%20SonarQube-yellow)
+![Tests](https://img.shields.io/badge/Tests-Pytest-success)
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Status](https://img.shields.io/badge/Status-Active-success)
 
 Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación de código, control de calidad y simulación de despliegue continuo.
 

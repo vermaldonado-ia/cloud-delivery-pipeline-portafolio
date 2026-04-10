@@ -14,3 +14,6 @@ def division(a, b):
     if b == 0:
         raise ValueError("No se puede dividir por cero")
     return a / b
+
+def prueba():
+    print(variable_no_definida)

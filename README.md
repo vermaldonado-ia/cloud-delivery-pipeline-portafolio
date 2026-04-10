@@ -1,262 +1,192 @@
 # 🚀 Cloud Delivery Pipeline Portafolio
 
 ![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
-![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=vermaldonado-ia_cloud-delivery-pipeline-portafolio\&metric=alert_status)
-![Coverage](https://sonarcloud.io/api/project_badges/measure?project=vermaldonado-ia_cloud-delivery-pipeline-portafolio\&metric=coverage)
 
-Repositorio orientado a demostrar la implementación de un pipeline de Integración Continua (CI) utilizando GitHub Actions, incorporando pruebas automatizadas, cobertura de código y análisis de calidad con SonarQube Cloud.
-
-Este proyecto evidencia buenas prácticas de automatización y control de calidad en un flujo de desarrollo moderno, utilizando un ejemplo simple en Python.
+Repositorio que demuestra la implementación de un **pipeline CI/CD** utilizando **GitHub Actions**, enfocado en la automatización de validaciones, pruebas y simulación de despliegues.
 
 ---
 
 ## 🎯 Objetivo
 
-Implementar un pipeline de CI que permita:
+Construir un pipeline que permita:
 
-* Ejecutar pruebas automatizadas en cada cambio
-* Medir cobertura de código
-* Integrar análisis estático de calidad
-* Validar estándares mediante Quality Gate
-* Demostrar prácticas DevOps aplicadas a un proyecto Python
-
----
-
-## ⚙️ Estrategia de Integración Continua
-
-El pipeline está implementado con GitHub Actions y se ejecuta automáticamente en cada cambio relevante del repositorio.
-
-Se implementa un pipeline CI orientado a:
-
-* Asegurar calidad de código desde etapas tempranas
-* Reducir defectos en producción
-* Estandarizar el proceso de desarrollo
-* Mejorar la confiabilidad del delivery
-
-El pipeline automatiza validaciones técnicas como:
-
-* Pruebas automatizadas (pytest)
-* Análisis estático de código (flake8)
-* Formateo de código (black)
-* Medición de cobertura (pytest-cov)
+* Validar la calidad del código automáticamente
+* Detectar errores de forma temprana
+* Asegurar consistencia en el desarrollo
+* Simular un flujo de despliegue continuo (CD)
+* Generar evidencia trazable del proceso
 
 ---
 
-## 🧩 Flujo del pipeline
+## ⚙️ Continuous Integration (CI)
 
-El pipeline implementado sigue una secuencia automatizada desde el cambio en el código hasta la validación de calidad:
+El pipeline de CI se ejecuta automáticamente en cada `push` y `pull request` hacia la rama `main`.
+
+### 🔧 ¿Qué valida el CI?
+
+* Instalación de dependencias
+* Validación del entorno Python
+* Ejecución de pruebas automatizadas con `pytest`
+* Verificación de calidad de código
+
+### 🔄 Flujo CI
 
 ```text
-Developer Push / Pull Request
-        ↓
-GitHub Actions
+Push / Pull Request
         ↓
 Instalación de dependencias
         ↓
-Ejecución de lint (flake8)
+Ejecución de pruebas
         ↓
-Formateo de código (black)
-        ↓
-Pruebas automatizadas (pytest)
-        ↓
-Generación de coverage.xml
-        ↓
-Análisis con SonarQube Cloud
-        ↓
-Validación de Quality Gate
-```
-
-Este flujo permite asegurar la calidad del código de forma automática antes de integrar cambios.
-
----
-
-## 🧪 Testing
-
-El proyecto incluye pruebas unitarias que validan la lógica de negocio:
-
-* Operaciones matemáticas básicas:
-
-  * suma
-  * resta
-  * multiplicación
-  * división
-* Manejo de errores (división por cero)
-* Validación de casos borde:
-
-  * valores negativos
-  * uso de cero
-  * resultados esperados
-
-Las pruebas se ejecutan automáticamente en el pipeline, asegurando la estabilidad del código en cada cambio.
-
----
-
-## 📊 Cobertura de Código
-
-Se implementa medición de cobertura para evaluar qué porcentaje del código es validado por pruebas.
-
-Esto permite:
-
-* Identificar código no testeado
-* Reducir riesgos en cambios futuros
-* Mejorar la calidad general del software
-
-📌 Cobertura actual del proyecto:
-
-**100%**
-
-![Coverage](./docs/coverage.png)
-
----
-
-## ✅ Resultados logrados
-
-Este pipeline permite:
-
-* Ejecutar pruebas automáticamente en cada cambio del repositorio
-* Detectar errores de forma temprana en el ciclo de desarrollo
-* Medir cobertura de código de manera automatizada
-* Validar estándares de calidad mediante SonarQube Quality Gate
-* Asegurar la estabilidad del código antes de su integración
-* Estandarizar el proceso de desarrollo mediante CI
-
-Este enfoque mejora la confiabilidad del delivery y reduce riesgos en entornos productivos.
-
----
-
-## 🧪 Validación de funcionamiento del pipeline
-
-Para comprobar que el pipeline detecta errores de forma efectiva, se realizó una prueba controlada sobre la función `division` del proyecto.
-
-### Escenario probado
-
-Se introdujo intencionalmente una alteración en la lógica de la función para provocar un comportamiento incorrecto.
-
-### Resultado observado
-
-Al ejecutar el pipeline:
-
-* Se corrieron 17 pruebas automatizadas
-* 12 pruebas pasaron correctamente
-* 5 pruebas fallaron en los casos asociados a la función `division`
-* El job finalizó con `exit code 1`
-* El pipeline detuvo la integración del cambio defectuoso
-
-### Evidencia del fallo en el pipeline
-
-![Pipeline Error](./docs/pipeline_error.png)
-
-### Aprendizaje obtenido
-
-Esta validación permitió comprobar que:
-
-* El pipeline detecta errores funcionales de forma temprana
-* Los tests automatizados protegen la lógica del código
-* Un cambio incorrecto no avanza en el flujo de integración
-* La cobertura de código no reemplaza la validación funcional
-
-> Durante la prueba, la cobertura se mantuvo en 100%, pero los tests fallaron. Esto demuestra que una cobertura alta indica ejecución de código, pero no garantiza que la lógica sea correcta.
-
-### Conclusión
-
-El pipeline implementado no solo automatiza validaciones, sino que también actúa como mecanismo de control de calidad, evitando la integración de cambios defectuosos en el repositorio.
-
----
-
-## 📁 Estructura del proyecto
-
-```text
-cloud-delivery-pipeline-portafolio/
-├── .github/workflows/ci.yml
-├── app_demo/
-│   ├── src/
-│   │   └── main.py
-│   ├── tests/
-│   │   └── test_main.py
-│   └── requirements.txt
-├── sonar-project.properties
-├── docs/
-│   ├── coverage.png
-│   └── pipeline_error.png
-└── README.md
-```
-
----
-
-## 🚀 Tecnologías utilizadas
-
-* Python 3.11
-* Pytest
-* Pytest-cov
-* Flake8
-* Black
-* GitHub Actions
-* SonarQube Cloud
-
----
-
-## 📈 Valor del proyecto
-
-Este repositorio demuestra capacidades en:
-
-* Automatización de pipelines CI
-* Integración de pruebas automatizadas
-* Control de calidad de código
-* Uso de métricas de cobertura
-* Buenas prácticas de desarrollo
-
-👉 Enfocado en roles de **Cloud & DevOps Delivery / Engineering**
-
----
-
-## ▶️ Ejecución local
-
-Para ejecutar el proyecto y las pruebas en entorno local:
-
-```bash
-cd app_demo
-pip install -r requirements.txt
-PYTHONPATH=. pytest --cov=src --cov-report=xml --cov-report=term-missing tests
+Validación de resultados
 ```
 
 ---
 
 ## 🚀 Continuous Deployment (CD) Simulado
 
-Además del pipeline de Integración Continua (CI), este repositorio incluye una implementación de **Continuous Deployment (CD) simulado** con GitHub Actions.
+Este repositorio incluye una etapa de **Continuous Deployment (CD) simulado**, que representa el flujo de entrega posterior a la validación del CI.
 
-Esta etapa representa el flujo posterior a la validación de calidad, permitiendo modelar cómo un cambio aprobado puede avanzar hacia una liberación automatizada.
+### 🎯 Objetivo
 
-### ¿Qué realiza este CD simulado?
-
-- Reutiliza el código validado en la rama principal
-- Ejecuta nuevamente validaciones mínimas antes del despliegue
-- Genera una carpeta de release simulada
-- Registra evidencia de despliegue en un archivo de log
-- Publica un artifact descargable con el paquete preparado
-
-### Objetivo
-
-Demostrar la lógica de promoción de cambios dentro de un flujo CI/CD, sin depender aún de una infraestructura real en la nube.
-
-### Resultado esperado
-
-El workflow genera un paquete de despliegue simulado que deja trazabilidad del commit, rama y fecha de ejecución, representando una liberación automatizada hacia un entorno objetivo.
+Demostrar cómo un cambio validado puede ser promovido automáticamente hacia una etapa de liberación, manteniendo trazabilidad y automatización del proceso.
 
 ---
 
-## 🔮 Próximos pasos
+### ⚙️ Flujo CD
 
-Como evolución del pipeline actual, se consideran las siguientes mejoras:
-
-* Implementación de Continuous Deployment (CD) simulado
-* Despliegue en entornos cloud (AWS / Azure)
-* Integración con contenedores (Docker)
-* Configuración de branch protection y control de calidad obligatorio
-* Optimización del pipeline para entornos multi-stage
+```text
+Push a main
+   ↓
+Pipeline CI (validación de código)
+   ↓
+Pruebas exitosas
+   ↓
+CD Simulado
+   ↓
+Generación de artifact de despliegue
+```
 
 ---
 
-## 💡 Nota
+### 🔧 ¿Qué realiza el CD?
 
-Este proyecto fue desarrollado con fines demostrativos como parte de un portafolio profesional orientado a prácticas DevOps y Cloud.
+* Ejecuta pruebas antes del despliegue
+* Genera una carpeta de release simulada
+* Crea un archivo de evidencia (`deployment_log.txt`)
+* Publica un artifact descargable
+
+---
+
+### 📦 Evidencia de despliegue
+
+El pipeline genera un artifact que contiene:
+
+* `app_demo/`
+* `deployment_log.txt`
+
+El archivo `deployment_log.txt` incluye:
+
+* Fecha de ejecución
+* Commit asociado
+* Rama de despliegue
+* Estado del despliegue
+
+Ejemplo:
+
+```text
+Release preparado correctamente
+Fecha: Fri Apr 10 ...
+Commit: 76e6557...
+Branch: main
+Estado: Deploy simulado exitoso
+```
+
+---
+
+### 🧠 Valor técnico
+
+Este enfoque permite:
+
+* Automatizar la promoción de cambios
+* Asegurar calidad antes del despliegue
+* Generar evidencia auditable
+* Simular un flujo real de entrega continua
+* Mantener trazabilidad completa del proceso
+
+---
+
+## 📸 Evidencia visual
+
+### ✅ Ejecución del pipeline CD
+
+![CD Workflow](docs/img/cd_simulado_workflow.png)
+
+---
+
+### 📦 Artifact generado
+
+![CD Artifact](docs/img/cd_simulado_artifact.png)
+
+---
+
+### 📁 Contenido del despliegue simulado
+
+![CD Content](docs/img/cd_simulado_contenido.png)
+
+---
+
+## 🧩 Estructura del proyecto
+
+```text
+cloud-delivery-pipeline-portafolio/
+├── .github/workflows/
+│   ├── ci.yml
+│   └── cd.yml
+├── app_demo/
+│   ├── src/
+│   ├── tests/
+│   ├── requirements.txt
+│   └── README.md
+├── docs/
+│   └── img/
+├── README.md
+```
+
+---
+
+## 🚀 Tecnologías utilizadas
+
+* GitHub Actions
+* Python
+* Pytest
+* Git
+
+---
+
+## 📈 Próximos pasos
+
+* Implementar despliegue real en la nube (AWS / Azure)
+* Incorporar ambientes (`dev`, `qa`, `prod`)
+* Agregar aprobaciones manuales
+* Integrar análisis de calidad con SonarQube
+
+---
+
+## 💬 Enfoque profesional
+
+Este repositorio representa un flujo base de CI/CD orientado a buenas prácticas DevOps, donde se prioriza:
+
+* Automatización
+* Calidad
+* Trazabilidad
+* Entrega continua
+
+---
+
+## 👩‍💻 Autor
+
+**Verónica Maldonado Céspedes**
+Cloud & DevOps Delivery | Agile | CI/CD
+
+---

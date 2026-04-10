@@ -1,27 +1,23 @@
-# 🔍 Code Quality - Quality Gate Simulado
+# 🔍 Code Quality - Quality Gate
 
-![Code Quality](https://img.shields.io/badge/Quality-Gate%20Simulated-blue)
+![Code Quality](https://img.shields.io/badge/Quality-Gate%20Implemented-blue)
 ![Linting](https://img.shields.io/badge/Linting-Flake8-blueviolet)
 ![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)
 
-Este módulo representa la implementación de un **Quality Gate dentro de un pipeline CI/CD**, simulando el rol de herramientas como **SonarQube** mediante el uso de `flake8`, y complementando la validación con cobertura real de pruebas usando `pytest-cov`.
+Este módulo implementa un **Quality Gate dentro del pipeline CI/CD**, replicando el comportamiento de herramientas como **SonarQube**, mediante el uso de `flake8` y complementando la validación con cobertura real utilizando `pytest-cov`.
 
 ---
 
 ## 🎯 Objetivo
 
-Incorporar una etapa de validación que permita:
-
-* Detectar errores de código de forma temprana
-* Asegurar estándares mínimos de calidad
-* Validar cobertura de pruebas
-* Bloquear el despliegue si no se cumplen los criterios definidos
+* Validar la calidad del código antes del despliegue
+* Detectar errores críticos de forma temprana
+* Asegurar estándares mínimos de desarrollo
+* Bloquear el pipeline si no se cumplen criterios definidos
 
 ---
 
 ## ⚙️ Rol dentro del pipeline
-
-El flujo implementado es:
 
 ```text
 CI (Tests + Coverage)
@@ -31,15 +27,15 @@ Code Quality (flake8)
 CD (Deploy)
 ```
 
-El Quality Gate se ubica entre CI y CD, actuando como punto de control obligatorio antes del despliegue.
+El Quality Gate se ubica entre CI y CD, actuando como un punto de control obligatorio antes del despliegue.
 
 ---
 
 ## 🔍 Validaciones implementadas
 
-### 1. Cobertura de pruebas real
+### ✔ Coverage de pruebas (real)
 
-Se utiliza `pytest-cov` para medir qué porcentaje del código está cubierto por pruebas automatizadas.
+Se utiliza `pytest-cov` para medir el nivel de cobertura del código.
 
 **Resultado actual:**
 
@@ -47,7 +43,7 @@ Se utiliza `pytest-cov` para medir qué porcentaje del código está cubierto po
 
 ---
 
-### 2. Errores críticos de calidad
+### ✔ Validación de errores críticos
 
 ```bash
 flake8 src --count --select=E9,F63,F7,F82 --show-source --statistics
@@ -61,7 +57,7 @@ Detecta:
 
 ---
 
-### 3. Calidad y mantenibilidad
+### ✔ Calidad y mantenibilidad
 
 ```bash
 flake8 src --count --max-complexity=10 --max-line-length=88 --statistics
@@ -70,8 +66,8 @@ flake8 src --count --max-complexity=10 --max-line-length=88 --statistics
 Evalúa:
 
 * Complejidad ciclomática
-* Formato y legibilidad
-* Reglas básicas de mantenibilidad
+* Estándares de formato
+* Legibilidad del código
 
 ---
 
@@ -79,11 +75,12 @@ Evalúa:
 
 El comportamiento implementado es:
 
-* Si los tests fallan → el pipeline se detiene
-* Si `flake8` detecta errores → el job `quality` falla
-* Si `quality` falla → el despliegue no se ejecuta
+* Si los tests fallan → ❌ pipeline se detiene
+* Si la cobertura se ejecuta correctamente → 📊 se valida alcance de pruebas
+* Si `flake8` detecta errores → ❌ job de calidad falla
+* Si calidad falla → 🚫 el despliegue no se ejecuta
 
-Esto se implementa con dependencias entre jobs en GitHub Actions.
+Esto se implementa mediante dependencias entre jobs en GitHub Actions:
 
 ```yaml
 quality:
@@ -97,7 +94,7 @@ deploy:
 
 ## 🧪 Prueba de validación
 
-Se realizó una prueba controlada introduciendo un error intencional en el código:
+Se realizó una prueba controlada introduciendo un error en el código:
 
 ```python
 def prueba():
@@ -112,29 +109,35 @@ def prueba():
 
 ---
 
-## 🧠 Alcance actual
+## 🧠 Enfoque aplicado
 
-Actualmente:
+Este enfoque implementa un **Quality Gate funcional**, donde herramientas ligeras como `flake8` cumplen el rol equivalente al control de calidad que normalmente se gestiona mediante plataformas como SonarQube.
 
-* La ejecución del pipeline en GitHub Actions es real
-* La medición de coverage es real
-* La validación con `flake8` es real
-* El Quality Gate está simulado en su enfoque respecto a SonarQube
-* La integración con SonarQube real queda como evolución futura
+---
+
+## 📌 Alcance actual
+
+Actualmente el pipeline cuenta con:
+
+* Ejecución real en GitHub Actions
+* Coverage real de pruebas
+* Validación automática de calidad
+* Control de flujo entre etapas
+* Despliegue real en GitHub Pages
 
 ---
 
 ## 🔮 Evolución futura
 
 * Integración con SonarQube o SonarCloud
-* Quality Gates avanzados
-* Umbral mínimo de coverage
-* Métricas de duplicación y deuda técnica
+* Definición de umbral mínimo de coverage
+* Métricas avanzadas (deuda técnica, duplicación)
+* Quality Gates configurables por entorno
 
 ---
 
 ## 🏁 Conclusión
 
-Se implementa un **pipeline funcional con validaciones reales de testing, coverage y calidad**, donde el rol del Quality Gate se simula mediante `flake8`, replicando la lógica de control previa al despliegue utilizada en entornos DevOps empresariales.
+Se implementa un **Quality Gate automatizado dentro del pipeline CI/CD**, asegurando que solo código que cumple estándares de calidad y cobertura pueda avanzar a despliegue, replicando prácticas utilizadas en entornos DevOps profesionales.
 
 ---

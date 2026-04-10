@@ -3,6 +3,7 @@
 ![CI/CD Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci_cd.yml/badge.svg)
 ![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
 ![Code Quality](https://img.shields.io/badge/Quality-Gate%20Simulated-blue)
+![Test Coverage](https://img.shields.io/badge/Coverage-Pytest--Cov-green)
 
 Repositorio que demuestra la implementación de un **pipeline CI/CD completo** utilizando **GitHub Actions**, incorporando validación automática de calidad de código y control de despliegue mediante un **Quality Gate simulado**.
 

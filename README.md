@@ -48,7 +48,7 @@ El pipeline de CI se ejecuta automáticamente en:
 
 El siguiente diagrama representa el flujo de Integración Continua implementado en este repositorio:
 
-![CI Pipeline](docs/pipeline-ci.png)
+![CI Pipeline](docs/pipeline_CI.png)
 
 ### 🔄 Flujo del pipeline
 

@@ -180,3 +180,4 @@ Project Manager | Scrum Master | Cloud & DevOps Delivery Manager
 ## ⭐ Nota final
 
 Este repositorio demuestra una implementación práctica de controles de calidad dentro de un pipeline automatizado, sentando bases sólidas para evolucionar hacia prácticas DevOps más avanzadas.
+new pr test

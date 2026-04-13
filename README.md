@@ -44,6 +44,12 @@ El pipeline de CI se ejecuta automáticamente en:
 * `push` a la rama principal
 * `pull request`
 
+## 🧭 Visualización del Pipeline
+
+El siguiente diagrama representa el flujo de Integración Continua implementado en este repositorio:
+
+![CI Pipeline](docs/pipeline-ci.png)
+
 ### 🔄 Flujo del pipeline
 
 Push / Pull Request

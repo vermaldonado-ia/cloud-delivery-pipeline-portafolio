@@ -181,3 +181,4 @@ Project Manager | Scrum Master | Cloud & DevOps Delivery Manager
 
 Este repositorio demuestra una implementación práctica de controles de calidad dentro de un pipeline automatizado, sentando bases sólidas para evolucionar hacia prácticas DevOps más avanzadas.
 new pr test
+retry ruleset fix

@@ -157,3 +157,5 @@ Este proyecto demuestra:
 **Verónica Maldonado**  
 Ingeniera Civil Informática  
 Especialista en Gestión de Proyectos TI | Agile | Cloud | DevOps
+
+Actualizado GitHub Pages

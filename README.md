@@ -5,7 +5,7 @@
 ![CI](https://img.shields.io/badge/CI-GitHub_Actions-green)
 ![Coverage](https://img.shields.io/badge/Coverage-Enforced-orange)
 
-Repositorio que demuestra la implementación de un **pipeline DevOps completo**, incorporando prácticas de Integración Continua (CI), validación de calidad (Quality Gate), control de Pull Request y despliegue simulado (CD).
+Repositorio que demuestra la implementación de un pipeline DevOps completo, incorporando prácticas de Integración Continua (CI), control de calidad (Quality Gate), gestión de Pull Request y despliegue simulado (CD).
 
 ---
 
@@ -14,27 +14,27 @@ Repositorio que demuestra la implementación de un **pipeline DevOps completo**,
 Implementar un pipeline que permita:
 
 - Detectar errores de forma temprana  
-- Asegurar calidad del código  
+- Asegurar calidad del código antes del merge  
 - Validar cobertura de pruebas  
-- Controlar cambios hacia producción  
-- Simular un flujo real de despliegue  
+- Controlar cambios hacia la rama principal  
+- Representar un proceso controlado de entrega continua  
 
 ---
 
 ## ⚙️ Arquitectura del Pipeline
 
-Flujo implementado:
+**Pull Request / Push → CI (Tests + Coverage) → Quality Gate → Merge controlado → CD Simulado**
 
-Pull Request / Push
-↓
-CI (Tests + Coverage)
-↓
-Code Quality (Quality Gate)
-↓
-Merge a main (controlado)
-↓
-CD Simulado (Release)
+---
 
+## 🔄 Flujo de ejecución
+
+1. Se crea un Pull Request hacia la rama principal  
+2. Se ejecuta automáticamente el pipeline de CI  
+3. Se validan pruebas y cobertura  
+4. Se ejecuta el control de calidad (Quality Gate)  
+5. Si todo es exitoso, se permite el merge  
+6. Se activa el flujo de despliegue simulado (CD)  
 
 ---
 
@@ -51,40 +51,34 @@ Esto permite validar cada cambio antes de integrarlo a la rama principal.
 
 ---
 
-## 🧪 Evidencia: Pipeline exitoso
+## 🧪 Evidencia del pipeline
 
+### ✔️ Ejecución exitosa
 ![CI Success](docs/ci-success.png)
 
----
-
-## ❌ Evidencia: Falla por pruebas
-
-Se provocó un error intencional en el código para validar que el pipeline detecta fallas reales.
+### ❌ Falla por pruebas
+Se provocó un error intencional para validar detección de fallas reales.
 
 ![Test Fail](docs/test-fail.png)
 
----
-
-## 📊 Evidencia: Falla por cobertura
-
-Se configuró una validación de cobertura mínima, generando una falla controlada del pipeline.
+### 📊 Falla por cobertura
+Se configuró una cobertura mínima para validar el control del pipeline.
 
 ![Coverage Fail](docs/coverage-fail.png)
 
 ---
 
-## 🧪 Code Quality (Quality Gate)
+## 🛡️ Code Quality (Quality Gate)
 
 Se implementa un control de calidad basado en:
 
-- flake8 (análisis estático)
-- validación de cobertura
-- ejecución automática en CI
+- flake8 (análisis estático)  
+- Validación de cobertura  
+- Ejecución automática en CI  
 
-Este módulo actúa como un **Quality Gate simulado**, bloqueando el pipeline si no se cumplen estándares mínimos.
+Este módulo actúa como un Quality Gate, bloqueando el pipeline si no se cumplen estándares mínimos.
 
-Más detalle en:
-👉 `sonarqube/README.md`
+Más detalle en: 👉 `sonarqube/README.md`
 
 ---
 
@@ -94,9 +88,9 @@ Se aplican buenas prácticas DevOps:
 
 - Validación automática en cada PR  
 - Bloqueo de merge si el pipeline falla  
-- Protección de la rama `main`  
+- Protección de la rama main  
 
-Esto asegura que solo código validado llegue a producción.
+Esto asegura que solo código validado avance en el flujo de entrega.
 
 ---
 
@@ -104,11 +98,11 @@ Esto asegura que solo código validado llegue a producción.
 
 El pipeline incluye una etapa de despliegue que:
 
-- valida nuevamente el código  
-- prepara artefacto de release  
-- genera carpeta `simulated_release`  
+- Revalida el estado del código  
+- Prepara artefacto de release  
+- Genera carpeta `simulated_release`  
 
-Esto representa un flujo real de despliegue sin necesidad de infraestructura externa.
+Esto representa un flujo real de entrega sin depender de infraestructura externa.
 
 ---
 
@@ -120,7 +114,7 @@ Este proyecto demuestra:
 - Shift Left Testing  
 - Control de calidad integrado  
 - Flujo CI/CD completo  
-- Manejo de fallos del pipeline  
+- Gestión de fallos en pipeline  
 
 ---
 
@@ -134,21 +128,32 @@ Este proyecto demuestra:
 
 ---
 
+## 📈 Valor del proyecto
+
+Este enfoque permite:
+
+- Reducir defectos en producción  
+- Asegurar calidad continua  
+- Mejorar la confiabilidad del proceso de entrega  
+- Mantener trazabilidad end-to-end del pipeline  
+
+---
+
 ## 📌 Estado del proyecto
 
-✔ CI implementado  
-✔ Quality Gate implementado  
-✔ PR controlado  
-✔ CD simulado  
-⬜ Deploy real (próximo paso)
+- ✔ CI implementado  
+- ✔ Quality Gate implementado  
+- ✔ PR controlado  
+- ✔ CD simulado  
+- ⬜ Deploy real (siguiente evolución)  
 
 ---
 
 ## 🚀 Próximos pasos
 
-- Implementar despliegue real (GitHub Pages o API)
-- Integrar herramienta real de análisis (SonarQube)
-- Publicar resultados del pipeline
+- Implementar despliegue real (GitHub Pages o API)  
+- Integrar herramienta de análisis avanzada (SonarQube)  
+- Publicar métricas del pipeline  
 
 ---
 

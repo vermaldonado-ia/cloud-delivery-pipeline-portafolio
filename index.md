@@ -141,11 +141,3 @@ Proyecto **activo y publicado**, con:
 👉 https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio
 
 ---
-
-## 🎤 Cómo explicarlo en entrevista
-
-Este proyecto implementa un pipeline DevOps completo donde separé la integración continua, el control de calidad y el despliegue.  
-
-La integración continua valida automáticamente el código mediante pruebas y coverage, luego un quality gate asegura estándares antes del merge, y finalmente se ejecuta un despliegue simulado que genera un artefacto.  
-
-Además, publiqué el resultado en GitHub Pages para hacerlo visible como entregable, demostrando no solo la automatización técnica sino también la capacidad de exponer el flujo de entrega de forma clara.

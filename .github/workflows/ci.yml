@@ -34,9 +34,10 @@ jobs:
           COVERAGE=$(grep -o '[0-9]\+%' coverage.txt | tail -1)
           echo "COVERAGE=$COVERAGE" >> $GITHUB_ENV
 
-      - name: Generar badge de coverage
+      - name: Generar archivo de coverage
         run: |
-          echo "![Coverage](https://img.shields.io/badge/coverage-${COVERAGE}-green)" > coverage-badge.md
+          cd app_demo
+          PYTHONPATH=. pytest --cov=src --cov-report=term-missing --cov-report=xml --cov-fail-under=80 | tee coverage.txt
 
       - name: Subir badge
         uses: actions/upload-artifact@v4

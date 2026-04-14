@@ -1,45 +1,47 @@
-# 🔍 Code Quality - Quality Gate
+# 🔍 Code Quality - Quality Gate (Simulado)
 
-![Code Quality](https://img.shields.io/badge/Quality-Gate%20Implemented-blue)  
-![Linting](https://img.shields.io/badge/Linting-Flake8-blueviolet)  
-![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)
+![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
 
-Este módulo representa la implementación de un **Quality Gate dentro del pipeline CI/CD**, enfocado en asegurar la calidad del código antes del despliegue.
+Este módulo implementa un **Quality Gate dentro de un pipeline CI/CD**, asegurando que solo código que cumple estándares de calidad pueda avanzar hacia etapas de despliegue.
 
-Se basa en prácticas utilizadas en herramientas como SonarQube, pero implementado de forma simplificada dentro de GitHub Actions.
+Se inspira en herramientas como SonarQube y Azure DevOps Quality Gates, pero está implementado de forma práctica utilizando GitHub Actions.
 
 ---
 
 ## 🎯 Objetivo
 
-Asegurar estándares mínimos de calidad mediante:
+Implementar un mecanismo automático que permita:
 
-- detección temprana de errores  
-- validación de buenas prácticas  
-- control de cobertura de pruebas  
-- bloqueo automático del pipeline  
+- Detectar errores de forma temprana (Shift Left)  
+- Validar estándares de desarrollo  
+- Controlar cobertura de pruebas  
+- Bloquear cambios defectuosos antes del despliegue  
 
 ---
 
-## ⚙️ Rol dentro del pipeline
+## ⚙️ Rol dentro del Pipeline
 
-Flujo conceptual:
+El Quality Gate actúa como una etapa intermedia crítica:
 
+Pull Request / Push  
+↓  
 CI (Tests + Coverage)  
 ↓  
 Code Quality (Quality Gate)  
 ↓  
-CD (Deploy)  
+Merge controlado a main  
+↓  
+CD (Deploy simulado)  
 
-Este módulo actúa como un **punto de control obligatorio** antes del despliegue.
+Este punto define si el código puede o no avanzar en el flujo de entrega.
 
 ---
 
 ## 🛠️ Herramientas utilizadas
 
-- **flake8** → análisis estático de código (linting)  
-- **pytest** → ejecución de pruebas  
-- **pytest-cov** → medición de cobertura  
+- flake8 → análisis estático de código (linting)  
+- pytest → ejecución de pruebas  
+- pytest-cov → medición de cobertura  
 
 ---
 
@@ -47,39 +49,60 @@ Este módulo actúa como un **punto de control obligatorio** antes del despliegu
 
 El pipeline falla automáticamente si:
 
-- existen errores de linting  
-- los tests fallan  
-- la cobertura no cumple el mínimo definido  
+- Existen errores de linting  
+- Algún test falla  
+- La cobertura es menor al mínimo definido  
 
-Esto permite evitar que código defectuoso avance en el flujo CI/CD.
+Esto asegura que ningún código defectuoso llegue a producción.
+
+---
+
+## 🧪 Implementación del Quality Gate
+
+El control se ejecuta dentro del pipeline CI mediante:
+
+- Validación de estilo de código  
+- Ejecución de pruebas automatizadas  
+- Evaluación de cobertura  
+
+Ejemplo de ejecución:
+
+pytest --cov=src --cov-fail-under=80  
+flake8 .
+
+Si alguna condición falla, el pipeline se detiene automáticamente.
 
 ---
 
 ## ❌ Evidencia: Falla por pruebas
 
-Se modificó el código intencionalmente para generar una falla en los tests, validando el comportamiento del pipeline.
+Se introdujo un error intencional en el código para validar el comportamiento del pipeline.
 
-![Test Fail](../docs/test-fail.png)
+![Test Fail](docs/test-fail.png)
 
 Resultado:
-- el pipeline se detiene correctamente  
-- se evita el avance a siguientes etapas  
+
+- El pipeline falla correctamente  
+- Se bloquea el avance a etapas posteriores  
+- Se evita integración de código defectuoso  
 
 ---
 
 ## 📊 Evidencia: Falla por cobertura
 
-Se configuró un umbral mínimo de cobertura, generando una falla controlada del pipeline.
+Se configuró un umbral mínimo de cobertura, provocando una falla controlada.
 
-![Coverage Fail](../docs/coverage-fail.png)
+![Coverage Fail](docs/coverage-fail.png)
 
 Resultado:
-- el pipeline exige cobertura mínima  
-- se asegura calidad estructural del código  
+
+- Se exige cobertura mínima obligatoria  
+- Se asegura calidad estructural del código  
+- Se refuerza disciplina de testing  
 
 ---
 
-## 🧪 Quality Gate Simulado
+## 🧠 Quality Gate Simulado
 
 Este enfoque replica el comportamiento de herramientas como:
 
@@ -88,20 +111,31 @@ Este enfoque replica el comportamiento de herramientas como:
 
 Aunque no se utiliza una herramienta externa, el pipeline cumple el mismo propósito:
 
-- validar calidad automáticamente  
-- bloquear despliegue si no se cumplen estándares  
-- reducir deuda técnica  
+- Validar calidad automáticamente  
+- Bloquear despliegue si no se cumplen estándares  
+- Reducir deuda técnica  
 
 ---
 
-## 🧠 Valor DevOps
+## 🚀 Valor DevOps
 
 Este módulo permite:
 
-- aplicar **Shift Left Testing**  
-- automatizar controles de calidad  
-- asegurar estándares antes de producción  
-- mejorar confiabilidad del software  
+- Aplicar Shift Left Testing  
+- Automatizar controles de calidad  
+- Asegurar estándares antes de producción  
+- Mejorar confiabilidad del software  
+
+---
+
+## 📈 Impacto en el flujo de entrega
+
+Gracias al Quality Gate:
+
+- Se reduce el riesgo en producción  
+- Se mejora la confiabilidad del pipeline  
+- Se estandariza la calidad del código  
+- Se controla el flujo de cambios  
 
 ---
 
@@ -109,8 +143,22 @@ Este módulo permite:
 
 El Quality Gate implementado garantiza que:
 
-- solo código validado avanza en el pipeline  
-- se mantienen estándares de desarrollo  
-- se reduce riesgo en despliegues  
+- Solo código validado avanza en el pipeline  
+- Se mantienen estándares de desarrollo  
+- Se reduce el riesgo en despliegues  
 
-Este enfoque es clave en entornos DevOps modernos, donde la calidad es parte integral del proceso de entrega continua.
+Este enfoque es clave en entornos DevOps modernos.
+
+---
+
+## 🔗 Relación con el proyecto
+
+Este módulo forma parte del repositorio principal:
+
+Cloud Delivery Pipeline Portafolio  
+
+Donde se integra con:
+
+- CI Pipeline  
+- Control de Pull Request  
+- CD Simulado  

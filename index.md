@@ -101,6 +101,17 @@ El proyecto se encuentra publicado mediante GitHub Pages, lo que permite:
 
 ---
 
+## 🧰 Tecnologías utilizadas
+
+- GitHub Actions  
+- Python  
+- pytest  
+- pytest-cov  
+- flake8  
+- GitHub Pages
+
+---
+
 ## 📈 Valor del Proyecto
 
 Este proyecto demuestra:

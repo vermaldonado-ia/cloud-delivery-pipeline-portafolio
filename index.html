@@ -1,25 +1,513 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Cloud Delivery Pipeline</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud Delivery Pipeline Portafolio</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #1e293b;
+      --card: #111827;
+      --card-2: #1f2937;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --primary: #38bdf8;
+      --primary-dark: #0ea5e9;
+      --success: #22c55e;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.25);
+      --radius: 18px;
+      --max-width: 1150px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 80px 0 50px;
+      background:
+        radial-gradient(circle at top right, rgba(56,189,248,0.18), transparent 28%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.12), transparent 20%);
+    }
+
+    .hero-box {
+      background: rgba(17, 24, 39, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 50px 35px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(56,189,248,0.12);
+      color: var(--primary);
+      border: 1px solid rgba(56,189,248,0.25);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 820px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #0f172a;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.04);
+      transform: translateY(-2px);
+    }
+
+    .section {
+      padding: 36px 0;
+    }
+
+    .section-title {
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 26px;
+      max-width: 760px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(31,41,55,0.95), rgba(17,24,39,0.95));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 1.15rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin-top: 10px;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .step {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .step span {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .step h4 {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .highlight {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .kpi {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .footer {
+      padding: 40px 0 60px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 10px 0 0;
+    }
+
+    .note {
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.2);
+      color: #d1fae5;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-top: 18px;
+      font-size: 0.96rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero-box {
+        padding: 34px 22px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<h1>🚀 Cloud Delivery Pipeline</h1>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-box">
+        <div class="badge">Portafolio DevOps • GitHub Actions • GitHub Pages</div>
+        <h1>🚀 Cloud Delivery Pipeline Portafolio</h1>
+        <p>
+          Proyecto orientado a demostrar la implementación de un flujo de entrega moderno,
+          integrando <strong>Integración Continua (CI)</strong>, validación de calidad,
+          control de cambios mediante <strong>Pull Request</strong> y un
+          <strong>despliegue simulado (CD)</strong> con publicación visible en GitHub Pages.
+        </p>
 
-<p>
-👉 <a href="https://github.com/...">Ver repositorio</a><br>
-👉 <a href="https://github.com/.../actions">Ver CI Pipeline</a>
-</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://vermaldonado-ia.github.io/cloud-delivery-pipeline-portafolio" target="_blank">
+            Ver repositorio en GitHub
+          </a>
+          <a class="btn btn-secondary" href="https://vermaldonado-ia.github.io//cloud-delivery-pipeline-portafolio/actions" target="_blank">
+            Ver ejecución del pipeline
+          </a>
+        </div>
 
-<h2>Objetivo</h2>
-<p>Implementar un pipeline que permita:</p>
-<ul>
-  <li>Detectar errores tempranos</li>
-  <li>Asegurar calidad</li>
-  <li>Validar cobertura</li>
-</ul>
+        <div class="tag-list">
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Python</span>
+          <span class="tag">Pytest</span>
+          <span class="tag">Coverage</span>
+          <span class="tag">Quality Gate</span>
+          <span class="tag">GitHub Pages</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">💡 Propósito del proyecto</h2>
+        <p class="section-subtitle">
+          Este portafolio fue desarrollado para evidenciar capacidades de estructuración,
+          control y automatización de un flujo DevOps, con foco en calidad, trazabilidad
+          y visibilidad del proceso de entrega.
+        </p>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>✅ Integración Continua</h3>
+            <p>
+              El pipeline ejecuta validaciones automáticas sobre el código para detectar
+              errores de forma temprana antes de integrar cambios.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>✅ Control de calidad</h3>
+            <p>
+              Se incorporan pruebas automatizadas, métricas de cobertura y validaciones
+              de calidad como mecanismo de control previo al despliegue.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>✅ Evidencia visible</h3>
+            <p>
+              La publicación en GitHub Pages permite mostrar de manera clara el resultado
+              del flujo de entrega y la trazabilidad del proyecto.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">⚙️ Flujo del pipeline</h2>
+        <p class="section-subtitle">
+          El proyecto representa una secuencia lógica de validación y entrega, similar a un flujo real de CI/CD.
+        </p>
+
+        <div class="pipeline">
+          <div class="step">
+            <span>Paso 1</span>
+            <h4>Pull Request / Push</h4>
+            <p>Ingreso controlado de cambios al repositorio.</p>
+          </div>
+
+          <div class="step">
+            <span>Paso 2</span>
+            <h4>CI Pipeline</h4>
+            <p>Instalación, validación de entorno y ejecución de pruebas automatizadas.</p>
+          </div>
+
+          <div class="step">
+            <span>Paso 3</span>
+            <h4>Quality Gate</h4>
+            <p>Revisión de calidad y cobertura antes de continuar.</p>
+          </div>
+
+          <div class="step">
+            <span>Paso 4</span>
+            <h4>Merge controlado</h4>
+            <p>Integración a <strong>main</strong> solo si las validaciones aprueban.</p>
+          </div>
+
+          <div class="step">
+            <span>Paso 5</span>
+            <h4>CD Simulado</h4>
+            <p>Preparación de release y publicación del resultado como evidencia.</p>
+          </div>
+        </div>
+
+        <div class="note">
+          Resultado esperado: <span class="highlight">detectar fallas antes del despliegue</span>,
+          mejorar la confiabilidad del proceso y demostrar un enfoque moderno de entrega continua.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">🛠️ Componentes implementados</h2>
+        <p class="section-subtitle">
+          El repositorio integra distintas prácticas técnicas y de gobernanza del flujo de entrega.
+        </p>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>CI Pipeline</h3>
+            <ul>
+              <li>Checkout del repositorio</li>
+              <li>Configuración de Python</li>
+              <li>Instalación de dependencias</li>
+              <li>Ejecución de pruebas con pytest</li>
+              <li>Generación de métricas de coverage</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Quality Gate</h3>
+            <ul>
+              <li>Validación de cobertura mínima</li>
+              <li>Bloqueo de cambios defectuosos</li>
+              <li>Control previo al merge</li>
+              <li>Base para integración con herramientas como SonarQube</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Control de Pull Request</h3>
+            <ul>
+              <li>Validación automática antes de integrar cambios</li>
+              <li>Protección de rama principal</li>
+              <li>Mayor trazabilidad del flujo de trabajo</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Publicación en GitHub Pages</h3>
+            <ul>
+              <li>Visualización pública del proyecto</li>
+              <li>Presentación ejecutiva del pipeline</li>
+              <li>Evidencia visible para portafolio profesional</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">📊 Valor que demuestra este portafolio</h2>
+        <p class="section-subtitle">
+          Más que un ejercicio técnico, este proyecto muestra capacidades aplicables a contextos reales de transformación y entrega.
+        </p>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="kpi">CI</div>
+            <h3>Automatización</h3>
+            <p>Reducción de validaciones manuales y detección temprana de errores.</p>
+          </div>
+
+          <div class="card">
+            <div class="kpi">QA</div>
+            <h3>Calidad</h3>
+            <p>Uso de pruebas y cobertura como criterio de control antes de avanzar.</p>
+          </div>
+
+          <div class="card">
+            <div class="kpi">CD</div>
+            <h3>Entrega</h3>
+            <p>Simulación del flujo de despliegue y publicación como evidencia visible.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">🎯 Enfoque profesional</h2>
+        <p class="section-subtitle">
+          Este proyecto está orientado a fortalecer un posicionamiento profesional en iniciativas de transformación tecnológica,
+          modernización de procesos y liderazgo de entregas bajo prácticas Agile, Cloud y DevOps.
+        </p>
+
+        <div class="card">
+          <h3>¿Qué comunica este proyecto?</h3>
+          <p>
+            Comunica comprensión del ciclo de entrega de software, capacidad para estructurar un pipeline,
+            criterio de control de calidad y visión integral del proceso desde el cambio de código
+            hasta su publicación visible.
+          </p>
+          <div class="divider"></div>
+          <div class="tag-list">
+            <span class="tag">Agile Delivery</span>
+            <span class="tag">Cloud Mindset</span>
+            <span class="tag">DevOps Fundamentals</span>
+            <span class="tag">Quality Control</span>
+            <span class="tag">Continuous Improvement</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Desarrollado como evidencia de portafolio profesional en prácticas de entrega continua, calidad y automatización.
+    </div>
+  </footer>
 
 </body>
 </html>

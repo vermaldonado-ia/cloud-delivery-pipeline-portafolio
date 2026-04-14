@@ -1,6 +1,7 @@
 # 🚀 Cloud Delivery Pipeline Portafolio
 
-![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg) ![Coverage](https://img.shields.io/badge/coverage-80%25-green)
+![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
+![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![CI](https://img.shields.io/badge/CI-GitHub_Actions-green)
 ![Coverage](https://img.shields.io/badge/Coverage-Enforced-orange)

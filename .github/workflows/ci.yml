@@ -1,14 +1,12 @@
 name: CI Pipeline
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  test:
+  ci_validation:
     runs-on: ubuntu-latest
 
     steps:

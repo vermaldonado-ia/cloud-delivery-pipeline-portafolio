@@ -158,4 +158,4 @@ Este proyecto demuestra:
 Ingeniera Civil Informática  
 Especialista en Gestión de Proyectos TI | Agile | Cloud | DevOps
 
-Actualizado GitHub Pages
+Actualización de publicación desde raíz en GitHub Pages.

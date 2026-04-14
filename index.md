@@ -1,10 +1,17 @@
 # 🚀 Cloud Delivery Pipeline Portafolio
 
-👉 Ver repositorio: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio
+👉 🔗 [Ver repositorio en GitHub](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio)  
+👉 ⚙️ [Ver ejecución del CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions)
+
+💡 Este proyecto demuestra un flujo de entrega completo, desde validación técnica hasta publicación visible del resultado.
+
+---
 
 ![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci_cd.yml/badge.svg)
 
 Proyecto que implementa un **pipeline DevOps completo**, integrando prácticas de **Integración Continua (CI)**, control de calidad (**Quality Gate**), gestión de Pull Request y **despliegue simulado (CD)**, con publicación en **GitHub Pages** como evidencia del flujo de entrega.
+
+💡 Este proyecto demuestra la implementación de un flujo de entrega completo, desde validación técnica hasta publicación visible del resultado.
 
 ---
 

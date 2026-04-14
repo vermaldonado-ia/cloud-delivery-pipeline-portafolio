@@ -1,11 +1,19 @@
 # 🚀 Cloud Delivery Pipeline Portafolio
 
-![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![CI](https://img.shields.io/badge/CI-GitHub_Actions-green)
-![Coverage](https://img.shields.io/badge/Coverage-Enforced-orange)
+![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci_cd.yml/badge.svg)
 
-Repositorio que demuestra la implementación de un **pipeline DevOps completo**, incorporando prácticas de Integración Continua (CI), validación de calidad (Quality Gate), control de Pull Request y despliegue simulado (CD).
+Proyecto que implementa un **pipeline DevOps completo**, integrando prácticas de **Integración Continua (CI)**, control de calidad (**Quality Gate**), gestión de Pull Request y **despliegue simulado (CD)**, con publicación en **GitHub Pages** como evidencia del flujo de entrega.
+
+---
+
+## 👩‍💻 Sobre este proyecto
+
+Este portafolio fue desarrollado con foco en demostrar cómo estructurar un flujo de entrega moderno bajo principios DevOps, priorizando:
+
+- Automatización  
+- Calidad del código  
+- Control del flujo de cambios  
+- Visibilidad del proceso de entrega  
 
 ---
 
@@ -14,10 +22,10 @@ Repositorio que demuestra la implementación de un **pipeline DevOps completo**,
 Implementar un pipeline que permita:
 
 - Detectar errores de forma temprana  
-- Asegurar calidad del código  
+- Asegurar calidad del código antes del merge  
 - Validar cobertura de pruebas  
-- Controlar cambios hacia producción  
-- Simular un flujo real de despliegue  
+- Controlar cambios hacia la rama principal  
+- Simular un proceso real de despliegue  
 
 ---
 
@@ -25,137 +33,119 @@ Implementar un pipeline que permita:
 
 Flujo implementado:
 
-Pull Request / Push
-↓
-CI (Tests + Coverage)
-↓
-Code Quality (Quality Gate)
-↓
-Merge a main (controlado)
-↓
-CD Simulado (Release)
+**Pull Request / Push → CI (Tests + Coverage) → Code Quality (Quality Gate) → Merge controlado → CD Simulado → GitHub Pages**
 
+Este enfoque permite separar claramente:
+
+- Validación técnica  
+- Control de calidad  
+- Publicación del resultado  
 
 ---
 
 ## 🔄 Integración Continua (CI)
 
-El pipeline ejecuta automáticamente:
+El pipeline de CI ejecuta automáticamente:
 
 - Instalación de dependencias  
-- Configuración de entorno Python  
-- Ejecución de pruebas con pytest  
-- Medición de cobertura con pytest-cov  
+- Validación del entorno Python  
+- Ejecución de pruebas con `pytest`  
+- Medición de cobertura con `pytest-cov`  
 
-Esto permite validar cada cambio antes de integrarlo a la rama principal.
-
----
-
-## 🧪 Evidencia: Pipeline exitoso
-
-![CI Success](docs/ci-success.png)
+Esto asegura estabilidad del código antes de integrarlo.
 
 ---
 
-## ❌ Evidencia: Falla por pruebas
+## 🛡️ Quality Gate (Control de Calidad)
 
-Se provocó un error intencional en el código para validar que el pipeline detecta fallas reales.
+Se implementa un control de calidad con `flake8`, permitiendo:
 
-![Test Fail](docs/test-fail.png)
+- Detectar errores críticos  
+- Validar estándares de desarrollo  
+- Evitar la propagación de deuda técnica  
 
----
-
-## 📊 Evidencia: Falla por cobertura
-
-Se configuró una validación de cobertura mínima, generando una falla controlada del pipeline.
-
-![Coverage Fail](docs/coverage-fail.png)
-
----
-
-## 🧪 Code Quality (Quality Gate)
-
-Se implementa un control de calidad basado en:
-
-- flake8 (análisis estático)
-- validación de cobertura
-- ejecución automática en CI
-
-Este módulo actúa como un **Quality Gate simulado**, bloqueando el pipeline si no se cumplen estándares mínimos.
-
-Más detalle en:
-👉 `sonarqube/README.md`
-
----
-
-## 🔐 Control de Pull Request (PR)
-
-Se aplican buenas prácticas DevOps:
-
-- Validación automática en cada PR  
-- Bloqueo de merge si el pipeline falla  
-- Protección de la rama `main`  
-
-Esto asegura que solo código validado llegue a producción.
+Actúa como un **punto de control obligatorio antes del merge**.
 
 ---
 
 ## 🚀 Continuous Deployment (CD) Simulado
 
-El pipeline incluye una etapa de despliegue que:
+Se incluye una etapa de despliegue simulado que:
 
-- valida nuevamente el código  
-- prepara artefacto de release  
-- genera carpeta `simulated_release`  
+- Genera un artefacto de release  
+- Registra información del despliegue (commit, fecha, branch)  
+- Representa un flujo controlado de entrega  
 
-Esto representa un flujo real de despliegue sin necesidad de infraestructura externa.
+Esto permite modelar un proceso real sin depender de infraestructura productiva.
 
 ---
 
-## 🧠 Enfoque DevOps aplicado
+## 🌐 GitHub Pages (Publicación)
+
+El proyecto se encuentra publicado mediante GitHub Pages, lo que permite:
+
+- Exponer el pipeline como un artefacto visible  
+- Facilitar la evaluación técnica  
+- Mostrar el resultado final del proceso de entrega  
+
+---
+
+## 🧩 Componentes del Proyecto
+
+- CI/CD Pipeline con GitHub Actions  
+- Testing automatizado (`pytest`)  
+- Coverage (`pytest-cov`)  
+- Quality Gate (`flake8`)  
+- CD Simulado  
+- Publicación en GitHub Pages  
+
+---
+
+## 📈 Valor del Proyecto
 
 Este proyecto demuestra:
 
-- Automatización de validaciones  
-- Shift Left Testing  
-- Control de calidad integrado  
-- Flujo CI/CD completo  
-- Manejo de fallos del pipeline  
+- Implementación práctica de DevOps  
+- Separación de responsabilidades en el pipeline  
+- Control de calidad antes de integración  
+- Trazabilidad del flujo de entrega  
+- Capacidad de exponer soluciones técnicas de forma clara  
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## 🧠 Enfoque de entrega
 
-- Python 3.11  
-- pytest  
-- pytest-cov  
-- flake8  
-- GitHub Actions  
+Se aplicó un enfoque orientado a **Delivery**, donde:
 
----
-
-## 📌 Estado del proyecto
-
-✔ CI implementado  
-✔ Quality Gate implementado  
-✔ PR controlado  
-✔ CD simulado  
-⬜ Deploy real (próximo paso)
+- CI asegura calidad técnica  
+- Quality Gate controla estándares  
+- CD representa la entrega  
+- GitHub Pages actúa como vitrina del producto  
 
 ---
 
-## 🚀 Próximos pasos
+## ✅ Estado Actual
 
-- Implementar despliegue real (GitHub Pages o API)
-- Integrar herramienta real de análisis (SonarQube)
-- Publicar resultados del pipeline
+Proyecto **activo y publicado**, con:
+
+- Validaciones de CI operativas  
+- Quality Gate implementado  
+- Flujo de Pull Request controlado  
+- CD simulado funcional  
+- Publicación en GitHub Pages  
 
 ---
 
-## 👩‍💻 Autora
+## 🔗 Repositorio
 
-**Verónica Maldonado**  
-Ingeniera Civil Informática  
-Especialista en Gestión de Proyectos TI | Agile | Cloud | DevOps
+👉 https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio
 
-Actualización de publicación desde raíz en GitHub Pages.
+---
+
+## 🎤 Cómo explicarlo en entrevista
+
+Este proyecto implementa un pipeline DevOps completo donde separé la integración continua, el control de calidad y el despliegue.  
+
+La integración continua valida automáticamente el código mediante pruebas y coverage, luego un quality gate asegura estándares antes del merge, y finalmente se ejecuta un despliegue simulado que genera un artefacto.  
+
+Además, publiqué el resultado en GitHub Pages para hacerlo visible como entregable, demostrando no solo la automatización técnica sino también la capacidad de exponer el flujo de entrega de forma clara.

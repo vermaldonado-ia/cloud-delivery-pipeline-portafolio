@@ -4,24 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cloud Delivery Pipeline Portafolio</title>
-  <meta name="description" content="Portafolio DevOps con CI, Quality Gate, Pull Request controlado, CD simulado y publicación en GitHub Pages." />
+  <meta
+    name="description"
+    content="Portafolio DevOps con CI, Quality Gate, Pull Request controlado, CD simulado y publicación en GitHub Pages."
+  />
   <style>
     :root {
-      --bg: #0b1120;
-      --bg-soft: #111827;
-      --panel: #0f172a;
-      --card: #1e293b;
-      --card-2: #172033;
+      --bg: #081120;
+      --bg-soft: #0f172a;
+      --panel: #111827;
+      --panel-2: #1e293b;
       --text: #e5e7eb;
       --muted: #94a3b8;
       --primary: #38bdf8;
       --primary-dark: #0ea5e9;
       --success: #22c55e;
+      --danger: #ef4444;
       --warning: #f59e0b;
       --border: rgba(255,255,255,0.08);
-      --shadow: 0 12px 35px rgba(0,0,0,0.28);
-      --radius-xl: 26px;
-      --radius-lg: 18px;
+      --shadow: 0 14px 34px rgba(0,0,0,0.30);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
       --radius-md: 14px;
       --max-width: 1180px;
     }
@@ -38,11 +41,11 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 22%),
+        radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 22%),
         radial-gradient(circle at top right, rgba(34,197,94,0.08), transparent 18%),
-        linear-gradient(180deg, #0b1120 0%, #111827 100%);
+        linear-gradient(180deg, #081120 0%, #0f172a 100%);
+      color: var(--text);
       line-height: 1.6;
     }
 
@@ -61,60 +64,111 @@
       margin: 0 auto;
     }
 
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(8, 17, 32, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+      padding: 14px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .nav {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--primary);
+    }
+
     .hero {
-      padding: 72px 0 38px;
+      padding: 72px 0 44px;
     }
 
     .hero-box {
-      background: linear-gradient(180deg, rgba(15,23,42,0.92), rgba(17,24,39,0.96));
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: 52px 38px;
-      box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(15,23,42,0.94), rgba(17,24,39,0.98));
+      padding: 56px 40px;
+      box-shadow: var(--shadow);
     }
 
     .hero-box::before {
       content: "";
       position: absolute;
-      width: 280px;
-      height: 280px;
-      right: -80px;
-      top: -80px;
-      background: radial-gradient(circle, rgba(56,189,248,0.16), transparent 65%);
+      top: -100px;
+      right: -90px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(56,189,248,0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-box::after {
+      content: "";
+      position: absolute;
+      bottom: -90px;
+      left: -80px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(34,197,94,0.10), transparent 65%);
       pointer-events: none;
     }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
       background: rgba(56,189,248,0.10);
       color: var(--primary);
-      border: 1px solid rgba(56,189,248,0.20);
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-size: 0.9rem;
+      border: 1px solid rgba(56,189,248,0.22);
       font-weight: 700;
+      font-size: 0.90rem;
       margin-bottom: 18px;
     }
 
     h1 {
-      font-size: clamp(2.2rem, 5vw, 3.7rem);
+      font-size: clamp(2.2rem, 5vw, 4rem);
       line-height: 1.08;
       margin-bottom: 18px;
-      max-width: 900px;
+      max-width: 920px;
     }
 
     .hero p {
-      font-size: 1.08rem;
-      color: var(--muted);
       max-width: 860px;
+      color: var(--muted);
+      font-size: 1.08rem;
       margin-bottom: 28px;
     }
 
-    .hero-cta {
+    .cta-row {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
@@ -125,9 +179,9 @@
       display: inline-block;
       padding: 14px 22px;
       border-radius: 12px;
-      font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      font-weight: 800;
       border: 1px solid transparent;
+      transition: 0.2s ease;
     }
 
     .btn:hover {
@@ -136,7 +190,7 @@
 
     .btn-primary {
       background: var(--primary);
-      color: #0b1120;
+      color: #081120;
     }
 
     .btn-primary:hover {
@@ -145,41 +199,41 @@
 
     .btn-secondary {
       background: rgba(255,255,255,0.03);
-      border-color: var(--border);
       color: var(--text);
+      border-color: var(--border);
     }
 
     .btn-secondary:hover {
       background: rgba(255,255,255,0.06);
     }
 
-    .hero-tags {
+    .tag-row {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
     }
 
     .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
       background: rgba(255,255,255,0.05);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 8px 12px;
-      border-radius: 999px;
       font-size: 0.88rem;
     }
 
     .section {
-      padding: 34px 0;
+      padding: 36px 0;
     }
 
     .section-title {
-      font-size: 1.95rem;
+      font-size: 2rem;
       margin-bottom: 10px;
     }
 
     .section-subtitle {
       color: var(--muted);
-      max-width: 800px;
+      max-width: 820px;
       margin-bottom: 26px;
     }
 
@@ -201,7 +255,7 @@
     }
 
     .card {
-      background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(23,32,51,0.95));
+      background: linear-gradient(180deg, rgba(30,41,59,0.96), rgba(15,23,42,0.96));
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 24px;
@@ -209,11 +263,12 @@
     }
 
     .card h3 {
-      font-size: 1.12rem;
       margin-bottom: 10px;
+      font-size: 1.12rem;
     }
 
-    .card p, .card li {
+    .card p,
+    .card li {
       color: var(--muted);
       font-size: 0.98rem;
     }
@@ -227,26 +282,26 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
-      margin-top: 20px;
+      margin-top: 22px;
     }
 
     .stat {
-      background: rgba(255,255,255,0.03);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.03);
       padding: 18px;
     }
 
     .stat strong {
       display: block;
-      font-size: 1.65rem;
+      font-size: 1.7rem;
       color: var(--primary);
       margin-bottom: 6px;
     }
 
     .stat span {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.94rem;
     }
 
     .pipeline {
@@ -257,27 +312,27 @@
     }
 
     .step {
-      background: linear-gradient(180deg, rgba(17,24,39,0.92), rgba(30,41,59,0.92));
       border: 1px solid var(--border);
       border-radius: 16px;
+      background: linear-gradient(180deg, rgba(17,24,39,0.94), rgba(30,41,59,0.92));
       padding: 20px;
       text-align: center;
       box-shadow: var(--shadow);
     }
 
-    .step .step-label {
+    .step-label {
+      display: inline-block;
       color: var(--primary);
-      font-weight: 800;
       font-size: 0.82rem;
+      font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       margin-bottom: 8px;
-      display: block;
     }
 
     .step h4 {
       margin-bottom: 8px;
-      font-size: 1.02rem;
+      font-size: 1.03rem;
     }
 
     .step p {
@@ -287,41 +342,17 @@
 
     .callout {
       margin-top: 20px;
-      background: rgba(34,197,94,0.08);
-      border: 1px solid rgba(34,197,94,0.18);
-      border-radius: 14px;
       padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(34,197,94,0.20);
+      background: rgba(34,197,94,0.08);
       color: #dcfce7;
-      font-size: 0.97rem;
-    }
-
-    .evidence-card {
-      overflow: hidden;
-      padding: 0;
-    }
-
-    .evidence-body {
-      padding: 20px 20px 22px;
-    }
-
-    .placeholder {
-      aspect-ratio: 16 / 9;
-      display: grid;
-      place-items: center;
-      background:
-        linear-gradient(135deg, rgba(56,189,248,0.10), rgba(255,255,255,0.03)),
-        #0f172a;
-      border-bottom: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.96rem;
-      text-align: center;
-      padding: 20px;
     }
 
     .architecture {
-      background: linear-gradient(180deg, rgba(15,23,42,0.9), rgba(23,32,51,0.96));
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(15,23,42,0.96), rgba(30,41,59,0.96));
       padding: 28px;
       box-shadow: var(--shadow);
     }
@@ -329,25 +360,74 @@
     .flow {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
       align-items: center;
+      gap: 12px;
       margin-top: 18px;
     }
 
     .flow-box {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 16px;
-      font-weight: 700;
       min-width: 150px;
       text-align: center;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      font-weight: 700;
     }
 
     .flow-arrow {
       color: var(--primary);
       font-size: 1.2rem;
       font-weight: 900;
+    }
+
+    .evidence-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .evidence-image {
+      aspect-ratio: 16 / 9;
+      background: #0b1120;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .evidence-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .evidence-body {
+      padding: 20px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .status-success {
+      background: rgba(34,197,94,0.14);
+      color: #86efac;
+      border: 1px solid rgba(34,197,94,0.22);
+    }
+
+    .status-danger {
+      background: rgba(239,68,68,0.14);
+      color: #fca5a5;
+      border: 1px solid rgba(239,68,68,0.22);
+    }
+
+    .status-warning {
+      background: rgba(245,158,11,0.14);
+      color: #fcd34d;
+      border: 1px solid rgba(245,158,11,0.22);
     }
 
     .focus-list {
@@ -357,20 +437,19 @@
     }
 
     .focus-item {
-      background: rgba(255,255,255,0.03);
       border: 1px solid var(--border);
       border-radius: 14px;
+      background: rgba(255,255,255,0.03);
       padding: 16px;
     }
 
     .focus-item strong {
       display: block;
       margin-bottom: 6px;
-      color: var(--text);
     }
 
     .footer {
-      padding: 42px 0 58px;
+      padding: 44px 0 60px;
       text-align: center;
       color: var(--muted);
       font-size: 0.95rem;
@@ -378,13 +457,13 @@
 
     .small-note {
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.90rem;
       margin-top: 12px;
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 700px) {
       .hero-box {
-        padding: 34px 22px;
+        padding: 36px 22px;
       }
 
       .btn {
@@ -406,10 +485,23 @@
 </head>
 <body>
 
-  <header class="hero">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Cloud Delivery Pipeline Portafolio</div>
+      <nav class="nav">
+        <a href="#proyecto">Proyecto</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#arquitectura">Arquitectura</a>
+        <a href="#evidencias">Evidencias</a>
+        <a href="#valor">Valor</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
     <div class="container">
       <div class="hero-box">
-        <div class="eyebrow">🚀 Portafolio DevOps • CI • Quality Gate • CD Simulado</div>
+        <div class="eyebrow">🚀 Portafolio DevOps • GitHub Actions • GitHub Pages</div>
         <h1>Cloud Delivery Pipeline Portafolio</h1>
         <p>
           Proyecto orientado a demostrar la implementación de un flujo de entrega moderno,
@@ -418,7 +510,7 @@
           y un <strong>despliegue simulado (CD)</strong> con publicación visible en GitHub Pages.
         </p>
 
-        <div class="hero-cta">
+        <div class="cta-row">
           <a class="btn btn-primary" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio" target="_blank" rel="noopener noreferrer">
             Ver repositorio en GitHub
           </a>
@@ -427,13 +519,13 @@
           </a>
         </div>
 
-        <div class="hero-tags">
+        <div class="tag-row">
           <span class="tag">GitHub Actions</span>
           <span class="tag">Python</span>
           <span class="tag">Pytest</span>
           <span class="tag">Coverage</span>
           <span class="tag">Quality Gate</span>
-          <span class="tag">Pull Request Control</span>
+          <span class="tag">PR Control</span>
           <span class="tag">GitHub Pages</span>
         </div>
 
@@ -448,25 +540,25 @@
           </div>
           <div class="stat">
             <strong>PR</strong>
-            <span>Integración controlada a main</span>
+            <span>Merge controlado a main</span>
           </div>
           <div class="stat">
             <strong>CD</strong>
-            <span>Entrega simulada con evidencia visible</span>
+            <span>Entrega simulada con evidencia pública</span>
           </div>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <main>
-    <section class="section">
+    <section class="section" id="proyecto">
       <div class="container">
         <h2 class="section-title">💡 Propósito del proyecto</h2>
         <p class="section-subtitle">
           Este portafolio fue desarrollado para evidenciar capacidades de estructuración,
-          automatización y control del flujo de entrega de software, con foco en
-          calidad, trazabilidad y visibilidad del proceso.
+          automatización y control del flujo de entrega de software, con foco en calidad,
+          trazabilidad y visibilidad del proceso.
         </p>
 
         <div class="grid grid-3">
@@ -477,29 +569,31 @@
               de forma temprana antes de integrar cambios.
             </p>
           </div>
+
           <div class="card">
             <h3>✅ Control de calidad</h3>
             <p>
-              Se incorporan pruebas automatizadas, métricas de cobertura y validaciones de calidad
-              como mecanismo de control previo al despliegue.
+              Se incorporan pruebas automatizadas, métricas de cobertura y validaciones
+              de calidad como mecanismo de control previo al despliegue.
             </p>
           </div>
+
           <div class="card">
             <h3>✅ Evidencia pública</h3>
             <p>
-              La publicación en GitHub Pages permite mostrar el resultado del proyecto de manera visible,
-              profesional y fácil de compartir.
+              La publicación en GitHub Pages permite mostrar el resultado del proyecto de manera
+              visible, profesional y fácil de compartir.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="pipeline">
       <div class="container">
         <h2 class="section-title">⚙️ Flujo del pipeline</h2>
         <p class="section-subtitle">
-          El proyecto representa una secuencia lógica de validación y entrega, similar a un flujo real de CI/CD.
+          El proyecto representa una secuencia lógica de validación y entrega, alineada con un flujo real de CI/CD.
         </p>
 
         <div class="pipeline">
@@ -508,31 +602,35 @@
             <h4>Pull Request / Push</h4>
             <p>Ingreso controlado de cambios al repositorio.</p>
           </div>
+
           <div class="step">
             <span class="step-label">Paso 2</span>
             <h4>CI Pipeline</h4>
-            <p>Instalación, validación de entorno y ejecución de pruebas automatizadas.</p>
+            <p>Configuración de entorno, instalación y ejecución de pruebas.</p>
           </div>
+
           <div class="step">
             <span class="step-label">Paso 3</span>
             <h4>Quality Gate</h4>
             <p>Control de calidad y cobertura antes de aprobar el cambio.</p>
           </div>
+
           <div class="step">
             <span class="step-label">Paso 4</span>
             <h4>Merge a main</h4>
             <p>Integración controlada solo si las validaciones aprueban.</p>
           </div>
+
           <div class="step">
             <span class="step-label">Paso 5</span>
             <h4>CD Simulado</h4>
-            <p>Preparación de release y publicación del resultado como evidencia.</p>
+            <p>Preparación del release y publicación visible como evidencia.</p>
           </div>
         </div>
 
         <div class="callout">
-          Este flujo demuestra un enfoque orientado a <strong>detectar fallas antes del despliegue</strong>,
-          mejorar la confiabilidad del proceso y fortalecer prácticas de entrega continua.
+          Este flujo permite <strong>detectar fallas antes del despliegue</strong>,
+          fortalecer la confiabilidad del proceso y demostrar una base sólida de prácticas DevOps.
         </div>
       </div>
     </section>
@@ -552,7 +650,7 @@
               <li>Configuración de Python</li>
               <li>Instalación de dependencias</li>
               <li>Ejecución de pruebas con pytest</li>
-              <li>Generación de coverage</li>
+              <li>Generación de métricas de coverage</li>
             </ul>
           </div>
 
@@ -562,7 +660,7 @@
               <li>Validación de cobertura mínima</li>
               <li>Bloqueo de cambios defectuosos</li>
               <li>Control previo al merge</li>
-              <li>Base para prácticas de calidad tipo SonarQube</li>
+              <li>Base para evolución hacia SonarQube</li>
             </ul>
           </div>
 
@@ -587,7 +685,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="arquitectura">
       <div class="container">
         <h2 class="section-title">🏗️ Arquitectura conceptual</h2>
         <p class="section-subtitle">
@@ -612,69 +710,70 @@
           </div>
 
           <p class="small-note">
-            Esta estructura representa un flujo de entrega alineado con buenas prácticas DevOps y control de calidad continuo.
+            Esta estructura representa un flujo de entrega alineado con buenas prácticas de automatización, calidad y gobernanza.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="evidencias">
       <div class="container">
         <h2 class="section-title">📸 Evidencias del proyecto</h2>
         <p class="section-subtitle">
-          Aquí puedes mostrar capturas reales del pipeline, validaciones y resultados del proyecto.
+          Esta sección está preparada para mostrar capturas reales del pipeline y reforzar el valor visual del portafolio.
         </p>
 
         <div class="grid grid-3">
-          <div class="card evidence-card">
-            <div class="placeholder">
-              Espacio para captura<br />
-              <strong>CI exitoso</strong><br />
-              Reemplaza este bloque por una imagen si después quieres agregarla
+          <article class="card evidence-card">
+            <div class="evidence-image">
+              <img src="docs/img/ci-success.png" alt="Evidencia de ejecución exitosa del CI Pipeline" />
             </div>
             <div class="evidence-body">
-              <h3>CI Pipeline exitoso</h3>
+              <span class="status status-success">CI EXITOSO</span>
+              <h3>Pipeline validado correctamente</h3>
               <p>
                 Evidencia de ejecución satisfactoria del pipeline con instalación de dependencias,
                 pruebas automatizadas y validación general del flujo.
               </p>
             </div>
-          </div>
+          </article>
 
-          <div class="card evidence-card">
-            <div class="placeholder">
-              Espacio para captura<br />
-              <strong>Falla controlada</strong><br />
-              Ejemplo de test fallido o bloqueo por calidad
+          <article class="card evidence-card">
+            <div class="evidence-image">
+              <img src="docs/img/test-fail.png" alt="Evidencia de falla controlada en pruebas automatizadas" />
             </div>
             <div class="evidence-body">
+              <span class="status status-danger">TEST FAIL</span>
               <h3>Falla detectada automáticamente</h3>
               <p>
                 Demostración de cómo el pipeline bloquea cambios defectuosos antes de avanzar,
                 reforzando la confiabilidad del proceso.
               </p>
             </div>
-          </div>
+          </article>
 
-          <div class="card evidence-card">
-            <div class="placeholder">
-              Espacio para captura<br />
-              <strong>Coverage / Quality Gate</strong><br />
-              Ejemplo de control previo al merge
+          <article class="card evidence-card">
+            <div class="evidence-image">
+              <img src="docs/img/coverage-fail.png" alt="Evidencia de validación de cobertura o quality gate" />
             </div>
             <div class="evidence-body">
-              <h3>Control de calidad y cobertura</h3>
+              <span class="status status-warning">QUALITY GATE</span>
+              <h3>Control de cobertura y calidad</h3>
               <p>
                 Evidencia del uso de métricas y criterios de validación como mecanismo previo
                 a la integración y despliegue.
               </p>
             </div>
-          </div>
+          </article>
         </div>
+
+        <p class="small-note">
+          Si alguna imagen todavía no existe en esa ruta, el navegador mostrará el espacio vacío. Cuando subas los archivos con esos nombres, aparecerán automáticamente.
+        </p>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="valor">
       <div class="container">
         <h2 class="section-title">📊 Valor que demuestra este portafolio</h2>
         <p class="section-subtitle">
@@ -689,6 +788,7 @@
               apoyando un flujo más eficiente y repetible.
             </p>
           </div>
+
           <div class="card">
             <h3>Calidad</h3>
             <p>
@@ -696,6 +796,7 @@
               fortaleciendo la calidad del software.
             </p>
           </div>
+
           <div class="card">
             <h3>Entrega visible</h3>
             <p>
@@ -720,13 +821,15 @@
             <strong>Visión integral del flujo</strong>
             Desde el cambio de código hasta la publicación del resultado, el proyecto comunica comprensión del ciclo de entrega.
           </div>
+
           <div class="focus-item">
             <strong>Control y gobernanza</strong>
             El uso de Pull Request, validaciones y Quality Gate refuerza un enfoque ordenado y controlado.
           </div>
+
           <div class="focus-item">
-            <strong>Orientación a mejora continua</strong>
-            El pipeline sirve como base para evolucionar hacia prácticas más avanzadas de automatización y despliegue.
+            <strong>Base para evolución futura</strong>
+            El pipeline sirve como fundamento para crecer hacia prácticas más avanzadas de automatización, quality gates reales y despliegue continuo.
           </div>
         </div>
       </div>
@@ -740,7 +843,7 @@
             Enlaces principales para revisar el proyecto y su ejecución.
           </p>
 
-          <div class="hero-cta">
+          <div class="cta-row">
             <a class="btn btn-primary" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio" target="_blank" rel="noopener noreferrer">
               Repositorio GitHub
             </a>

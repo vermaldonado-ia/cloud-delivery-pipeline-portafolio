@@ -1,10 +1,10 @@
-# 🔍 Code Quality - Quality Gate (Simulado)
+# 🔍 Code Quality - Quality Gate
 
 ![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
 
 Este módulo implementa un **Quality Gate dentro de un pipeline CI/CD**, asegurando que solo código que cumple estándares de calidad pueda avanzar hacia etapas de despliegue.
 
-Se inspira en herramientas como SonarQube y Azure DevOps Quality Gates, pero está implementado de forma práctica utilizando GitHub Actions.
+Se inspira en herramientas como **SonarQube** y **Azure DevOps Quality Gates**, pero está implementado de forma práctica utilizando **GitHub Actions**.
 
 ---
 
@@ -12,10 +12,10 @@ Se inspira en herramientas como SonarQube y Azure DevOps Quality Gates, pero est
 
 Implementar un mecanismo automático que permita:
 
-- Detectar errores de forma temprana (Shift Left)  
-- Validar estándares de desarrollo  
-- Controlar cobertura de pruebas  
-- Bloquear cambios defectuosos antes del despliegue  
+* Detectar errores de forma temprana (Shift Left)
+* Validar estándares de desarrollo
+* Controlar cobertura de pruebas
+* Bloquear cambios defectuosos antes del despliegue
 
 ---
 
@@ -23,15 +23,17 @@ Implementar un mecanismo automático que permita:
 
 El Quality Gate actúa como una etapa intermedia crítica:
 
-Pull Request / Push  
-↓  
-CI (Tests + Coverage)  
-↓  
-Code Quality (Quality Gate)  
-↓  
-Merge controlado a main  
-↓  
-CD (Deploy simulado)  
+```
+Pull Request / Push
+        ↓
+CI (Tests + Coverage)
+        ↓
+Code Quality (Quality Gate)
+        ↓
+Merge controlado a main
+        ↓
+CD (Deploy simulado)
+```
 
 Este punto define si el código puede o no avanzar en el flujo de entrega.
 
@@ -39,9 +41,9 @@ Este punto define si el código puede o no avanzar en el flujo de entrega.
 
 ## 🛠️ Herramientas utilizadas
 
-- flake8 → análisis estático de código (linting)  
-- pytest → ejecución de pruebas  
-- pytest-cov → medición de cobertura  
+* flake8 → análisis estático de código (linting)
+* pytest → ejecución de pruebas
+* pytest-cov → medición de cobertura
 
 ---
 
@@ -49,9 +51,9 @@ Este punto define si el código puede o no avanzar en el flujo de entrega.
 
 El pipeline falla automáticamente si:
 
-- Existen errores de linting  
-- Algún test falla  
-- La cobertura es menor al mínimo definido  
+* ❌ Existen errores de linting
+* ❌ Algún test falla
+* ❌ La cobertura es menor al mínimo definido
 
 Esto asegura que ningún código defectuoso llegue a producción.
 
@@ -61,14 +63,16 @@ Esto asegura que ningún código defectuoso llegue a producción.
 
 El control se ejecuta dentro del pipeline CI mediante:
 
-- Validación de estilo de código  
-- Ejecución de pruebas automatizadas  
-- Evaluación de cobertura  
+* Validación de estilo de código
+* Ejecución de pruebas automatizadas
+* Evaluación de cobertura
 
 Ejemplo de ejecución:
 
-pytest --cov=src --cov-fail-under=80  
+```
+pytest --cov=src --cov-fail-under=80
 flake8 .
+```
 
 Si alguna condición falla, el pipeline se detiene automáticamente.
 
@@ -78,13 +82,11 @@ Si alguna condición falla, el pipeline se detiene automáticamente.
 
 Se introdujo un error intencional en el código para validar el comportamiento del pipeline.
 
-![Test Fail](docs/test-fail.png)
+**Resultado:**
 
-Resultado:
-
-- El pipeline falla correctamente  
-- Se bloquea el avance a etapas posteriores  
-- Se evita integración de código defectuoso  
+* El pipeline falla correctamente
+* Se bloquea el avance a etapas posteriores
+* Se evita integración de código defectuoso
 
 ---
 
@@ -92,13 +94,19 @@ Resultado:
 
 Se configuró un umbral mínimo de cobertura, provocando una falla controlada.
 
-![Coverage Fail](docs/coverage-fail.png)
+**Resultado:**
 
-Resultado:
+* Se exige cobertura mínima obligatoria
+* Se asegura calidad estructural del código
+* Se refuerza disciplina de testing
 
-- Se exige cobertura mínima obligatoria  
-- Se asegura calidad estructural del código  
-- Se refuerza disciplina de testing  
+---
+
+## 📊 Resultado actual
+
+* ✅ Coverage: 100%
+* ✅ Quality Gate aprobado
+* ✅ Pipeline exitoso
 
 ---
 
@@ -106,14 +114,14 @@ Resultado:
 
 Este enfoque replica el comportamiento de herramientas como:
 
-- SonarQube  
-- Azure DevOps Quality Gates  
+* SonarQube
+* Azure DevOps Quality Gates
 
 Aunque no se utiliza una herramienta externa, el pipeline cumple el mismo propósito:
 
-- Validar calidad automáticamente  
-- Bloquear despliegue si no se cumplen estándares  
-- Reducir deuda técnica  
+* Validar calidad automáticamente
+* Bloquear despliegue si no se cumplen estándares
+* Reducir deuda técnica
 
 ---
 
@@ -121,10 +129,10 @@ Aunque no se utiliza una herramienta externa, el pipeline cumple el mismo propó
 
 Este módulo permite:
 
-- Aplicar Shift Left Testing  
-- Automatizar controles de calidad  
-- Asegurar estándares antes de producción  
-- Mejorar confiabilidad del software  
+* Aplicar Shift Left Testing
+* Automatizar controles de calidad
+* Asegurar estándares antes de producción
+* Mejorar confiabilidad del software
 
 ---
 
@@ -132,10 +140,10 @@ Este módulo permite:
 
 Gracias al Quality Gate:
 
-- Se reduce el riesgo en producción  
-- Se mejora la confiabilidad del pipeline  
-- Se estandariza la calidad del código  
-- Se controla el flujo de cambios  
+* Se reduce el riesgo en producción
+* Se mejora la confiabilidad del pipeline
+* Se estandariza la calidad del código
+* Se controla el flujo de cambios
 
 ---
 
@@ -143,9 +151,9 @@ Gracias al Quality Gate:
 
 El Quality Gate implementado garantiza que:
 
-- Solo código validado avanza en el pipeline  
-- Se mantienen estándares de desarrollo  
-- Se reduce el riesgo en despliegues  
+* Solo código validado avanza en el pipeline
+* Se mantienen estándares de desarrollo
+* Se reduce el riesgo en despliegues
 
 Este enfoque es clave en entornos DevOps modernos.
 
@@ -155,10 +163,10 @@ Este enfoque es clave en entornos DevOps modernos.
 
 Este módulo forma parte del repositorio principal:
 
-Cloud Delivery Pipeline Portafolio  
+👉 Cloud Delivery Pipeline Portafolio
 
 Donde se integra con:
 
-- CI Pipeline  
-- Control de Pull Request  
-- CD Simulado  
+* CI Pipeline
+* Control de Pull Request
+* CD Simulado

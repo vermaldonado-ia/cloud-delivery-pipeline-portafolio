@@ -84,6 +84,53 @@ Esto permite un flujo de entrega completamente automatizado.
 
 ---
 
+## 🧩 Caso de Uso Profesional (Enfoque Empresa)
+
+En entornos corporativos, uno de los principales desafíos es asegurar la calidad del software antes de su liberación, evitando errores en producción y reduciendo retrabajo.
+
+Este proyecto simula un escenario real donde:
+
+* múltiples desarrolladores realizan cambios simultáneamente
+* existe riesgo de introducir defectos en cada entrega
+* se requiere control automatizado del flujo de cambios
+
+Para abordar este problema, se implementa un pipeline DevOps que:
+
+* valida automáticamente cada cambio mediante CI
+* aplica un Quality Gate basado en cobertura de pruebas
+* bloquea integraciones que no cumplen estándares
+* automatiza el despliegue hacia un entorno productivo
+
+Esto permite reducir riesgos, mejorar la calidad del código y acelerar la entrega continua.
+
+## 🏢 Aplicación en Experiencia Profesional
+
+Este enfoque se alinea directamente con mi experiencia liderando proyectos en entornos como AFP y plataformas ERP.
+
+En iniciativas de transformación digital, enfrenté desafíos como:
+
+* múltiples versiones de plataformas en producción
+* alta dependencia de validaciones manuales
+* riesgo de errores en liberaciones
+* necesidad de reducir tiempos de entrega
+
+Este tipo de pipeline permite abordar estos problemas mediante:
+
+* automatización de validaciones técnicas
+* control de calidad previo al despliegue
+* estandarización del flujo de entrega
+* reducción de errores en producción
+
+Particularmente en contextos como:
+
+* modernización de plataformas ERP (ej: Importline)
+* implementación de prácticas ágiles en AFP
+* integración de equipos técnicos y de negocio
+
+Este proyecto refleja cómo llevar esas prácticas a un enfoque DevOps moderno, combinando automatización, calidad y despliegue continuo en la nube.
+
+---
+
 ## 🌐 Resultado
 
 El sistema queda disponible en producción:

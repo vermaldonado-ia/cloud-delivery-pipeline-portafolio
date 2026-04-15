@@ -92,12 +92,12 @@ Se configuró una cobertura mínima para validar el control del pipeline.
 Se implementa un control de calidad basado en:
 
 * flake8 para análisis estático
-* Validación de coverage mínimo
-* Ejecución automática en CI
+* validación de coverage mínimo
+* ejecución automática en CI
 
 Este módulo actúa como un Quality Gate, bloqueando el pipeline si no se cumplen estándares mínimos.
 
-Más detalle en: sonarqube/README.md
+Más detalle en: `sonarqube/README.md`
 
 ---
 
@@ -107,7 +107,7 @@ Se aplican buenas prácticas DevOps:
 
 * Validación automática en cada PR
 * Bloqueo de merge si el pipeline falla
-* Protección de la rama main
+* Protección de la rama `main`
 
 Esto asegura que solo código validado avance en el flujo de entrega.
 
@@ -118,7 +118,7 @@ Esto asegura que solo código validado avance en el flujo de entrega.
 El proyecto implementa despliegue continuo real en AWS Amplify:
 
 * Conexión directa con repositorio GitHub
-* Deploy automático en cada push a main
+* Deploy automático en cada push a `main`
 * Publicación en entorno productivo
 * URL accesible públicamente
 
@@ -185,14 +185,14 @@ Este enfoque permite:
 
 ## 🔗 Enlaces
 
-Repositorio: https://github.com/TU_USUARIO/cloud-delivery-pipeline-portafolio
-Pipeline: https://github.com/TU_USUARIO/cloud-delivery-pipeline-portafolio/actions
+Repositorio: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio
+Pipeline: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions
 Aplicación: https://main.d28beryjenq64n.amplifyapp.com
 
 ---
 
 ## 👩‍💻 Autora
 
-Verónica Maldonado
+**Verónica Maldonado**
 Ingeniera Civil Informática
 Project Manager | Agile | Cloud | DevOps

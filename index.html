@@ -1,147 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cloud Delivery Pipeline Portafolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Delivery Pipeline</title>
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #0f172a;
-      color: #f1f5f9;
+      font-family: system-ui, -apple-system, Arial;
+      background: #0f172a;
+      color: #e2e8f0;
       margin: 0;
-      padding: 0;
-      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
+    .box {
+      max-width: 700px;
+      padding: 40px;
+      background: #1e293b;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      text-align: center;
     }
 
-    .card {
-      background-color: #1e293b;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    h1, h2 {
+    h1 {
+      margin-bottom: 15px;
       color: #38bdf8;
     }
 
-    p, li {
+    p {
+      color: #94a3b8;
+      margin-bottom: 25px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 8px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .primary {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+
+    .secondary {
+      background: #334155;
       color: #e2e8f0;
     }
 
-    .buttons {
-      margin: 20px 0;
-    }
-
-    .button {
-      display: inline-block;
-      margin-right: 10px;
-      margin-bottom: 10px;
-      padding: 12px 18px;
-      background-color: #38bdf8;
-      color: #0f172a;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-
-    .button.secondary {
-      background-color: #334155;
-      color: #f1f5f9;
-    }
-
     ul {
-      padding-left: 20px;
+      text-align: left;
+      margin-top: 25px;
+      color: #cbd5f5;
     }
 
-    .section {
-      margin-top: 30px;
-    }
-
-    .footer {
-      text-align: center;
-      color: #94a3b8;
+    footer {
       margin-top: 30px;
       font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      .button {
-        display: block;
-        text-align: center;
-        margin-right: 0;
-      }
+      color: #64748b;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <h1>🚀 Cloud Delivery Pipeline Portafolio</h1>
 
-      <p>
-        Proyecto orientado a demostrar la implementación de un flujo de entrega moderno,
-        integrando <strong>Integración Continua (CI)</strong>, validación de calidad,
-        control de cambios mediante <strong>Pull Request</strong> y un
-        <strong>despliegue simulado (CD)</strong> con publicación en GitHub Pages.
-      </p>
+  <div class="box">
+    <h1>🚀 Cloud Delivery Pipeline</h1>
 
-      <div class="buttons">
-        <a class="button" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio" target="_blank">Ver repositorio</a>
-        <a class="button secondary" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions" target="_blank">Ver pipeline</a>
-      </div>
+    <p>
+      Proyecto que demuestra un flujo de entrega con CI, control de calidad,
+      Pull Request y despliegue en GitHub Pages.
+    </p>
 
-      <div class="section">
-        <h2>🎯 Objetivo</h2>
-        <p>
-          Mostrar de forma práctica cómo se puede estructurar un pipeline de validación
-          y control de cambios, fortaleciendo la calidad del software y la trazabilidad del proceso.
-        </p>
-      </div>
+    <div class="buttons">
+      <a class="primary" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio" target="_blank">
+        Ver repositorio
+      </a>
 
-      <div class="section">
-        <h2>⚙️ Flujo implementado</h2>
-        <ul>
-          <li>Pull Request / Push</li>
-          <li>CI Pipeline</li>
-          <li>Quality Gate</li>
-          <li>Merge controlado a main</li>
-          <li>CD (Deploy en GitHub Pages)</li>
-          <li>Publicación en GitHub Pages</li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2>🛠️ Componentes</h2>
-        <ul>
-          <li>GitHub Actions</li>
-          <li>Python</li>
-          <li>Pytest</li>
-          <li>Coverage</li>
-          <li>Control de Pull Request</li>
-          <li>GitHub Pages</li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2>📌 Valor del proyecto</h2>
-        <p>
-          Este portafolio evidencia capacidades de automatización, control de calidad,
-          trazabilidad y visibilidad del proceso de entrega, aplicables a contextos reales
-          de transformación tecnológica.
-        </p>
-      </div>
-
-      <div class="footer">
-        Desarrollado como evidencia de portafolio profesional en prácticas de entrega continua y control de calidad.
-      </div>
+      <a class="secondary" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions" target="_blank">
+        Ver pipeline
+      </a>
     </div>
+
+    <ul>
+      <li>CI con GitHub Actions</li>
+      <li>Pruebas automatizadas con pytest</li>
+      <li>Control de coverage</li>
+      <li>Quality Gate</li>
+      <li>Merge controlado</li>
+      <li>CD (GitHub Pages)</li>
+    </ul>
+
+    <footer>
+      Portafolio DevOps • Automatización • Calidad • Entrega continua
+    </footer>
   </div>
+
 </body>
 </html>

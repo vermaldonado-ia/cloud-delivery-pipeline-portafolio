@@ -4,866 +4,144 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cloud Delivery Pipeline Portafolio</title>
-  <meta
-    name="description"
-    content="Portafolio DevOps con CI, Quality Gate, Pull Request controlado, CD simulado y publicación en GitHub Pages."
-  />
   <style>
-    :root {
-      --bg: #081120;
-      --bg-soft: #0f172a;
-      --panel: #111827;
-      --panel-2: #1e293b;
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --primary: #38bdf8;
-      --primary-dark: #0ea5e9;
-      --success: #22c55e;
-      --danger: #ef4444;
-      --warning: #f59e0b;
-      --border: rgba(255,255,255,0.08);
-      --shadow: 0 14px 34px rgba(0,0,0,0.30);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --max-width: 1180px;
-    }
-
-    * {
-      box-sizing: border-box;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f172a;
+      color: #f1f5f9;
       margin: 0;
       padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 22%),
-        radial-gradient(circle at top right, rgba(34,197,94,0.08), transparent 18%),
-        linear-gradient(180deg, #081120 0%, #0f172a 100%);
-      color: var(--text);
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
     .container {
-      width: min(92%, var(--max-width));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: rgba(8, 17, 32, 0.82);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .topbar-inner {
-      width: min(92%, var(--max-width));
-      margin: 0 auto;
-      padding: 14px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      font-weight: 800;
-      font-size: 0.98rem;
-      color: var(--text);
-    }
-
-    .nav {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      color: var(--muted);
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-    }
-
-    .nav a:hover {
-      color: var(--primary);
-    }
-
-    .hero {
-      padding: 72px 0 44px;
-    }
-
-    .hero-box {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(15,23,42,0.94), rgba(17,24,39,0.98));
-      padding: 56px 40px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-box::before {
-      content: "";
-      position: absolute;
-      top: -100px;
-      right: -90px;
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, rgba(56,189,248,0.18), transparent 65%);
-      pointer-events: none;
-    }
-
-    .hero-box::after {
-      content: "";
-      position: absolute;
-      bottom: -90px;
-      left: -80px;
-      width: 260px;
-      height: 260px;
-      background: radial-gradient(circle, rgba(34,197,94,0.10), transparent 65%);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(56,189,248,0.10);
-      color: var(--primary);
-      border: 1px solid rgba(56,189,248,0.22);
-      font-weight: 700;
-      font-size: 0.90rem;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: 1.08;
-      margin-bottom: 18px;
-      max-width: 920px;
-    }
-
-    .hero p {
-      max-width: 860px;
-      color: var(--muted);
-      font-size: 1.08rem;
-      margin-bottom: 28px;
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 22px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 22px;
-      border-radius: 12px;
-      font-weight: 800;
-      border: 1px solid transparent;
-      transition: 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #081120;
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-dark);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      border-color: var(--border);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.06);
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .tag {
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-size: 0.88rem;
-    }
-
-    .section {
-      padding: 36px 0;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-
-    .section-subtitle {
-      color: var(--muted);
-      max-width: 820px;
-      margin-bottom: 26px;
-    }
-
-    .grid {
-      display: grid;
-      gap: 22px;
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    }
-
-    .grid-4 {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
     }
 
     .card {
-      background: linear-gradient(180deg, rgba(30,41,59,0.96), rgba(15,23,42,0.96));
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      box-shadow: var(--shadow);
+      background-color: #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    .card h3 {
+    h1, h2 {
+      color: #38bdf8;
+    }
+
+    p, li {
+      color: #e2e8f0;
+    }
+
+    .buttons {
+      margin: 20px 0;
+    }
+
+    .button {
+      display: inline-block;
+      margin-right: 10px;
       margin-bottom: 10px;
-      font-size: 1.12rem;
+      padding: 12px 18px;
+      background-color: #38bdf8;
+      color: #0f172a;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
     }
 
-    .card p,
-    .card li {
-      color: var(--muted);
-      font-size: 0.98rem;
+    .button.secondary {
+      background-color: #334155;
+      color: #f1f5f9;
     }
 
-    .card ul {
-      padding-left: 18px;
-      margin-top: 8px;
+    ul {
+      padding-left: 20px;
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-top: 22px;
-    }
-
-    .stat {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      background: rgba(255,255,255,0.03);
-      padding: 18px;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.7rem;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .pipeline {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .step {
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(17,24,39,0.94), rgba(30,41,59,0.92));
-      padding: 20px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-
-    .step-label {
-      display: inline-block;
-      color: var(--primary);
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .step h4 {
-      margin-bottom: 8px;
-      font-size: 1.03rem;
-    }
-
-    .step p {
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
-    .callout {
-      margin-top: 20px;
-      padding: 16px 18px;
-      border-radius: 14px;
-      border: 1px solid rgba(34,197,94,0.20);
-      background: rgba(34,197,94,0.08);
-      color: #dcfce7;
-    }
-
-    .architecture {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      background: linear-gradient(180deg, rgba(15,23,42,0.96), rgba(30,41,59,0.96));
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-
-    .flow {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .flow-box {
-      min-width: 150px;
-      text-align: center;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      font-weight: 700;
-    }
-
-    .flow-arrow {
-      color: var(--primary);
-      font-size: 1.2rem;
-      font-weight: 900;
-    }
-
-    .evidence-card {
-      overflow: hidden;
-      padding: 0;
-    }
-
-    .evidence-image {
-      aspect-ratio: 16 / 9;
-      background: #0b1120;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-
-    .evidence-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .evidence-body {
-      padding: 20px;
-    }
-
-    .status {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-
-    .status-success {
-      background: rgba(34,197,94,0.14);
-      color: #86efac;
-      border: 1px solid rgba(34,197,94,0.22);
-    }
-
-    .status-danger {
-      background: rgba(239,68,68,0.14);
-      color: #fca5a5;
-      border: 1px solid rgba(239,68,68,0.22);
-    }
-
-    .status-warning {
-      background: rgba(245,158,11,0.14);
-      color: #fcd34d;
-      border: 1px solid rgba(245,158,11,0.22);
-    }
-
-    .focus-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .focus-item {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.03);
-      padding: 16px;
-    }
-
-    .focus-item strong {
-      display: block;
-      margin-bottom: 6px;
+    .section {
+      margin-top: 30px;
     }
 
     .footer {
-      padding: 44px 0 60px;
       text-align: center;
-      color: var(--muted);
-      font-size: 0.95rem;
+      color: #94a3b8;
+      margin-top: 30px;
+      font-size: 14px;
     }
 
-    .small-note {
-      color: var(--muted);
-      font-size: 0.90rem;
-      margin-top: 12px;
-    }
-
-    @media (max-width: 700px) {
-      .hero-box {
-        padding: 36px 22px;
-      }
-
-      .btn {
-        width: 100%;
+    @media (max-width: 600px) {
+      .button {
+        display: block;
         text-align: center;
-      }
-
-      .flow {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .flow-arrow {
-        transform: rotate(90deg);
-        text-align: center;
+        margin-right: 0;
       }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="card">
+      <h1>🚀 Cloud Delivery Pipeline Portafolio</h1>
 
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">Cloud Delivery Pipeline Portafolio</div>
-      <nav class="nav">
-        <a href="#proyecto">Proyecto</a>
-        <a href="#pipeline">Pipeline</a>
-        <a href="#arquitectura">Arquitectura</a>
-        <a href="#evidencias">Evidencias</a>
-        <a href="#valor">Valor</a>
-      </nav>
-    </div>
-  </header>
+      <p>
+        Proyecto orientado a demostrar la implementación de un flujo de entrega moderno,
+        integrando <strong>Integración Continua (CI)</strong>, validación de calidad,
+        control de cambios mediante <strong>Pull Request</strong> y un
+        <strong>despliegue simulado (CD)</strong> con publicación en GitHub Pages.
+      </p>
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero-box">
-        <div class="eyebrow">🚀 Portafolio DevOps • GitHub Actions • GitHub Pages</div>
-        <h1>Cloud Delivery Pipeline Portafolio</h1>
+      <div class="buttons">
+        <a class="button" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio" target="_blank">Ver repositorio</a>
+        <a class="button secondary" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions" target="_blank">Ver pipeline</a>
+      </div>
+
+      <div class="section">
+        <h2>🎯 Objetivo</h2>
         <p>
-          Proyecto orientado a demostrar la implementación de un flujo de entrega moderno,
-          integrando <strong>Integración Continua (CI)</strong>, validación de calidad,
-          control de cambios mediante <strong>Pull Request</strong>, un <strong>Quality Gate</strong>
-          y un <strong>despliegue simulado (CD)</strong> con publicación visible en GitHub Pages.
+          Mostrar de forma práctica cómo se puede estructurar un pipeline de validación
+          y control de cambios, fortaleciendo la calidad del software y la trazabilidad del proceso.
         </p>
+      </div>
 
-        <div class="cta-row">
-          <a class="btn btn-primary" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio" target="_blank" rel="noopener noreferrer">
-            Ver repositorio en GitHub
-          </a>
-          <a class="btn btn-secondary" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions" target="_blank" rel="noopener noreferrer">
-            Ver ejecución del pipeline
-          </a>
-        </div>
+      <div class="section">
+        <h2>⚙️ Flujo implementado</h2>
+        <ul>
+          <li>Pull Request / Push</li>
+          <li>CI Pipeline</li>
+          <li>Quality Gate</li>
+          <li>Merge controlado a main</li>
+          <li>CD Simulado</li>
+          <li>Publicación en GitHub Pages</li>
+        </ul>
+      </div>
 
-        <div class="tag-row">
-          <span class="tag">GitHub Actions</span>
-          <span class="tag">Python</span>
-          <span class="tag">Pytest</span>
-          <span class="tag">Coverage</span>
-          <span class="tag">Quality Gate</span>
-          <span class="tag">PR Control</span>
-          <span class="tag">GitHub Pages</span>
-        </div>
+      <div class="section">
+        <h2>🛠️ Componentes</h2>
+        <ul>
+          <li>GitHub Actions</li>
+          <li>Python</li>
+          <li>Pytest</li>
+          <li>Coverage</li>
+          <li>Control de Pull Request</li>
+          <li>GitHub Pages</li>
+        </ul>
+      </div>
 
-        <div class="stats">
-          <div class="stat">
-            <strong>CI</strong>
-            <span>Validación automática de cambios</span>
-          </div>
-          <div class="stat">
-            <strong>QA</strong>
-            <span>Control de calidad y cobertura</span>
-          </div>
-          <div class="stat">
-            <strong>PR</strong>
-            <span>Merge controlado a main</span>
-          </div>
-          <div class="stat">
-            <strong>CD</strong>
-            <span>Entrega simulada con evidencia pública</span>
-          </div>
-        </div>
+      <div class="section">
+        <h2>📌 Valor del proyecto</h2>
+        <p>
+          Este portafolio evidencia capacidades de automatización, control de calidad,
+          trazabilidad y visibilidad del proceso de entrega, aplicables a contextos reales
+          de transformación tecnológica.
+        </p>
+      </div>
+
+      <div class="footer">
+        Desarrollado como evidencia de portafolio profesional en prácticas de entrega continua y control de calidad.
       </div>
     </div>
-  </section>
-
-  <main>
-    <section class="section" id="proyecto">
-      <div class="container">
-        <h2 class="section-title">💡 Propósito del proyecto</h2>
-        <p class="section-subtitle">
-          Este portafolio fue desarrollado para evidenciar capacidades de estructuración,
-          automatización y control del flujo de entrega de software, con foco en calidad,
-          trazabilidad y visibilidad del proceso.
-        </p>
-
-        <div class="grid grid-3">
-          <div class="card">
-            <h3>✅ Integración Continua</h3>
-            <p>
-              El pipeline ejecuta validaciones automáticas sobre el código para detectar errores
-              de forma temprana antes de integrar cambios.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>✅ Control de calidad</h3>
-            <p>
-              Se incorporan pruebas automatizadas, métricas de cobertura y validaciones
-              de calidad como mecanismo de control previo al despliegue.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>✅ Evidencia pública</h3>
-            <p>
-              La publicación en GitHub Pages permite mostrar el resultado del proyecto de manera
-              visible, profesional y fácil de compartir.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="pipeline">
-      <div class="container">
-        <h2 class="section-title">⚙️ Flujo del pipeline</h2>
-        <p class="section-subtitle">
-          El proyecto representa una secuencia lógica de validación y entrega, alineada con un flujo real de CI/CD.
-        </p>
-
-        <div class="pipeline">
-          <div class="step">
-            <span class="step-label">Paso 1</span>
-            <h4>Pull Request / Push</h4>
-            <p>Ingreso controlado de cambios al repositorio.</p>
-          </div>
-
-          <div class="step">
-            <span class="step-label">Paso 2</span>
-            <h4>CI Pipeline</h4>
-            <p>Configuración de entorno, instalación y ejecución de pruebas.</p>
-          </div>
-
-          <div class="step">
-            <span class="step-label">Paso 3</span>
-            <h4>Quality Gate</h4>
-            <p>Control de calidad y cobertura antes de aprobar el cambio.</p>
-          </div>
-
-          <div class="step">
-            <span class="step-label">Paso 4</span>
-            <h4>Merge a main</h4>
-            <p>Integración controlada solo si las validaciones aprueban.</p>
-          </div>
-
-          <div class="step">
-            <span class="step-label">Paso 5</span>
-            <h4>CD Simulado</h4>
-            <p>Preparación del release y publicación visible como evidencia.</p>
-          </div>
-        </div>
-
-        <div class="callout">
-          Este flujo permite <strong>detectar fallas antes del despliegue</strong>,
-          fortalecer la confiabilidad del proceso y demostrar una base sólida de prácticas DevOps.
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">🛠️ Componentes implementados</h2>
-        <p class="section-subtitle">
-          El repositorio integra distintas prácticas técnicas y de control del flujo de entrega.
-        </p>
-
-        <div class="grid grid-2">
-          <div class="card">
-            <h3>CI Pipeline</h3>
-            <ul>
-              <li>Checkout del repositorio</li>
-              <li>Configuración de Python</li>
-              <li>Instalación de dependencias</li>
-              <li>Ejecución de pruebas con pytest</li>
-              <li>Generación de métricas de coverage</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Quality Gate</h3>
-            <ul>
-              <li>Validación de cobertura mínima</li>
-              <li>Bloqueo de cambios defectuosos</li>
-              <li>Control previo al merge</li>
-              <li>Base para evolución hacia SonarQube</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Pull Request Control</h3>
-            <ul>
-              <li>Validación automática antes de integrar cambios</li>
-              <li>Mayor trazabilidad del flujo de trabajo</li>
-              <li>Protección de la rama principal</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>GitHub Pages</h3>
-            <ul>
-              <li>Publicación visible del proyecto</li>
-              <li>Presentación ejecutiva del pipeline</li>
-              <li>Evidencia pública para portafolio profesional</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="arquitectura">
-      <div class="container">
-        <h2 class="section-title">🏗️ Arquitectura conceptual</h2>
-        <p class="section-subtitle">
-          El proyecto comunica una visión integral del flujo de entrega, desde el cambio de código hasta su publicación visible.
-        </p>
-
-        <div class="architecture">
-          <div class="flow">
-            <div class="flow-box">Cambio de código</div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-box">Pull Request</div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-box">CI + Tests</div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-box">Quality Gate</div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-box">Merge a main</div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-box">CD Simulado</div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-box">GitHub Pages</div>
-          </div>
-
-          <p class="small-note">
-            Esta estructura representa un flujo de entrega alineado con buenas prácticas de automatización, calidad y gobernanza.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="evidencias">
-      <div class="container">
-        <h2 class="section-title">📸 Evidencias del proyecto</h2>
-        <p class="section-subtitle">
-          Esta sección está preparada para mostrar capturas reales del pipeline y reforzar el valor visual del portafolio.
-        </p>
-
-        <div class="grid grid-3">
-          <article class="card evidence-card">
-            <div class="evidence-image">
-              <img src="docs/img/ci-success.png" alt="Evidencia de ejecución exitosa del CI Pipeline" />
-            </div>
-            <div class="evidence-body">
-              <span class="status status-success">CI EXITOSO</span>
-              <h3>Pipeline validado correctamente</h3>
-              <p>
-                Evidencia de ejecución satisfactoria del pipeline con instalación de dependencias,
-                pruebas automatizadas y validación general del flujo.
-              </p>
-            </div>
-          </article>
-
-          <article class="card evidence-card">
-            <div class="evidence-image">
-              <img src="docs/img/test-fail.png" alt="Evidencia de falla controlada en pruebas automatizadas" />
-            </div>
-            <div class="evidence-body">
-              <span class="status status-danger">TEST FAIL</span>
-              <h3>Falla detectada automáticamente</h3>
-              <p>
-                Demostración de cómo el pipeline bloquea cambios defectuosos antes de avanzar,
-                reforzando la confiabilidad del proceso.
-              </p>
-            </div>
-          </article>
-
-          <article class="card evidence-card">
-            <div class="evidence-image">
-              <img src="docs/img/coverage-fail.png" alt="Evidencia de validación de cobertura o quality gate" />
-            </div>
-            <div class="evidence-body">
-              <span class="status status-warning">QUALITY GATE</span>
-              <h3>Control de cobertura y calidad</h3>
-              <p>
-                Evidencia del uso de métricas y criterios de validación como mecanismo previo
-                a la integración y despliegue.
-              </p>
-            </div>
-          </article>
-        </div>
-
-        <p class="small-note">
-          Si alguna imagen todavía no existe en esa ruta, el navegador mostrará el espacio vacío. Cuando subas los archivos con esos nombres, aparecerán automáticamente.
-        </p>
-      </div>
-    </section>
-
-    <section class="section" id="valor">
-      <div class="container">
-        <h2 class="section-title">📊 Valor que demuestra este portafolio</h2>
-        <p class="section-subtitle">
-          Más que un ejercicio técnico, este proyecto muestra capacidades aplicables a contextos reales de transformación y entrega.
-        </p>
-
-        <div class="grid grid-3">
-          <div class="card">
-            <h3>Automatización</h3>
-            <p>
-              Reduce validaciones manuales y mejora la detección temprana de errores,
-              apoyando un flujo más eficiente y repetible.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Calidad</h3>
-            <p>
-              Utiliza pruebas y cobertura como criterio de control antes de avanzar,
-              fortaleciendo la calidad del software.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Entrega visible</h3>
-            <p>
-              Convierte el resultado técnico en una evidencia pública y profesional,
-              útil para posicionamiento laboral y portafolio.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">🎯 Enfoque profesional</h2>
-        <p class="section-subtitle">
-          Este proyecto fortalece un posicionamiento profesional en iniciativas de transformación tecnológica,
-          modernización de procesos y liderazgo de entregas bajo prácticas Agile, Cloud y DevOps.
-        </p>
-
-        <div class="focus-list">
-          <div class="focus-item">
-            <strong>Visión integral del flujo</strong>
-            Desde el cambio de código hasta la publicación del resultado, el proyecto comunica comprensión del ciclo de entrega.
-          </div>
-
-          <div class="focus-item">
-            <strong>Control y gobernanza</strong>
-            El uso de Pull Request, validaciones y Quality Gate refuerza un enfoque ordenado y controlado.
-          </div>
-
-          <div class="focus-item">
-            <strong>Base para evolución futura</strong>
-            El pipeline sirve como fundamento para crecer hacia prácticas más avanzadas de automatización, quality gates reales y despliegue continuo.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="card">
-          <h2 class="section-title" style="margin-bottom: 12px;">🔗 Accesos directos</h2>
-          <p class="section-subtitle" style="margin-bottom: 18px;">
-            Enlaces principales para revisar el proyecto y su ejecución.
-          </p>
-
-          <div class="cta-row">
-            <a class="btn btn-primary" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio" target="_blank" rel="noopener noreferrer">
-              Repositorio GitHub
-            </a>
-            <a class="btn btn-secondary" href="https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions" target="_blank" rel="noopener noreferrer">
-              GitHub Actions
-            </a>
-            <a class="btn btn-secondary" href="https://vermaldonado-ia.github.io/cloud-delivery-pipeline-portafolio/" target="_blank" rel="noopener noreferrer">
-              Ver sitio publicado
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      Desarrollado como evidencia de portafolio profesional en prácticas de entrega continua, automatización y control de calidad.
-    </div>
-  </footer>
-
+  </div>
 </body>
 </html>

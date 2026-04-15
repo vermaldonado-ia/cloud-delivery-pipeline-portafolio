@@ -134,8 +134,6 @@ Este portafolio fue desarrollado con foco en demostrar capacidades en:
 
 ---
 
-## 🧠 Enfoque profesional
-
 ## 🏢 Aplicación en Experiencia Profesional
 
 Este enfoque se alinea directamente con mi experiencia liderando proyectos en entornos como AFP y plataformas ERP.

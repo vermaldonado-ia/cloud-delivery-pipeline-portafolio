@@ -5,7 +5,7 @@
 ![CD](https://img.shields.io/badge/CD-AWS%20Amplify-blue?logo=amazonaws)
 ![Status](https://img.shields.io/badge/Status-Production-success)
 
-🔗 **Producción:** https://main.d28beryieng64n.amplifyapp.com
+🔗 **Producción:** https://main.d28beryienq64n.amplifyapp.com
 🔗 **Repositorio:** https://github.com/TU-USUARIO/cloud-delivery-pipeline-portafolio
 🔗 **CI Pipeline:** https://github.com/TU-USUARIO/cloud-delivery-pipeline-portafolio/actions
 

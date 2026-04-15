@@ -187,7 +187,7 @@ Este enfoque permite:
 
 Repositorio: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio
 Pipeline: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions
-Aplicación: https://main.d28beryjenq64n.amplifyapp.com
+Aplicación: https://main.d28beryienq64n.amplifyapp.com
 
 ---
 

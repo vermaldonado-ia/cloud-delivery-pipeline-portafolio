@@ -11,7 +11,7 @@ Repositorio que demuestra la implementación de un pipeline DevOps completo, int
 
 ## 🌐 Aplicación en Producción
 
-👉 https://main.d28beryjenq64n.amplifyapp.com
+👉 https://main.d28beryienq64n.amplifyapp.com
 
 ---
 

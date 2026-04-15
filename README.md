@@ -13,15 +13,13 @@
 
 ## 💡 Descripción
 
-Este proyecto demuestra la implementación de un pipeline DevOps completo, integrando prácticas de Integración Continua (CI), control de calidad y despliegue continuo (CD) real en la nube.
+Este proyecto implementa un pipeline DevOps completo, integrando prácticas de Integración Continua (CI), control de calidad y despliegue continuo (CD) real en la nube.
 
-El objetivo es simular un flujo de entrega profesional utilizado en entornos empresariales.
+El enfoque está orientado a simular un flujo de entrega utilizado en entornos empresariales, asegurando calidad, trazabilidad y automatización.
 
 ---
 
 ## 🎯 Objetivo
-
-Implementar un pipeline que permita:
 
 * Detectar errores de forma temprana (Shift Left)
 * Asegurar calidad del código antes del merge
@@ -33,8 +31,6 @@ Implementar un pipeline que permita:
 
 ## ⚙️ Arquitectura del Pipeline
 
-Flujo implementado:
-
 Pull Request
 ↓
 CI (GitHub Actions: Tests + Coverage + Quality Gate)
@@ -43,7 +39,7 @@ Merge controlado a main
 ↓
 CD automático (AWS Amplify)
 ↓
-Producción disponible vía URL
+Producción disponible
 
 ---
 
@@ -52,23 +48,22 @@ Producción disponible vía URL
 El pipeline ejecuta automáticamente:
 
 * Instalación de dependencias
-* Configuración de entorno Python
 * Ejecución de pruebas con pytest
-* Validación de cobertura con pytest-cov
-* Bloqueo del merge si no se cumplen criterios
+* Validación de cobertura
+* Bloqueo del merge si falla calidad
 
-Esto permite garantizar la calidad antes de integrar cambios.
+Esto permite asegurar calidad antes de integrar cambios.
 
 ---
 
 ## 🧪 Quality Gate
 
-Se implementa un Quality Gate basado en:
+Se implementa un control basado en:
 
-* Coverage mínimo requerido (ej: 80%)
-* Validación de tests exitosos
+* Coverage mínimo (80%)
+* Tests exitosos obligatorios
 
-Si no se cumplen las condiciones, el pipeline falla.
+Si no se cumplen estas condiciones, el pipeline falla.
 
 ---
 
@@ -76,11 +71,11 @@ Si no se cumplen las condiciones, el pipeline falla.
 
 El despliegue se realiza automáticamente mediante AWS Amplify:
 
-* Detecta cambios en la rama main
+* Detecta cambios en main
 * Ejecuta build automático
-* Publica en entorno productivo
+* Publica en producción
 
-Esto permite un flujo de entrega completamente automatizado.
+Esto permite un flujo de entrega continua real.
 
 ---
 
@@ -94,33 +89,18 @@ Este proyecto simula un escenario real donde:
 * existe riesgo de introducir defectos en cada entrega
 * se requiere control automatizado del flujo de cambios
 
-Para abordar este problema, se implementa un pipeline DevOps que:
+Para abordar este problema, se implementa un pipeline que:
 
 * valida automáticamente cada cambio mediante CI
-* aplica un Quality Gate basado en cobertura de pruebas
-* bloquea integraciones que no cumplen estándares
-* automatiza el despliegue hacia un entorno productivo
-
-Esto permite reducir riesgos, mejorar la calidad del código y acelerar la entrega continua.
+* aplica un Quality Gate basado en cobertura
+* bloquea integraciones defectuosas
+* automatiza el despliegue a producción
 
 ---
 
 ## 🌐 Resultado
 
-El sistema queda disponible en producción:
-
 👉 https://main.d28beryienq64n.amplifyapp.com
-
----
-
-## 👩‍💻 Sobre el proyecto
-
-Este portafolio fue desarrollado con foco en demostrar capacidades en:
-
-* DevOps
-* Automatización de pipelines
-* Integración de herramientas CI/CD
-* Despliegue en la nube (AWS)
 
 ---
 
@@ -136,26 +116,30 @@ Este portafolio fue desarrollado con foco en demostrar capacidades en:
 
 ## 🏢 Aplicación en Experiencia Profesional
 
-Este enfoque se alinea directamente con mi experiencia liderando proyectos en entornos como AFP y plataformas ERP.
+Este enfoque se alinea con mi experiencia liderando proyectos en AFP y plataformas ERP.
 
-En iniciativas de transformación digital, enfrenté desafíos como:
+En estos entornos enfrenté desafíos como:
 
-* múltiples versiones de plataformas en producción
-* alta dependencia de validaciones manuales
-* riesgo de errores en liberaciones
-* necesidad de reducir tiempos de entrega
+* múltiples versiones en producción
+* validaciones manuales
+* riesgo en despliegues
+* retrasos en entrega
 
-Este tipo de pipeline permite abordar estos problemas mediante:
+Este tipo de pipeline permite:
 
-* automatización de validaciones técnicas
-* control de calidad previo al despliegue
-* estandarización del flujo de entrega
-* reducción de errores en producción
+* automatizar validaciones técnicas
+* mejorar la calidad del software
+* reducir errores en producción
+* acelerar la entrega continua
 
-Particularmente en contextos como:
+Especialmente aplicable en:
 
-* modernización de plataformas ERP (ej: Importline)
-* implementación de prácticas ágiles en AFP
-* integración de equipos técnicos y de negocio
+* modernización de plataformas ERP (Importline)
+* implementación ágil en AFP
+* integración entre equipos técnicos y de negocio
 
-Este proyecto refleja cómo llevar esas prácticas a un enfoque DevOps moderno, combinando automatización, calidad y despliegue continuo en la nube.
+---
+
+## 🧠 Enfoque Profesional
+
+Este proyecto refleja una implementación práctica de DevOps moderno, integrando automatización, calidad y despliegue continuo en la nube.

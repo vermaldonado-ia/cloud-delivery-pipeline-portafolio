@@ -88,7 +88,7 @@ Esto permite un flujo de entrega completamente automatizado.
 
 El sistema queda disponible en producción:
 
-👉 https://main.d28beryieng64n.amplifyapp.com
+👉 https://main.d28beryienq64n.amplifyapp.com
 
 ---
 

@@ -1,54 +1,49 @@
 # 🚀 Cloud Delivery Pipeline Portafolio
 
-![CI](https://img.shields.io/badge/CI-GitHub_Actions-blue)
-![Coverage](https://img.shields.io/badge/Coverage-Validado-success)
-![CD](https://img.shields.io/badge/CD-AWS_Amplify-orange)
-![Status](https://img.shields.io/badge/Deploy-Activo-success)
+![CI](https://img.shields.io/badge/CI-GitHub%20Actions-orange?logo=githubactions)
+![Coverage](https://img.shields.io/badge/Coverage-80%25%2B-success)
+![CD](https://img.shields.io/badge/CD-AWS%20Amplify-blue?logo=amazonaws)
+![Status](https://img.shields.io/badge/Status-Production-success)
 
-Repositorio que demuestra la implementación de un pipeline DevOps completo, integrando prácticas de Integración Continua (CI), control de calidad (Quality Gate), gestión de Pull Request y despliegue continuo (CD) en AWS Amplify.
+🔗 **Producción:** https://main.d28beryieng64n.amplifyapp.com
+🔗 **Repositorio:** https://github.com/TU-USUARIO/cloud-delivery-pipeline-portafolio
+🔗 **CI Pipeline:** https://github.com/TU-USUARIO/cloud-delivery-pipeline-portafolio/actions
 
 ---
 
-## 🌐 Aplicación en Producción
+## 💡 Descripción
 
-👉 https://main.d28beryienq64n.amplifyapp.com
+Este proyecto demuestra la implementación de un pipeline DevOps completo, integrando prácticas de Integración Continua (CI), control de calidad y despliegue continuo (CD) real en la nube.
+
+El objetivo es simular un flujo de entrega profesional utilizado en entornos empresariales.
 
 ---
 
 ## 🎯 Objetivo
 
-Implementar un flujo de entrega moderno que permita:
+Implementar un pipeline que permita:
 
 * Detectar errores de forma temprana (Shift Left)
 * Asegurar calidad del código antes del merge
 * Validar cobertura de pruebas
-* Controlar cambios hacia la rama principal
-* Automatizar el despliegue en un entorno productivo
+* Controlar cambios hacia producción
+* Automatizar despliegues en la nube
 
 ---
 
 ## ⚙️ Arquitectura del Pipeline
 
-Pull Request / Push
+Flujo implementado:
+
+Pull Request
 ↓
-CI (Tests + Coverage)
-↓
-Code Quality (Quality Gate)
+CI (GitHub Actions: Tests + Coverage + Quality Gate)
 ↓
 Merge controlado a main
 ↓
-CD automático en AWS Amplify
-
----
-
-## 🔄 Flujo de ejecución
-
-1. Se crea un Pull Request hacia la rama principal
-2. Se ejecuta automáticamente el pipeline de CI
-3. Se validan pruebas y cobertura
-4. Se ejecuta el Quality Gate
-5. Si todo es exitoso, se permite el merge
-6. Se activa el despliegue automático en AWS Amplify
+CD automático (AWS Amplify)
+↓
+Producción disponible vía URL
 
 ---
 
@@ -59,140 +54,65 @@ El pipeline ejecuta automáticamente:
 * Instalación de dependencias
 * Configuración de entorno Python
 * Ejecución de pruebas con pytest
-* Medición de cobertura con pytest-cov
+* Validación de cobertura con pytest-cov
+* Bloqueo del merge si no se cumplen criterios
 
-Esto permite validar cada cambio antes de integrarlo a la rama principal.
-
----
-
-## 🧪 Evidencia del Pipeline
-
-### ✔️ Ejecución exitosa
-
-![CI Success](docs/ci-success.png)
-
-### ❌ Falla por pruebas
-
-Se provocó un error intencional para validar detección de fallas reales.
-![Test Fail](docs/test-fail.png)
-
-### 📊 Falla por cobertura
-
-Se configuró una cobertura mínima para validar el control del pipeline.
-![Coverage Fail](docs/coverage-fail.png)
-
-### 📈 Resultado de cobertura
-
-![Coverage](docs/coverage.png)
+Esto permite garantizar la calidad antes de integrar cambios.
 
 ---
 
-## 🛡️ Code Quality (Quality Gate)
+## 🧪 Quality Gate
 
-Se implementa un control de calidad basado en:
+Se implementa un Quality Gate basado en:
 
-* flake8 para análisis estático
-* validación de coverage mínimo
-* ejecución automática en CI
+* Coverage mínimo requerido (ej: 80%)
+* Validación de tests exitosos
 
-Este módulo actúa como un Quality Gate, bloqueando el pipeline si no se cumplen estándares mínimos.
-
-Más detalle en: `sonarqube/README.md`
-
----
-
-## 🔐 Control de Pull Request (PR)
-
-Se aplican buenas prácticas DevOps:
-
-* Validación automática en cada PR
-* Bloqueo de merge si el pipeline falla
-* Protección de la rama `main`
-
-Esto asegura que solo código validado avance en el flujo de entrega.
+Si no se cumplen las condiciones, el pipeline falla.
 
 ---
 
 ## 🚀 Continuous Deployment (CD)
 
-El proyecto implementa despliegue continuo real en AWS Amplify:
+El despliegue se realiza automáticamente mediante AWS Amplify:
 
-* Conexión directa con repositorio GitHub
-* Deploy automático en cada push a `main`
-* Publicación en entorno productivo
-* URL accesible públicamente
+* Detecta cambios en la rama main
+* Ejecuta build automático
+* Publica en entorno productivo
 
-Flujo automatizado:
-Push → Build → Deploy → Producción
+Esto permite un flujo de entrega completamente automatizado.
 
 ---
 
-## 🧠 Enfoque DevOps aplicado
+## 🌐 Resultado
 
-Este proyecto demuestra:
+El sistema queda disponible en producción:
 
-* Automatización de validaciones
-* Shift Left Testing
-* Control de calidad integrado
-* Flujo CI/CD completo
-* Gestión de fallos en pipeline
-* Despliegue continuo en cloud
+👉 https://main.d28beryieng64n.amplifyapp.com
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## 👩‍💻 Sobre el proyecto
 
-* Python 3.11
-* pytest
-* pytest-cov
-* flake8
+Este portafolio fue desarrollado con foco en demostrar capacidades en:
+
+* DevOps
+* Automatización de pipelines
+* Integración de herramientas CI/CD
+* Despliegue en la nube (AWS)
+
+---
+
+## 📌 Stack Tecnológico
+
+* Python
+* Pytest
 * GitHub Actions
 * AWS Amplify
-* HTML / CSS
+* Git / GitHub
 
 ---
 
-## 📈 Valor del proyecto
+## 🧠 Enfoque profesional
 
-Este enfoque permite:
-
-* Reducir defectos en producción
-* Asegurar calidad continua
-* Automatizar el ciclo de entrega
-* Mantener trazabilidad end-to-end
-* Implementar despliegue real en cloud
-
----
-
-## 📌 Estado del proyecto
-
-* CI implementado
-* Quality Gate implementado
-* PR controlado
-* CD automático en AWS Amplify
-* Deploy productivo activo
-
----
-
-## 🚀 Próximos pasos
-
-* Integrar análisis avanzado con SonarQube real
-* Agregar métricas visuales del pipeline
-* Incorporar monitoreo o alertas
-* Evolucionar a backend o microservicios
-
----
-
-## 🔗 Enlaces
-
-Repositorio: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio
-Pipeline: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions
-Aplicación: https://main.d28beryienq64n.amplifyapp.com
-
----
-
-## 👩‍💻 Autora
-
-**Verónica Maldonado**
-Ingeniera Civil Informática
-Project Manager | Agile | Cloud | DevOps
+Este proyecto representa una aproximación práctica a cómo se implementan pipelines de entrega continua en entornos reales, alineando desarrollo, calidad y despliegue automatizado.

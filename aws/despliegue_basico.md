@@ -64,7 +64,7 @@ AWS Amplify ejecutó automáticamente:
 
 ## 🌐 URL de producción
 
-👉 https://main.d28beryjenq64n.amplifyapp.com
+👉 https://main.d28beryienq64n.amplifyapp.com
 
 ---
 

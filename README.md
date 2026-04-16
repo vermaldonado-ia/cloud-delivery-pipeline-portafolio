@@ -11,7 +11,7 @@ Repositorio que demuestra la implementación de un pipeline DevOps completo, int
 ## 🌐 Producción
 
 👉 URL del sitio desplegado:
-https://TU-URL-AMPLIFY
+https://main.d28beryienq64n.amplifyapp.com
 
 El despliegue continuo se realiza automáticamente en AWS Amplify, generando un entorno accesible públicamente tras cada cambio en la rama principal.
 

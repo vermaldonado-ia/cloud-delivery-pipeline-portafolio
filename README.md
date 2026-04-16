@@ -81,6 +81,38 @@ Se implementa un Quality Gate práctico inspirado en herramientas como:
 * SonarQube
 * Azure DevOps Quality Gates
 
+---
+
+## 🔍 Evidencia real del flujo CI/CD
+
+A continuación se muestra la ejecución real del pipeline y el despliegue en la nube:
+
+---
+
+### ⚙️ GitHub Actions – Pipeline ejecutado
+
+![Pipeline GitHub Actions](docs/github-actions.png)
+
+✔ Ejecución automática tras merge en `main`
+✔ Validación de CI completada exitosamente
+✔ Despliegue a GitHub Pages (evidencia visual del pipeline)
+
+---
+
+### ☁️ AWS Amplify – Despliegue en producción
+
+![AWS Amplify Deploy](docs/aws-amplify.png)
+
+✔ Deploy automático configurado
+✔ Aplicación publicada en entorno cloud
+✔ URL productiva generada
+
+---
+
+💡 Esto demuestra la integración completa entre validación técnica (CI), control de calidad (Quality Gate) y despliegue continuo (CD) en la nube.
+
+---
+
 ### 🔍 Validaciones aplicadas:
 
 * ✔ Tests deben pasar

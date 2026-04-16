@@ -99,8 +99,9 @@ La arquitectura del proyecto separa claramente:
 
 ### 🔧 Flujo técnico
 
-* **GitHub Actions** → Integración Continua (CI)
-* **AWS Amplify** → Despliegue continuo (CD real)
+* **CI en GitHub Actions
+* **Quality Gate práctico
+* **CD en AWS Amplify
 
 ### 📊 Gestión del delivery
 

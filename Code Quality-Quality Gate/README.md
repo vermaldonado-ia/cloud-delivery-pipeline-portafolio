@@ -1,10 +1,18 @@
-# 🔍 Code Quality - Quality Gate
+# 🛡️ Code Quality - Quality Gate
 
-![CI Pipeline](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions/workflows/ci.yml/badge.svg)
+![Quality Gate](https://img.shields.io/badge/Quality%20Gate-Enabled-success)
+![Tests](https://img.shields.io/badge/Tests-Pytest-blue)
+![Coverage](https://img.shields.io/badge/Coverage-80%25-green)
 
-Este módulo implementa un **Quality Gate dentro de un pipeline CI/CD**, asegurando que solo código que cumple estándares de calidad pueda avanzar hacia etapas de despliegue.
+Este módulo implementa un **Quality Gate práctico** dentro del pipeline CI/CD, asegurando que solo código que cumple estándares mínimos de calidad pueda avanzar hacia despliegue.
 
-Se inspira en herramientas como **SonarQube** y **Azure DevOps Quality Gates**, pero está implementado de forma práctica utilizando **GitHub Actions**.
+Se inspira en herramientas como:
+
+* SonarQube
+* Azure DevOps Quality Gates
+* GitHub Advanced Security
+
+pero está implementado de forma **ligera y funcional** utilizando GitHub Actions.
 
 ---
 
@@ -19,154 +27,122 @@ Implementar un mecanismo automático que permita:
 
 ---
 
-## ⚙️ Rol dentro del Pipeline
+## 📐 Rol dentro del pipeline
 
-El Quality Gate actúa como una etapa intermedia crítica:
+El Quality Gate actúa como un punto de control obligatorio dentro del flujo de entrega:
 
-```
 Pull Request / Push
-        ↓
+↓
 CI (Tests + Coverage)
 ↓
 Code Quality (Quality Gate)
 ↓
 Merge controlado
 ↓
-CD Automático en AWS Amplify
-```
-
-Este módulo implementa un Quality Gate práctico inspirado en herramientas como SonarQube y Azure DevOps, utilizando GitHub Actions.
+CD Automático (AWS Amplify)
 
 ---
 
-## 🛠️ Herramientas utilizadas
+## 🔍 Validaciones aplicadas
 
-* flake8 → análisis estático de código (linting)
-* pytest → ejecución de pruebas
-* pytest-cov → medición de cobertura
+El Quality Gate se basa en tres pilares:
 
----
+### ✔ 1. Ejecución de pruebas
 
-## 🚫 Reglas de calidad implementadas
-
-El pipeline falla automáticamente si:
-
-* ❌ Existen errores de linting
-* ❌ Algún test falla
-* ❌ La cobertura es menor al mínimo definido
-
-Esto asegura que ningún código defectuoso llegue a producción.
+* Tests ejecutados con `pytest`
+* Validación de funcionalidad del código
 
 ---
 
-## 🧪 Implementación del Quality Gate
+### ✔ 2. Cobertura de código
 
-El control se ejecuta dentro del pipeline CI mediante:
+* Medición con `pytest-cov`
+* Umbral mínimo: **80%**
 
-* Validación de estilo de código
-* Ejecución de pruebas automatizadas
-* Evaluación de cobertura
-
-Ejemplo de ejecución:
-
-```
+```bash
 pytest --cov=src --cov-fail-under=80
-flake8 .
 ```
 
-Si alguna condición falla, el pipeline se detiene automáticamente.
+Si la cobertura es menor:
+
+⛔ El pipeline falla automáticamente
 
 ---
 
-## ❌ Evidencia: Falla por pruebas
+### ✔ 3. Calidad del código (Linting)
 
-Se introdujo un error intencional en el código para validar el comportamiento del pipeline.
+* Análisis con `flake8`
+* Validación de buenas prácticas y estilo
 
-**Resultado:**
+```bash
+flake8 src/
+```
 
-* El pipeline falla correctamente
-* Se bloquea el avance a etapas posteriores
-* Se evita integración de código defectuoso
+Si existen errores críticos:
 
----
-
-## 📊 Evidencia: Falla por cobertura
-
-Se configuró un umbral mínimo de cobertura, provocando una falla controlada.
-
-**Resultado:**
-
-* Se exige cobertura mínima obligatoria
-* Se asegura calidad estructural del código
-* Se refuerza disciplina de testing
+⛔ El pipeline se detiene
 
 ---
 
-## 📊 Resultado actual
+## ⚙️ Implementación técnica
 
-* ✅ Coverage: 100%
-* ✅ Quality Gate aprobado
-* ✅ Pipeline exitoso
+El Quality Gate está integrado dentro de GitHub Actions:
 
----
+* Se ejecuta en cada Pull Request
+* Se ejecuta en cada push a `main`
+* Forma parte del pipeline CI
 
-## 🧠 Quality Gate Simulado
+Archivo asociado:
 
-Este enfoque replica el comportamiento de herramientas como:
-
-* SonarQube
-* Azure DevOps Quality Gates
-
-Aunque no se utiliza una herramienta externa, el pipeline cumple el mismo propósito:
-
-* Validar calidad automáticamente
-* Bloquear despliegue si no se cumplen estándares
-* Reducir deuda técnica
+```
+.github/workflows/ci.yml
+```
 
 ---
 
-## 🚀 Valor DevOps
+## 🚫 Comportamiento ante fallos
 
-Este módulo permite:
+Si alguna validación no se cumple:
 
-* Aplicar Shift Left Testing
-* Automatizar controles de calidad
-* Asegurar estándares antes de producción
-* Mejorar confiabilidad del software
+* ❌ Tests fallan → no hay merge
+* ❌ Coverage bajo → pipeline detenido
+* ❌ Errores de linting → pipeline detenido
 
----
-
-## 📈 Impacto en el flujo de entrega
-
-Gracias al Quality Gate:
-
-* Se reduce el riesgo en producción
-* Se mejora la confiabilidad del pipeline
-* Se estandariza la calidad del código
-* Se controla el flujo de cambios
+👉 Esto garantiza que solo código validado avance en el flujo.
 
 ---
 
-## 📌 Conclusión
+## 🔍 Equivalencia en entornos reales
 
-El Quality Gate implementado garantiza que:
+Este enfoque replica de forma práctica lo que herramientas enterprise realizan:
 
-* Solo código validado avanza en el pipeline
-* Se mantienen estándares de desarrollo
-* Se reduce el riesgo en despliegues
-
-Este enfoque es clave en entornos DevOps modernos.
+| Herramienta              | Equivalente en este proyecto |
+| ------------------------ | ---------------------------- |
+| SonarQube                | Validación de calidad        |
+| Azure DevOps             | Quality Gate                 |
+| GitHub Advanced Security | Control automatizado         |
 
 ---
 
-## 🔗 Relación con el proyecto
+## 🧠 Enfoque de diseño
 
-Este módulo forma parte del repositorio principal:
+Este módulo no busca replicar completamente herramientas complejas, sino demostrar:
 
-👉 Cloud Delivery Pipeline Portafolio
+* Cómo implementar control de calidad sin herramientas pesadas
+* Cómo integrar validaciones dentro del flujo CI/CD
+* Cómo aplicar principios DevOps en escenarios reales
 
-Donde se integra con:
+---
 
-* CI Pipeline
-* Control de Pull Request
-* CD Simulado
+## 📚 Aprendizajes clave
+
+* Importancia de validar calidad antes del merge
+* Uso de métricas como coverage en pipelines CI
+* Integración de testing y linting en automatización
+* Control del flujo de entrega mediante Quality Gates
+
+---
+
+## 🚀 Conclusión
+
+Este módulo demuestra cómo implementar un Quality Gate funcional dentro de un pipeline moderno, asegurando calidad continua y alineación con prácticas utilizadas en entornos productivos DevOps.

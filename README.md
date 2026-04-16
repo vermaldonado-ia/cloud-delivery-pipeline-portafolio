@@ -43,6 +43,79 @@ Producción disponible
 
 ---
 
+## 📊 Gestión del Delivery con Azure DevOps
+
+Para complementar el flujo técnico del pipeline, se incorporó Azure DevOps como herramienta de gestión del trabajo, permitiendo organizar el backlog, dar trazabilidad a los requerimientos y visualizar el avance del proyecto.
+
+### 🎯 Objetivo
+
+* Gestionar historias de usuario y tareas asociadas
+* Visualizar el flujo de trabajo mediante tablero Kanban
+* Mantener trazabilidad entre requerimientos y ejecución
+* Simular un entorno de delivery real en contexto empresarial
+
+---
+
+### 🧩 Estructura de trabajo
+
+El proyecto fue organizado en:
+
+* **Epic**: Implementación de pipeline DevOps cloud
+* **User Stories**:
+
+  * Validación automática de calidad de código (CI)
+  * Automatización de despliegue en AWS (CD real)
+  * Gestión y trazabilidad del delivery
+* **Tasks**:
+
+  * Actividades técnicas asociadas a cada historia
+
+---
+
+### 📌 Flujo de trabajo (Kanban)
+
+Se configuró un tablero con las siguientes columnas:
+
+* **To Do**
+* **In Progress**
+* **QA / Testing**
+* **Done**
+
+Este flujo permite visualizar el estado del trabajo desde planificación hasta finalización, alineado con prácticas ágiles modernas.
+
+---
+
+### 📸 Evidencia
+
+#### 🧭 Tablero de trabajo
+
+![Board Azure DevOps](./docs/azure-board.png)
+
+#### 📋 Work Items
+
+![Work Items](./docs/azure-workitems.png)
+
+#### 🧩 Detalle de User Story
+
+![User Story](./docs/azure-userstory.png)
+
+---
+
+### 💡 Enfoque aplicado
+
+El pipeline técnico del proyecto se implementa con:
+
+* **GitHub Actions** → Integración Continua (CI)
+* **AWS Amplify** → Despliegue continuo (CD real)
+
+Mientras que Azure DevOps se utiliza para:
+
+* Gestión del backlog
+* Seguimiento del avance
+* Trazabilidad entre requerimientos y entregables
+
+---
+
 ## 🔄 Integración Continua (CI)
 
 El pipeline ejecuta automáticamente:

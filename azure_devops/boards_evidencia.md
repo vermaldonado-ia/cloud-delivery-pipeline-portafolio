@@ -89,6 +89,8 @@ Este enfoque permite controlar tanto el avance macro (historias) como el detalle
 
 ![User Story](../docs/azure-userstory.png)
 
+👉 Ver detalle de gestión en Azure DevOps: [boards_evidencia.md](./azure_devops/boards_evidencia.md)
+
 ---
 
 ## 💡 Enfoque aplicado

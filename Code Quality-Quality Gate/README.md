@@ -27,15 +27,15 @@ El Quality Gate actúa como una etapa intermedia crítica:
 Pull Request / Push
         ↓
 CI (Tests + Coverage)
-        ↓
+↓
 Code Quality (Quality Gate)
-        ↓
-Merge controlado a main
-        ↓
-CD (Deploy simulado)
+↓
+Merge controlado
+↓
+CD Automático en AWS Amplify
 ```
 
-Este punto define si el código puede o no avanzar en el flujo de entrega.
+Este módulo implementa un Quality Gate práctico inspirado en herramientas como SonarQube y Azure DevOps, utilizando GitHub Actions.
 
 ---
 

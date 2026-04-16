@@ -99,6 +99,9 @@ Este flujo permite visualizar el estado del trabajo desde planificación hasta f
 
 ![User Story](./docs/azure-userstory.png)
 
+👉 🔎 Ver detalle completo de gestión del delivery: [boards_evidencia.md](./azure_devops/boards_evidencia.md)
+
+💡 Nota: El tablero fue gestionado en Azure DevOps como herramienta de soporte al delivery.
 ---
 
 ### 💡 Enfoque aplicado

@@ -2,7 +2,7 @@
 
 ## 🎯 Propósito
 
-Esta aplicación simula un servicio backend mínimo, cuyo objetivo es:
+Este componente forma parte de un pipeline CI/CD completo con despliegue continuo en AWS Amplify.:
 
 - Permitir ejecución de pruebas automatizadas
 - Validar cobertura de código

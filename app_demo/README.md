@@ -2,14 +2,13 @@
 
 ## 🎯 Propósito
 
-Esta aplicación forma parte del repositorio **Cloud Delivery Pipeline Portafolio** y tiene como objetivo demostrar la implementación de un pipeline de **Integración Continua (CI)** utilizando GitHub Actions.
+Esta aplicación simula un servicio backend mínimo, cuyo objetivo es:
 
-Se utiliza como base para validar:
+- Permitir ejecución de pruebas automatizadas
+- Validar cobertura de código
+- Integrarse al pipeline CI/CD
 
-- Instalación de dependencias
-- Configuración de entorno Python
-- Ejecución de pruebas automatizadas
-- Validación de calidad de código
+No busca complejidad funcional, sino demostrar prácticas de delivery.
 
 ---
 

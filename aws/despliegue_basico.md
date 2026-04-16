@@ -1,17 +1,33 @@
 # 🚀 Despliegue Básico en AWS Amplify
 
-Este documento describe el proceso de despliegue de una aplicación estática utilizando AWS Amplify, conectando un repositorio GitHub y habilitando despliegue automático en cada cambio sobre la rama principal.
+Este documento describe la implementación de un despliegue continuo utilizando AWS Amplify, integrando el repositorio GitHub del proyecto dentro de un flujo CI/CD completo.
 
 ---
 
 ## 🎯 Objetivo
 
-Implementar un despliegue continuo simple que permita:
+Implementar un despliegue continuo que permita:
 
 * Publicar una aplicación en la nube
 * Automatizar el despliegue mediante integración con GitHub
 * Obtener una URL productiva accesible
 * Validar el flujo de entrega end-to-end
+
+---
+
+## 📐 Rol dentro del pipeline
+
+Este despliegue corresponde a la etapa final del flujo CI/CD implementado en el repositorio:
+
+Pull Request / Push
+↓
+CI Pipeline (GitHub Actions)
+↓
+Code Quality (Quality Gate)
+↓
+Merge a `main`
+↓
+CD Automático (AWS Amplify)
 
 ---
 
@@ -31,34 +47,44 @@ Hosting web con URL pública
 
 ### 1. Creación de la aplicación
 
-Se creó una nueva aplicación en AWS Amplify seleccionando la opción de hosting para aplicación web.
+Se creó una nueva aplicación en AWS Amplify utilizando el servicio de hosting para aplicaciones web estáticas.
+
+---
 
 ### 2. Conexión con repositorio
 
-Se conectó el repositorio GitHub del proyecto `cloud-delivery-pipeline-portafolio`.
+Se conectó el repositorio GitHub del proyecto:
+
+`cloud-delivery-pipeline-portafolio`
+
+---
 
 ### 3. Selección de rama
 
 Se configuró la rama `main` como rama de producción.
 
+---
+
 ### 4. Configuración de compilación
 
 Para este proyecto estático se utilizó la siguiente configuración:
 
-* Framework: Ninguno
+* Framework: None
 * Build command: vacío
 * Output directory: `/`
 
 Esto permite desplegar directamente el archivo `index.html` ubicado en la raíz del repositorio.
 
+---
+
 ### 5. Despliegue
 
-AWS Amplify ejecutó automáticamente:
+AWS Amplify ejecuta automáticamente:
 
-* clonación del repositorio
-* preparación del entorno
-* publicación de la aplicación
-* generación de URL pública
+* Clonación del repositorio
+* Preparación del entorno
+* Publicación de la aplicación
+* Generación de URL pública
 
 ---
 
@@ -70,7 +96,7 @@ AWS Amplify ejecutó automáticamente:
 
 ## 🔄 Despliegue automático
 
-Cada vez que se realiza un cambio en la rama `main`, AWS Amplify detecta el nuevo commit y ejecuta automáticamente un nuevo despliegue.
+Cada vez que se realiza un cambio en la rama `main`, AWS Amplify ejecuta automáticamente un nuevo despliegue.
 
 Flujo implementado:
 
@@ -92,7 +118,7 @@ Actualización del sitio en producción
 * URL pública accesible
 * Integración activa con GitHub
 * Despliegue automático funcionando
-* Sitio actualizado tras cambios en `index.html`
+* Actualización continua tras cambios en el repositorio
 
 ---
 
@@ -100,14 +126,14 @@ Actualización del sitio en producción
 
 Este despliegue demuestra:
 
-* uso de servicios cloud en AWS
-* integración de repositorio con plataforma de hosting
-* automatización del proceso de publicación
-* implementación práctica de Continuous Deployment
-* visibilidad end-to-end desde cambio técnico hasta resultado productivo
+* Uso de servicios cloud en AWS
+* Integración de repositorio con plataforma de hosting
+* Automatización del proceso de publicación
+* Implementación real de Continuous Deployment
+* Integración dentro de un pipeline CI/CD completo
 
 ---
 
-## 📌 Conclusión
+## 🚀 Conclusión
 
-Se implementó un despliegue básico pero real en AWS Amplify, suficiente para demostrar un flujo moderno de entrega continua sobre una aplicación estática. Este enfoque permite exponer el proyecto en un entorno productivo y mantener actualizaciones automáticas a partir de cambios en el repositorio.
+Se implementó un despliegue real en AWS Amplify como etapa final del pipeline CI/CD, permitiendo exponer el proyecto en un entorno productivo y mantener actualizaciones automáticas tras cada cambio en la rama principal.

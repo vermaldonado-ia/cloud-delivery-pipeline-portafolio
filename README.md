@@ -31,15 +31,15 @@ El enfoque está orientado a simular un flujo de entrega utilizado en entornos e
 
 ## ⚙️ Arquitectura del Pipeline
 
-Pull Request
+Pull Request / Push
 ↓
-CI (GitHub Actions: Tests + Coverage + Quality Gate)
+CI Pipeline (GitHub Actions)
+↓
+Code Quality (Quality Gate: pytest + coverage + flake8)
 ↓
 Merge controlado a main
 ↓
-CD automático (AWS Amplify)
-↓
-Producción disponible
+CD Automático (AWS Amplify - Deploy real)
 
 ---
 

@@ -30,3 +30,16 @@ app_demo/
 ├── tests/              # Pruebas automatizadas (pytest)
 ├── requirements.txt    # Dependencias del proyecto
 └── README.md
+
+---
+
+## 🔗 Integración dentro del pipeline
+
+Esta aplicación forma parte de un flujo completo de entrega continua (CI/CD), donde:
+
+* Es utilizada como base para ejecutar pruebas automatizadas (CI)
+* Permite validar cobertura de código y calidad (Quality Gate)
+* Es desplegada automáticamente como parte del proceso de entrega continua (CD) en AWS Amplify
+
+💡 Aunque su funcionalidad es simple, su propósito es demostrar cómo un componente de software puede integrarse dentro de un pipeline DevOps real, alineado a prácticas de entornos productivos.
+

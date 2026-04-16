@@ -144,13 +144,13 @@ Si alguna condición falla:
 
 ## ☁️ Despliegue Continuo (CD)
 
-El despliegue se realiza automáticamente en AWS Amplify:
+El despliegue se realiza automáticamente en AWS Amplify, actuando como el único entorno de entrega continua del proyecto.
 
 * Se activa al hacer merge en `main`
 * Publica el sitio en la nube
-* Genera URL accesible públicamente
+* Genera una URL accesible públicamente
 
-Esto permite simular un entorno real de producción.
+Este enfoque permite simular un entorno real de producción, alineado a prácticas utilizadas en arquitecturas cloud modernas.
 
 ---
 

@@ -220,3 +220,18 @@ Especialmente aplicable en:
 ## 🧠 Enfoque Profesional
 
 Este proyecto refleja una implementación práctica de DevOps moderno, integrando automatización, calidad y despliegue continuo en la nube.
+
+---
+
+👩‍💼 Rol en este proyecto
+
+En este proyecto asumí un rol integral de Delivery, donde:
+
+- Diseñé el flujo de CI/CD
+- Definí reglas de Quality Gate (coverage, linting)
+- Implementé automatización con GitHub Actions
+- Simulé control de calidad tipo SonarQube
+- Integré trazabilidad de trabajo con Azure DevOps
+- Implementé despliegue continuo en AWS Amplify
+
+El foco fue demostrar cómo estructurar un flujo de entrega moderno, alineado a prácticas DevOps.

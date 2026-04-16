@@ -41,6 +41,8 @@ Merge controlado a main
 ↓
 CD Automático (AWS Amplify - Deploy real)
 
+El despliegue continuo se realiza automáticamente en AWS Amplify, generando un entorno de producción accesible públicamente.
+
 ---
 
 ## 📊 Gestión del Delivery con Azure DevOps
@@ -220,8 +222,6 @@ Especialmente aplicable en:
 ## 🧠 Enfoque Profesional
 
 Este proyecto refleja una implementación práctica de DevOps moderno, integrando automatización, calidad y despliegue continuo en la nube.
-
----
 
 👩‍💼 Rol en este proyecto
 

@@ -150,6 +150,6 @@ Este proyecto demuestra la implementación de un pipeline de entrega completo, i
 
 ## 🔗 Enlaces
 
-👉 Repositorio GitHub
-👉 Pipeline CI (GitHub Actions)
-👉 Sitio en producción (AWS Amplify)
+👉 [Repositorio GitHub](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio)
+👉 [Pipeline CI (GitHub Actions)](https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions)
+👉 [Sitio en producción (AWS Amplify)](https://main.d28beryienq64n.amplifyapp.com)

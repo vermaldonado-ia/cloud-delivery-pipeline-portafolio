@@ -11,7 +11,7 @@
 ## 🌐 Producción
 
 👉 URL del sitio desplegado:
-(https://main.d28beryienq64n.amplifyapp.com)
+https://main.d28beryienq64n.amplifyapp.com
 
 El despliegue continuo se realiza automáticamente en AWS Amplify, generando un entorno accesible públicamente tras cada cambio en la rama principal.
 
@@ -231,6 +231,6 @@ Este proyecto refleja la capacidad de diseñar e implementar un flujo de entrega
 
 ## 🔗 Enlaces
 
-👉 Repositorio GitHub
-👉 Pipeline CI (GitHub Actions)
-👉 (https://main.d28beryienq64n.amplifyapp.com)
+👉 Portafolio Cloud & DevOps: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio
+👉 CI/CD Pipeline – GitHub Actions: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions
+👉 Demo Cloud – AWS Amplify: https://main.d28beryienq64n.amplifyapp.com

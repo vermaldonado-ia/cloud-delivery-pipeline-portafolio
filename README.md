@@ -3,8 +3,9 @@
 ![CI](https://img.shields.io/badge/CI-GitHub_Actions-blue)
 ![Coverage](https://img.shields.io/badge/Coverage-80%25-green)
 ![CD](https://img.shields.io/badge/CD-AWS_Amplify-orange)
+![Status](https://img.shields.io/badge/Status-Production-success)
 
-💡 Caso práctico de implementación de un pipeline DevOps real, donde se integran prácticas de calidad, automatización y despliegue continuo en la nube, simulando un flujo de entrega utilizado en entornos productivos.
+💡 Caso práctico de implementación de un pipeline DevOps real, integrando prácticas de calidad, automatización y despliegue continuo en la nube, alineado a flujos utilizados en entornos productivos.
 
 ---
 
@@ -13,7 +14,7 @@
 👉 URL del sitio desplegado:
 https://main.d28beryienq64n.amplifyapp.com
 
-El despliegue continuo se realiza automáticamente en AWS Amplify, generando un entorno accesible públicamente tras cada cambio en la rama principal.
+El despliegue continuo se realiza automáticamente en AWS Amplify, generando un entorno productivo accesible tras cada cambio en la rama principal.
 
 ---
 
@@ -32,15 +33,15 @@ Implementar un pipeline que permita:
 ## 💼 Valor entregado
 
 * Reducción de errores en etapas tempranas mediante CI
-* Control de calidad automatizado antes del despliegue
-* Estandarización del flujo de entrega
-* Simulación de un entorno real de producción
+* Control de calidad automatizado previo al despliegue
+* Flujo de entrega continuo sin intervención manual
+* Implementación de un pipeline alineado a prácticas DevOps reales
 
 ---
 
 ## 📐 Arquitectura del flujo
 
-Dev → Pull Request → CI (Tests + Coverage) → Quality Gate → Merge → CD (AWS Amplify)
+Dev → Pull Request → CI (Tests + Coverage) → Quality Gate → Merge → CD (AWS Amplify) → Producción
 
 ---
 
@@ -57,6 +58,8 @@ Code Quality (Quality Gate: pytest + coverage + flake8)
 Merge controlado a main
 ↓
 CD Automático (AWS Amplify - Deploy real)
+↓
+Aplicación disponible en producción
 
 ---
 
@@ -70,16 +73,27 @@ El pipeline ejecuta automáticamente:
 * Medición de cobertura con pytest-cov
 * Análisis de calidad con flake8
 
-Esto permite validar cada cambio antes de integrarlo a la rama principal.
+Esto permite validar cada cambio antes de integrarlo a la rama principal, reduciendo riesgos en etapas posteriores del ciclo de entrega.
 
 ---
 
 ## 🛡️ Code Quality - Quality Gate
 
-Se implementa un Quality Gate práctico inspirado en herramientas como:
+Se implementa un Quality Gate práctico inspirado en herramientas enterprise como:
 
 * SonarQube
 * Azure DevOps Quality Gates
+
+Validaciones aplicadas:
+
+* ✔ Tests deben pasar
+* ✔ Coverage mínimo: 80%
+* ✔ Código sin errores de linting
+
+Si alguna condición falla:
+
+⛔ El pipeline se detiene
+⛔ No se permite avanzar en el flujo
 
 ---
 
@@ -95,7 +109,7 @@ A continuación se muestra la ejecución real del pipeline y el despliegue en la
 
 ✔ Ejecución automática tras merge en `main`
 ✔ Validación de CI completada exitosamente
-✔ Despliegue a GitHub Pages (evidencia visual del pipeline)
+✔ Integración continua aplicada sobre cada cambio
 
 ---
 
@@ -103,26 +117,13 @@ A continuación se muestra la ejecución real del pipeline y el despliegue en la
 
 ![AWS Amplify Deploy](docs/aws-amplify.png)
 
-✔ Deploy automático configurado
-✔ Aplicación publicada en entorno cloud
-✔ URL productiva generada
+✔ Despliegue automático tras merge en `main`
+✔ Aplicación publicada en entorno cloud productivo
+✔ URL accesible públicamente
 
 ---
 
-💡 Esto demuestra la integración completa entre validación técnica (CI), control de calidad (Quality Gate) y despliegue continuo (CD) en la nube.
-
----
-
-### 🔍 Validaciones aplicadas:
-
-* ✔ Tests deben pasar
-* ✔ Coverage mínimo: 80%
-* ✔ Código sin errores de linting
-
-Si alguna condición falla:
-
-⛔ El pipeline se detiene
-⛔ No se permite avanzar en el flujo
+💡 Este flujo demuestra un pipeline end-to-end donde cada cambio validado es automáticamente desplegado en un entorno productivo en la nube.
 
 ---
 
@@ -146,11 +147,11 @@ Si alguna condición falla:
 
 El despliegue se realiza automáticamente en AWS Amplify:
 
-* Se activa al hacer merge en `main`
-* Publica el sitio en la nube
-* Genera URL accesible públicamente
+* Se activa tras cada merge a `main`
+* Ejecuta build y publicación
+* Genera una URL productiva accesible
 
-Esto permite simular un entorno real de producción.
+Esto permite un flujo de entrega continuo, automatizado y alineado a prácticas DevOps modernas.
 
 ---
 
@@ -165,14 +166,14 @@ Se incorpora trazabilidad del trabajo mediante:
 
 👉 Ver detalle: [boards_evidencia.md](./azure_devops/boards_evidencia.md)
 
-Esto permite mantener trazabilidad entre desarrollo y entrega.
+Esto permite conectar la gestión del trabajo con la ejecución técnica del pipeline.
 
 ---
 
 ## ⚠️ Alcance del proyecto
 
 * CI → Implementación real
-* Quality Gate → Implementación práctica (simulación de herramientas enterprise)
+* Quality Gate → Implementación práctica basada en estándares de la industria
 * CD → Implementación real en AWS Amplify
 * Gestión → Simulación de entorno organizacional con Azure DevOps
 
@@ -180,20 +181,21 @@ Esto permite mantener trazabilidad entre desarrollo y entrega.
 
 ## 🧠 Enfoque de Delivery
 
-Este proyecto no se centra únicamente en la automatización técnica, sino en cómo estructurar un flujo de entrega que:
+Este proyecto demuestra cómo estructurar un flujo de entrega que:
 
-* Minimice riesgos antes del despliegue
-* Asegure calidad continua
-* Permita escalar el modelo a equipos reales
-* Integre prácticas DevOps con gestión ágil
+* Minimiza riesgos antes del despliegue
+* Asegura calidad continua
+* Automatiza el ciclo de release
+* Permite escalar el modelo a equipos reales
+* Integra prácticas DevOps con gestión ágil
 
 ---
 
 ## 📚 Aprendizajes clave
 
-* Importancia del control de calidad antes del merge
-* Implementación de métricas como coverage en CI
-* Automatización del flujo de entrega
+* Importancia del control de calidad previo al merge
+* Uso de métricas como coverage en CI
+* Automatización del flujo de entrega end-to-end
 * Integración entre prácticas DevOps y gestión ágil
 
 ---
@@ -215,17 +217,17 @@ En este proyecto asumí un rol integral de Delivery, donde:
 * Diseñé el flujo de CI/CD
 * Definí reglas de Quality Gate (coverage, linting)
 * Implementé automatización con GitHub Actions
-* Simulé control de calidad tipo SonarQube
+* Implementé control de calidad inspirado en prácticas enterprise
 * Integré trazabilidad de trabajo con Azure DevOps
 * Implementé despliegue continuo en AWS Amplify
 
-El foco fue demostrar cómo estructurar un flujo de entrega moderno, alineado a prácticas DevOps.
+El foco fue demostrar la construcción de un flujo de entrega moderno, alineado a prácticas DevOps utilizadas en entornos productivos.
 
 ---
 
 ## 🚀 Conclusión
 
-Este proyecto refleja la capacidad de diseñar e implementar un flujo de entrega moderno, integrando automatización, calidad y despliegue continuo, alineado a prácticas utilizadas en organizaciones que operan bajo modelos DevOps.
+Este proyecto refleja la capacidad de diseñar e implementar un pipeline DevOps completo, integrando automatización, control de calidad y despliegue continuo en la nube, permitiendo entregar software de forma segura, repetible y escalable.
 
 ---
 
@@ -234,3 +236,4 @@ Este proyecto refleja la capacidad de diseñar e implementar un flujo de entrega
 👉 Portafolio Cloud & DevOps: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio
 👉 CI/CD Pipeline – GitHub Actions: https://github.com/vermaldonado-ia/cloud-delivery-pipeline-portafolio/actions
 👉 Demo Cloud – AWS Amplify: https://main.d28beryienq64n.amplifyapp.com
+

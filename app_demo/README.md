@@ -1,45 +1,138 @@
-# 🚀 App Demo – Aplicación de Ejemplo para CI/CD
+# 🧪 App Demo – Validación CI y Quality Gate
 
-## 🎯 Propósito
+Este módulo corresponde a una aplicación de ejemplo desarrollada en Python, utilizada exclusivamente para demostrar prácticas de **Integración Continua (CI)** y control de calidad dentro del pipeline DevOps.
 
-Este componente forma parte de un pipeline CI/CD completo con despliegue continuo en AWS Amplify.:
-
-- Permitir ejecución de pruebas automatizadas
-- Validar cobertura de código
-- Integrarse al pipeline CI/CD
-
-No busca complejidad funcional, sino demostrar prácticas de delivery.
+⚠️ **Importante:**
+Esta aplicación **no es desplegada en producción**. Su propósito es validar automáticamente la calidad del código antes de permitir cambios en la rama principal.
 
 ---
 
-## 🧩 Descripción de la aplicación
+## 🎯 Objetivo
 
-La aplicación es un servicio simple desarrollado en Python, diseñado para ser probado automáticamente dentro de un pipeline CI/CD.
+Demostrar cómo un pipeline de CI permite:
 
-Su enfoque no es la complejidad funcional, sino servir como:
-
-👉 **Componente demostrativo de automatización DevOps**
+* Detectar errores de forma temprana (Shift Left)
+* Validar la correcta instalación de dependencias
+* Ejecutar pruebas automatizadas
+* Medir cobertura de código
+* Aplicar un criterio de calidad (Quality Gate) antes del merge
 
 ---
 
-## 🏗️ Estructura del proyecto
+## ⚙️ Rol dentro del Pipeline
+
+Este módulo representa la **etapa de validación técnica** dentro del flujo DevOps:
+
+Pull Request / Push
+↓
+CI (Tests + Coverage)
+↓
+Quality Gate
+↓
+Merge controlado a main
+↓
+CD (Deploy de sitio estático en AWS Amplify)
+
+📌 La etapa de CD despliega un **sitio estático (`index.html`)**, el cual actúa como evidencia del pipeline, pero **no corresponde a esta aplicación Python**.
+
+---
+
+## 🧩 Estructura del Proyecto
+
+```
+app_demo/
+│
+├── main.py
+├── requirements.txt
+├── tests/
+│   └── test_main.py
+└── README.md
+```
+
+---
+
+## 🔄 Proceso de CI Implementado
+
+El pipeline ejecuta automáticamente las siguientes acciones:
+
+### 1. Configuración del entorno
+
+* Instalación de Python
+* Instalación de dependencias desde `requirements.txt`
+
+### 2. Ejecución de pruebas
+
+* Uso de `pytest` para validar funcionalidad
+
+### 3. Medición de cobertura
+
+* Uso de `pytest-cov`
+* Generación de reporte de coverage
+
+### 4. Quality Gate
+
+* Se exige un mínimo de **80% de cobertura**
+* Si no se cumple, el pipeline falla
+
+---
+
+## 🧪 Ejecución local
+
+Para ejecutar la aplicación y pruebas en entorno local:
 
 ```bash
-app_demo/
-├── src/                # Código fuente de la aplicación
-├── tests/              # Pruebas automatizadas (pytest)
-├── requirements.txt    # Dependencias del proyecto
-└── README.md
+cd app_demo
+python -m venv venv
+source venv/bin/activate  # En Mac/Linux
+pip install -r requirements.txt
+pytest --cov=src
+```
 
 ---
 
-## 🔗 Integración dentro del pipeline
+## 🛠️ Herramientas utilizadas
 
-Esta aplicación forma parte de un flujo completo de entrega continua (CI/CD), donde:
+* Python 3.11
+* pytest
+* pytest-cov
+* GitHub Actions
 
-* Es utilizada como base para ejecutar pruebas automatizadas (CI)
-* Permite validar cobertura de código y calidad (Quality Gate)
-* Es desplegada automáticamente como parte del proceso de entrega continua (CD) en AWS Amplify
+---
 
-💡 Aunque su funcionalidad es simple, su propósito es demostrar cómo un componente de software puede integrarse dentro de un pipeline DevOps real, alineado a prácticas de entornos productivos.
+## 💡 Enfoque del Diseño
 
+Este módulo fue diseñado bajo el principio:
+
+👉 *"Primero asegurar calidad, luego permitir despliegue"*
+
+Por esta razón:
+
+* La validación CI está desacoplada del CD
+* El pipeline garantiza estándares mínimos antes de integrar cambios
+* Se simula un entorno real donde la calidad es una puerta de entrada obligatoria
+
+---
+
+## 🚀 Valor en un contexto real
+
+En un entorno empresarial, este enfoque permite:
+
+* Reducir defectos en producción
+* Asegurar estándares de desarrollo
+* Controlar el flujo de cambios hacia ramas principales
+* Implementar prácticas DevOps alineadas con calidad desde el inicio
+
+---
+
+## 📌 Nota final
+
+Este módulo forma parte del repositorio:
+
+👉 **Cloud Delivery Pipeline Portafolio**
+
+Donde se demuestra un flujo completo que integra:
+
+* CI con validación de calidad (este módulo)
+* CD con despliegue en AWS Amplify (sitio estático)
+
+Ambos componentes juntos representan un pipeline DevOps funcional a nivel demostrativo.
